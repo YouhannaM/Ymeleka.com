@@ -14,14 +14,14 @@ import work from '@/data/resume/work';
 export const metadata: Metadata = {
   title: 'Resume',
   description:
-    "Michael D'Angelo's Resume. Arthena, Matroid, YC, Skeptical Investments, Stanford ICME, Planet, and Facebook.",
+    "Youhanna Meleka's Resume. Global Supply Chain Leader & Systems Engineer. Tesla, BP, Penn State.",
 };
 
 const sections = [
   { name: 'Education', id: 'education' },
   { name: 'Experience', id: 'experience' },
   { name: 'Skills', id: 'skills' },
-  { name: 'Courses', id: 'courses' },
+  { name: 'Certifications', id: 'courses' },
   { name: 'References', id: 'references' },
 ];
 

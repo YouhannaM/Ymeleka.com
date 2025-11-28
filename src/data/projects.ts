@@ -9,47 +9,48 @@ export interface Project {
 
 const data: Project[] = [
   {
-    title: 'Nearest Dollar',
-    subtitle: '2015 BVP Hackathon',
+    title: 'Tariff Impact Reduction Initiative',
+    subtitle: 'Tesla - Supply Chain Strategy',
     image: '/images/projects/nearestdollar.jpg',
-    date: '2015-11-20',
+    date: '2024-01-01',
     desc:
-      'Built for a social impact hackathon. ' +
-      'NearestDollar connected to your bank accounts, credit cards, ' +
-      'or debit cards and rounded up your purchases to donate the balance to ' +
-      'the charity of your choice.',
+      "Developed comprehensive regionalization strategy to minimize tariff exposure across Tesla's global supply chain. " +
+      'Achieved $13M cost avoidance with <5% tariff impact by mitigating 4 high-risk programs, ' +
+      'qualifying local alternate suppliers, and optimizing inventory management. ' +
+      'Technologies: Trade Analysis, Supply Optimization, Legal Compliance',
   },
   {
-    title: 'Harvest',
-    subtitle: 'Won 3rd. place in 2015 Techcrunch Disrupt SF Hackathon',
-    link: 'https://devpost.com/software/harvest',
+    title: 'Warranty Process Reengineering',
+    subtitle: 'Tesla - Process Optimization',
     image: '/images/projects/harvest.jpg',
-    date: '2015-09-20',
+    date: '2023-06-01',
     desc:
-      'Won ~ $7000 in prizes for an advanced, low cost monitoring solution ' +
-      'for crops. Harvest was designed to catch irrigation leaks, overwatering, ' +
-      'and nutrient deficiencies at an affordable price for the developing world.',
+      'Streamlined supplier warranty chargeback process delivering $15M in savings and 80% process time reduction. ' +
+      'Collaborated with global service centers to recover $2.38M in immediate cash. ' +
+      'Developed scalable process framework for ongoing warranty management. ' +
+      'Technologies: Process Automation, Data Analysis, Workflow Optimization',
   },
   {
-    title: 'Space Potato',
-    subtitle: 'A kickstarter funded potato powered weather balloon.',
-    link: 'http://www.spacepotato.org',
+    title: 'Scouting America Troop 395',
+    subtitle: 'Non-Profit - Community Leadership',
     image: '/images/projects/spacepotato.jpg',
-    date: '2015-06-28',
+    date: '2024-01-01',
     desc:
-      'Launched a potato battery powered weather balloon with two cameras ' +
-      'and gps transponder. Resulting photos were published in a coffee table book. ' +
-      'You can email me for a copy.',
+      'Co-founded and established new scout troop organization focused on youth leadership development ' +
+      'in Silicon Valley community. Drafted organizational bylaws, established financing structure, ' +
+      'and created board governance framework for sustainable community impact. ' +
+      'Technologies: Community Organizing, Leadership Development',
   },
   {
-    title: 'Cat Detector',
-    subtitle: 'A convolutional neural network to classify cats! (and dogs)',
+    title: 'AI-Powered Supply Chain Solutions',
+    subtitle: 'Research & Development',
     image: '/images/projects/catdetector.jpg',
-    date: '2015-05-15',
+    date: '2024-01-01',
     desc:
-      'Trained a convolutional neural network to classify between ~ 80 cats breeds. ' +
-      'Over 60,000 cats were classified before server bills made the project too expensive ' +
-      'to continue hosting.',
+      'Exploring agentic supply chains and AI applications for operational excellence. ' +
+      'Researching how artificial intelligence can create autonomous, adaptive supply chain systems ' +
+      'that optimize themselves in real-time. Focus on developing technology solutions to address ' +
+      'food security challenges and extend educational opportunities to underserved communities.',
   },
 ];
 

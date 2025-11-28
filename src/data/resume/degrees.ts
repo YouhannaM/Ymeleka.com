@@ -3,20 +3,18 @@ export interface Degree {
   degree: string;
   link: string;
   year: number;
+  gpa?: string;
+  honors?: string[];
 }
 
 const degrees: Degree[] = [
   {
-    school: 'Stanford University',
-    degree: 'M.S. Computational and Mathematical Engineering',
-    link: 'https://stanford.edu',
-    year: 2016,
-  },
-  {
-    school: 'University at Buffalo',
-    degree: 'B.S. Electrical Engineering, Computer Engineering',
-    link: 'https://buffalo.edu',
-    year: 2012,
+    school: 'The Pennsylvania State University',
+    degree: 'B.S. Industrial, Systems, & Manufacturing Engineering',
+    link: 'https://psu.edu',
+    year: 2022,
+    gpa: '3.88/4.00',
+    honors: ["Dean's List (5 out of 6 semesters)", 'College of Engineering'],
   },
 ];
 
