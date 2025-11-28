@@ -18,17 +18,15 @@ export default function HomePage() {
             <h2>
               <Link href="/about">Welcome</Link>
             </h2>
-            <p>
-              Global Supply Chain Leader & Systems Engineer
-            </p>
+            <p>Global Supply Chain Leader & Systems Engineer</p>
           </div>
         </header>
         <p>
           {' '}
           I'm passionate about leveraging technology to multiply human capacity
-          and improve how people live. With experience leading global supply chains
-          at Tesla, I specialize in creating resilient, data-driven solutions that
-          drive both business value and positive social impact.
+          and improve how people live. With experience leading global supply
+          chains at Tesla, I specialize in creating resilient, data-driven
+          solutions that drive both business value and positive social impact.
         </p>
         <p>
           {' '}
