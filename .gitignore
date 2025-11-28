@@ -54,3 +54,7 @@ tsconfig.tsbuildinfo
 
 # Nohup
 nohup.out
+
+# Archives
+*.tar.gz
+*.zip

@@ -1,0 +1,72 @@
+YMELEKA.COM - LOCAL SETUP INSTRUCTIONS
+========================================
+
+This archive contains the complete source code for your personal portfolio website.
+
+SYSTEM REQUIREMENTS:
+-------------------
+- Node.js 20 or higher (recommended: 22+)
+- npm (comes with Node.js)
+- A modern web browser
+
+INSTALLATION STEPS:
+------------------
+
+1. EXTRACT THE ARCHIVE:
+
+   On Linux/macOS:
+   $ tar -xzf Ymeleka-site.tar.gz
+   $ cd Ymeleka.com
+
+   On Windows (using Git Bash or WSL):
+   $ tar -xzf Ymeleka-site.tar.gz
+   $ cd Ymeleka.com
+
+   Or use a tool like 7-Zip to extract the .tar.gz file
+
+2. INSTALL DEPENDENCIES:
+   $ npm install
+
+   This will download and install all required packages (~525 packages)
+   Takes about 15-30 seconds depending on your internet connection
+
+3. START THE DEVELOPMENT SERVER:
+   $ npm run dev
+
+   The site will be available at: http://localhost:3000
+
+   Press Ctrl+C to stop the server
+
+4. OPEN IN VS CODE (Optional):
+   $ code .
+
+   Or open VS Code and use File → Open Folder
+
+AVAILABLE COMMANDS:
+------------------
+npm run dev          - Start development server (with hot reload)
+npm run build        - Create production build
+npm run lint         - Check code quality with Biome
+npm run type-check   - Validate TypeScript types
+npm test             - Run Jest tests
+npm run analyze      - Analyze bundle size
+
+CUSTOMIZATION:
+-------------
+- Edit content in: /src/data/
+- Modify styles in: /src/static/
+- Update components in: /src/components/
+- Configure site in: next.config.ts
+
+For detailed documentation, see README.md
+
+DEPLOYMENT:
+----------
+The site is configured for automatic deployment to GitHub Pages.
+Simply push to your repository and GitHub Actions will handle the deployment.
+
+SUPPORT:
+-------
+For issues or questions, visit: https://github.com/YouhannaM/Ymeleka.com
+
+Enjoy building your portfolio! 🚀
