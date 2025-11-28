@@ -6,7 +6,7 @@ import PageWrapper from './components/PageWrapper';
 
 export const metadata: Metadata = {
   description:
-    "Michael D'Angelo is a data scientist, machine learning engineer, and full-stack engineer.",
+    'Youhanna Meleka is a Global Supply Chain Leader and Systems Engineer passionate about using technology to create positive social impact.',
 };
 
 export default function HomePage() {
@@ -16,27 +16,26 @@ export default function HomePage() {
         <header>
           <div className="title">
             <h2>
-              <Link href="/about">About this site</Link>
+              <Link href="/about">Welcome</Link>
             </h2>
             <p>
-              A beautiful, responsive, statically-generated, react application
-              written with modern Javascript.
+              Global Supply Chain Leader & Systems Engineer
             </p>
           </div>
         </header>
         <p>
           {' '}
-          Welcome to my website. Please feel free to read more{' '}
-          <Link href="/about">about me</Link>, or you can check out my{' '}
-          <Link href="/resume">resume</Link>,{' '}
-          <Link href="/projects">projects</Link>, view{' '}
-          <Link href="/stats">site statistics</Link>, or{' '}
-          <Link href="/contact">contact</Link> me.
+          I'm passionate about leveraging technology to multiply human capacity
+          and improve how people live. With experience leading global supply chains
+          at Tesla, I specialize in creating resilient, data-driven solutions that
+          drive both business value and positive social impact.
         </p>
         <p>
           {' '}
-          Source available{' '}
-          <a href="https://github.com/mldangelo/personal-site">here</a>.
+          Learn more <Link href="/about">about me</Link>, check out my{' '}
+          <Link href="/resume">resume</Link>, explore my{' '}
+          <Link href="/projects">projects</Link>, or{' '}
+          <Link href="/contact">get in touch</Link>.
         </p>
       </article>
     </PageWrapper>

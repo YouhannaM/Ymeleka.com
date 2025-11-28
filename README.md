@@ -1,6 +1,6 @@
-# Personal Website
+# Youhanna Meleka - Personal Website
 
-Welcome to my [personal website](https://mldangelo.com)! This is an [MIT licensed](https://github.com/mldangelo/personal-site/blob/main/LICENSE) Next.js-based Jamstack application. It offers a simple interface, easy modifications, static export capabilities, and free automatic deployments via [GitHub Pages](https://pages.github.com/).
+Welcome to my [personal website](https://ymeleka.com)! This is a Next.js-based Jamstack application showcasing my work in supply chain innovation, systems engineering, and technology for social impact. Built with Next.js 16, React 19, and TypeScript.
 
 ## 🚀 Features
 
