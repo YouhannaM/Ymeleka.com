@@ -16,16 +16,16 @@ const SideBar: React.FC = () => {
         <Link href="/" className="logo">
           <Image
             src="/images/me.jpg"
-            alt="Michael D'Angelo"
+            alt="Youhanna Meleka"
             width={200}
             height={200}
             priority
           />
         </Link>
         <header>
-          <h2>Michael D&apos;Angelo</h2>
+          <h2>Youhanna Meleka</h2>
           <p>
-            <a href="mailto:michael@mldangelo.com">michael@mldangelo.com</a>
+            <a href="mailto:youhanna@ymeleka.com">youhanna@ymeleka.com</a>
           </p>
         </header>
       </section>
@@ -33,25 +33,17 @@ const SideBar: React.FC = () => {
       <section className="blurb">
         <h2>About</h2>
         <p>
-          Hi, I&apos;m Michael. I am a{' '}
-          <a href="https://icme.stanford.edu/">Stanford ICME</a> graduate, YC
-          alumnus, and the co-founder and CTO of{' '}
-          <a href="https://promptfoo.dev">Promptfoo</a>. Previously, I was VP of
-          Engineering at <a href="https://usesmileid.com">SmileID</a>,
-          co-founder and CTO of <a href="https://arthena.com">Arthena</a>, and
-          co-founded <a href="https://matroid.com">Matroid</a>.
+          Hi, I am Youhanna. A Penn State ISME graduate and Tesla Alumnus. I am
+          passionate about leveraging technology to multiply human capacity and
+          improve how people live. With experience leading global supply chains
+          at Tesla, I specialize in creating resilient, data-driven solutions
+          that drive both business value and positive social impact.
         </p>
         <ul className="actions">
           <li>
-            {pathname && !pathname.includes('/resume') ? (
-              <Link href="/resume" className="button">
-                Learn More
-              </Link>
-            ) : (
-              <Link href="/about" className="button">
-                About Me
-              </Link>
-            )}
+            <Link href="/about" className="button">
+              About Me
+            </Link>
           </li>
         </ul>
       </section>
@@ -59,7 +51,7 @@ const SideBar: React.FC = () => {
       <section id="footer">
         <ContactIcons />
         <p className="copyright">
-          &copy; Michael D&apos;Angelo <Link href="/">mldangelo.com</Link>.
+          &copy; Youhanna Meleka <Link href="/">ymeleka.com</Link>.
         </p>
       </section>
     </section>

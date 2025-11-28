@@ -21,7 +21,6 @@ export default function AboutPage() {
             <h2>
               <Link href="/about">About Me</Link>
             </h2>
-            <p>(in about {count(aboutMarkdown)} words)</p>
           </div>
         </header>
         <Markdown>{aboutMarkdown}</Markdown>
