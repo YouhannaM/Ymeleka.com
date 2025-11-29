@@ -42,15 +42,9 @@ const SideBar: React.FC = () => {
         </p>
         <ul className="actions">
           <li>
-            {pathname && !pathname.includes('/resume') ? (
-              <Link href="/resume" className="button">
-                Learn More
-              </Link>
-            ) : (
-              <Link href="/about" className="button">
-                About Me
-              </Link>
-            )}
+            <Link href="/about" className="button">
+              Learn More
+            </Link>
           </li>
         </ul>
       </section>
