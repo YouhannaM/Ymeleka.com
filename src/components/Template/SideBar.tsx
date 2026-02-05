@@ -2,14 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import ContactIcons from '../Contact/ContactIcons';
 
 const SideBar: React.FC = () => {
-  const pathname = usePathname();
-
   return (
     <section id="sidebar">
       <section id="intro">
@@ -25,7 +22,7 @@ const SideBar: React.FC = () => {
         <header>
           <h2>Youhanna Meleka</h2>
           <p>
-            <a href="mailto:contact@ymeleka.com">contact@ymeleka.com</a>
+            <a href="mailto:ymeleka1@gmail.com">ymeleka1@gmail.com</a>
           </p>
         </header>
       </section>
@@ -33,26 +30,9 @@ const SideBar: React.FC = () => {
       <section className="blurb">
         <h2>About</h2>
         <p>
-          Hi, I&apos;m Youhanna. I&apos;m a Global Supply Chain Leader & Systems
-          Engineer passionate about leveraging technology to multiply human
-          capacity. At Tesla, I managed $300M+ in annual spend while achieving
-          100% production uptime. I&apos;m focused on building agentic supply
-          chains and exploring AI applications for global food security and
-          education access.
+          Hi, I&apos;m Youhanna. I&apos;m an entrepreneurial Systems Engineer
+          passionate about leveraging technology to multiply human capacity.
         </p>
-        <ul className="actions">
-          <li>
-            {pathname && !pathname.includes('/resume') ? (
-              <Link href="/resume" className="button">
-                Learn More
-              </Link>
-            ) : (
-              <Link href="/about" className="button">
-                About Me
-              </Link>
-            )}
-          </li>
-        </ul>
       </section>
 
       <section id="footer">
