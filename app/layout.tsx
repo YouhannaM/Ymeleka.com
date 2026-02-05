@@ -41,6 +41,25 @@ export const metadata: Metadata = {
   authors: [{ name: 'Youhanna Meleka' }],
   creator: 'Youhanna Meleka',
   metadataBase: new URL('https://ymeleka.com'),
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/images/favicon/apple-icon-180x180.png', sizes: '180x180' },
+      { url: '/images/favicon/apple-icon-152x152.png', sizes: '152x152' },
+      { url: '/images/favicon/apple-icon-144x144.png', sizes: '144x144' },
+      { url: '/images/favicon/apple-icon-120x120.png', sizes: '120x120' },
+      { url: '/images/favicon/apple-icon-114x114.png', sizes: '114x114' },
+      { url: '/images/favicon/apple-icon-76x76.png', sizes: '76x76' },
+      { url: '/images/favicon/apple-icon-72x72.png', sizes: '72x72' },
+      { url: '/images/favicon/apple-icon-60x60.png', sizes: '60x60' },
+      { url: '/images/favicon/apple-icon-57x57.png', sizes: '57x57' },
+    ],
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
