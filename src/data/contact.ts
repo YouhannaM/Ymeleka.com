@@ -25,7 +25,7 @@ const data: ContactItem[] = [
     icon: faGithub,
   },
   {
-    link: 'mailto:contact@ymeleka.com',
+    link: 'mailto:ymeleka1@gmail.com',
     label: 'Email',
     icon: faEnvelope,
   },
