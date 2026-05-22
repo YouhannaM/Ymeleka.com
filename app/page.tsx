@@ -9,9 +9,6 @@ import { aboutMarkdown } from '@/data/about';
 
 import PageWrapper from './components/PageWrapper';
 
-const count = (str: string) =>
-  str.split(/\s+/).filter((word) => word !== '').length;
-
 export default function HomePage() {
   return (
     <PageWrapper>
@@ -21,7 +18,6 @@ export default function HomePage() {
             <h2>
               <Link href="/about">About Me</Link>
             </h2>
-            <p>(in about {count(aboutMarkdown)} words)</p>
           </div>
         </header>
         <Markdown>{aboutMarkdown}</Markdown>
