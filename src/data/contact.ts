@@ -6,6 +6,7 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons/faPenToSquare';
 
 export interface ContactItem {
   link: string;
@@ -23,6 +24,11 @@ const data: ContactItem[] = [
     link: 'https://github.com/YouhannaM',
     label: 'Github',
     icon: faGithub,
+  },
+  {
+    link: 'https://substack.com/@youhannam?r=hvn2t&utm_campaign=profile&utm_medium=profile-page',
+    label: 'Substack',
+    icon: faPenToSquare,
   },
   {
     link: 'mailto:ymeleka1@gmail.com',
