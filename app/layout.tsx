@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: '%s | Youhanna Meleka',
   },
   description:
-    'Youhanna Meleka is a systems engineer and builder. Born in Egypt, trained at Penn State, scaled global supply chains at Tesla, studying semiconductors and quantum materials at Cornell, and building Ficio, robotics for food.',
+    'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet, building robots, systems, and world models to accelerate food abundance. Egypt, Penn State, Tesla, Cornell, and Ficio.',
   keywords: [
     'Youhanna Meleka',
     'systems engineer',
