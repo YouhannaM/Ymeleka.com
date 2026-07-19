@@ -1,6 +1,14 @@
 import React from 'react';
 
 import ContactIcons from '@/components/Contact/ContactIcons';
+import {
+  CornellPanorama,
+  EgyptPanorama,
+  FicioPanorama,
+  PennStatePanorama,
+  TeslaPanorama,
+} from '@/components/Story/Backdrops';
+import Cursor from '@/components/Story/Cursor';
 import ScrollEffects from '@/components/Story/ScrollEffects';
 import {
   CornellVignette,
@@ -13,52 +21,64 @@ import {
 interface Chapter {
   id: string;
   marker: string;
+  numeral: string;
   place: string;
   title: string;
   text: string;
   art: React.ReactNode;
+  backdrop: React.ReactNode;
 }
 
 const chapters: Chapter[] = [
   {
     id: 'origins',
-    marker: 'Chapter I',
+    marker: 'Scene I',
+    numeral: 'I',
     place: 'Cairo, Egypt',
     title: 'ORIGINS',
     text: 'Born and raised in Egypt, in the shadow of the pyramids, where I learned to navigate ambiguity and to make much from little.',
     art: <PyramidsVignette />,
+    backdrop: <EgyptPanorama />,
   },
   {
     id: 'foundations',
-    marker: 'Chapter II',
+    marker: 'Scene II',
+    numeral: 'II',
     place: 'Happy Valley, PA',
     title: 'FOUNDATIONS',
     text: 'Industrial and Systems Engineering at Penn State. The Nittany Lion and a Beaver Stadium Saturday taught me what it looks like when 100,000 people move as one system.',
     art: <PennStateVignette />,
+    backdrop: <PennStatePanorama />,
   },
   {
     id: 'scale',
-    marker: 'Chapter III',
+    marker: 'Scene III',
+    numeral: 'III',
     place: 'California',
     title: 'SCALE',
     text: 'Global supply chains at Tesla. Strategic sourcing, investment diligence, and operational efficiency across the value chain, at the speed the machines demanded.',
     art: <TeslaVignette />,
+    backdrop: <TeslaPanorama />,
   },
   {
     id: 'depth',
-    marker: 'Chapter IV',
+    marker: 'Scene IV',
+    numeral: 'IV',
     place: 'Ithaca, NY',
     title: 'DEPTH',
     text: "A Master's in Semiconductors and Quantum Materials Engineering at Cornell University, going a layer deeper to the atoms that compute.",
     art: <CornellVignette />,
+    backdrop: <CornellPanorama />,
   },
   {
     id: 'ficio',
-    marker: 'Chapter V',
+    marker: 'Scene V',
+    numeral: 'V',
     place: 'What comes next',
     title: 'FICIO',
     text: 'Ficio is robotics for food. Multiplying human capacity, starting with how the world eats.',
     art: <FicioVignette />,
+    backdrop: <FicioPanorama />,
   },
 ];
 
@@ -131,6 +151,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <ScrollEffects />
+      <Cursor />
 
       <header className="site-header">
         <span className="monogram">Y</span>
@@ -164,6 +185,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      <nav className="scene-rail" aria-label="Scenes">
+        {chapters.map((chapter) => (
+          <a
+            key={chapter.id}
+            href={`#${chapter.id}`}
+            data-scene-link={chapter.id}
+            className="scene-rail-link"
+          >
+            <span className="scene-rail-label">{chapter.place}</span>
+            <span className="scene-rail-numeral">{chapter.numeral}</span>
+            <span className="hex" aria-hidden="true" />
+          </a>
+        ))}
+      </nav>
+
       {chapters.map((chapter, i) => (
         <section
           key={chapter.id}
@@ -178,9 +214,14 @@ export default function HomePage() {
             .filter(Boolean)
             .join(' ')}
         >
+          <div className="chapter-backdrop" aria-hidden="true">
+            <div className="chapter-backdrop-inner" data-parallax="0.16">
+              {chapter.backdrop}
+            </div>
+          </div>
           <span className="chapter-marker">{chapter.marker}</span>
           <span className="chapter-place">{chapter.place}</span>
-          <div className="chapter-art">
+          <div className="chapter-art" data-parallax="-0.05">
             <div className="vignette">{chapter.art}</div>
           </div>
           <div className="chapter-body">
@@ -196,6 +237,13 @@ export default function HomePage() {
                 />
               ))}
             </div>
+          </div>
+          <div className="scene-next" aria-hidden="true">
+            <span className="scene-next-label">
+              Next:{' '}
+              {i < chapters.length - 1 ? chapters[i + 1].place : "Let's build"}
+            </span>
+            <span className="scene-next-line" />
           </div>
         </section>
       ))}
