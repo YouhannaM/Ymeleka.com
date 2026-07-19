@@ -94,7 +94,7 @@ const structuredData = {
       image: 'https://ymeleka.com/images/me.jpg',
       jobTitle: 'Operator-Founder and Systems Engineer',
       description:
-        'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet. Born and raised in Egypt, he scrubbed pans as a prep cook, studied Industrial and Systems Engineering at Penn State, engineered global supply chains at Tesla, is pursuing a Master of Engineering in Semiconductors and Quantum Materials at Cornell University, and is building Ficio on the thesis that whoever owns the kitchen ingredient data layer owns the future of restaurant automation.',
+        'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet, building robots, systems, and world models to accelerate food abundance. Born and raised in Egypt, he studied Industrial and Systems Engineering at Penn State, engineered global supply chains at Tesla, is pursuing a Master of Engineering in Semiconductors and Quantum Materials at Cornell University, and is building Ficio, robotics for food.',
       birthPlace: { '@type': 'Country', name: 'Egypt' },
       alumniOf: [
         {
@@ -171,10 +171,8 @@ export default function HomePage() {
             Systems live at the intersection of all three.
           </p>
           <p className="hero-thesis">
-            A hardware-obsessed operator-founder: I scrubbed pans as a prep
-            cook, engineered supply chains at Tesla, and now I'm betting
-            everything on one thesis. Whoever owns the kitchen's ingredient data
-            layer owns the future of restaurant automation.
+            Building robots, systems, and world models to accelerate food
+            abundance.
           </p>
           <a className="pill-button" href="mailto:ymeleka1@gmail.com">
             get in touch

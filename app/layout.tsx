@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: '%s | Youhanna Meleka',
   },
   description:
-    'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet. From prep cook to Tesla supply chains to Ficio: betting that whoever owns the kitchen ingredient data layer owns the future of restaurant automation.',
+    'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet, building robots, systems, and world models to accelerate food abundance. Egypt, Penn State, Tesla, Cornell, and Ficio.',
   keywords: [
     'Youhanna Meleka',
     'systems engineer',
