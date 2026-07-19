@@ -90,17 +90,6 @@ a {
   letter-spacing: -0.01em;
 }
 
-.header-link {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-}
-
 /* --- Hero -------------------------------------------------------------- */
 
 .hero {
@@ -155,6 +144,66 @@ a {
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  color: var(--color-graphite);
+}
+
+.scroll-cue-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.scroll-cue-track {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  overflow: hidden;
+  background: rgba(89, 88, 85, 0.3);
+}
+
+.scroll-cue-dot {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 3px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--color-graphite);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue-dot {
+    animation: scroll-dot 2.1s ease-in-out infinite;
+  }
+
+  @keyframes scroll-dot {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+
+    30% {
+      opacity: 1;
+    }
+
+    75% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(46px);
+      opacity: 0;
+    }
   }
 }
 

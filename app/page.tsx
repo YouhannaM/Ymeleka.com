@@ -114,13 +114,18 @@ const structuredData = {
         description: 'Robotics for food',
       },
       knowsAbout: [
+        'Commercial strategy',
         'Supply chain management',
         'Strategic sourcing',
         'Systems engineering',
+        'Software engineering',
+        'Hardware engineering',
         'Semiconductors',
         'Quantum materials',
         'Robotics',
         'Manufacturing',
+        'Investment diligence',
+        'Capital allocation',
         'Artificial intelligence',
       ],
       sameAs: [
@@ -155,9 +160,6 @@ export default function HomePage() {
 
       <header className="site-header">
         <span className="monogram">Y</span>
-        <a className="header-link" href="mailto:ymeleka1@gmail.com">
-          ymeleka1@gmail.com
-        </a>
       </header>
 
       <section className="hero" aria-label="Introduction">
@@ -172,6 +174,12 @@ export default function HomePage() {
           <a className="pill-button" href="mailto:ymeleka1@gmail.com">
             get in touch
           </a>
+          <div className="scroll-cue">
+            <span className="scroll-cue-label">Scroll to experience</span>
+            <span className="scroll-cue-track" aria-hidden="true">
+              <span className="scroll-cue-dot" />
+            </span>
+          </div>
         </div>
         <h1 className="hero-wordmark">
           Youhanna<span className="sr-only"> Meleka</span>

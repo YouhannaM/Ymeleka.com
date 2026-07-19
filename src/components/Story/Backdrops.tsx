@@ -5,6 +5,12 @@ import React from 'react';
  * like the underdrawing of a fresco. Rendered at very low opacity in
  * the section's ink or paper color, they give each room atmosphere
  * without competing with the circular vignettes.
+ *
+ * Each panorama also carries one thread of the work: a merchant's
+ * scale for commercial acumen in Egypt, a flowchart and braces for
+ * software over Happy Valley, meshing gears for manufacturing at the
+ * gigafactory, an integrated circuit for hardware in Ithaca, and a
+ * rising chart with coins for capital over the Ficio orchard.
  */
 
 const svgProps = {
@@ -39,8 +45,19 @@ export const EgyptPanorama: React.FC = () => (
     </g>
     {/* birds */}
     <g strokeWidth={1.4}>
-      <path d="M420 180 Q432 172 444 180 M444 180 Q456 172 468 180" />
-      <path d="M520 150 Q530 144 540 150 M540 150 Q550 144 560 150" />
+      <path d="M590 190 Q602 182 614 190 M614 190 Q626 182 638 190" />
+      <path d="M660 150 Q670 144 680 150 M680 150 Q690 144 700 150" />
+    </g>
+    {/* merchant's balance, the first trade */}
+    <g strokeWidth={1.6}>
+      <path d="M470 210 V140" />
+      <circle cx="470" cy="134" r="5" />
+      <path d="M420 144 H520" />
+      <path d="M420 144 L405 176 M420 144 L435 176" />
+      <path d="M402 178 Q420 190 438 178" />
+      <path d="M520 144 L505 176 M520 144 L535 176" />
+      <path d="M502 178 Q520 190 538 178" />
+      <path d="M452 210 H488" />
     </g>
     {/* pyramids */}
     <path d="M560 400 L810 170 L1060 400 Z" />
@@ -107,6 +124,23 @@ export const PennStatePanorama: React.FC = () => (
       <circle cx="1330" cy="320" r="8" />
       <path d="M1330 328 V340" />
     </g>
+    {/* a system, drawn as a flowchart */}
+    <g strokeWidth={1.6}>
+      <circle cx="392" cy="86" r="16" />
+      <path d="M408 86 H460" />
+      <path d="M460 66 H526 V106 H460 Z" />
+      <path d="M526 86 H556" />
+      <path d="M582 62 L610 86 L582 110 L554 86 Z" />
+      <path d="M582 110 V138" />
+      <circle cx="582" cy="152" r="13" />
+      <path d="M493 106 V152 H569" strokeWidth={1.2} opacity={0.6} />
+    </g>
+    {/* code braces between the floodlights */}
+    <g strokeWidth={1.6}>
+      <path d="M862 40 Q842 48 848 70 Q852 82 838 86 Q852 90 848 102 Q842 124 862 132" />
+      <path d="M942 40 Q962 48 956 70 Q952 82 966 86 Q952 90 956 102 Q962 124 942 132" />
+      <path d="M916 54 L892 118" strokeWidth={1.4} opacity={0.6} />
+    </g>
     {/* Beaver Stadium bowl */}
     <path d="M380 250 Q720 190 1060 250" />
     <path d="M420 320 Q720 262 1020 320" />
@@ -147,6 +181,16 @@ export const TeslaPanorama: React.FC = () => (
   <svg {...svgProps}>
     {/* bolt in the sky */}
     <path d="M420 90 L380 170 H415 L370 250" strokeWidth={1.8} opacity={0.6} />
+    {/* meshing gears */}
+    <g strokeWidth={1.6}>
+      <circle cx="640" cy="140" r="42" />
+      <circle cx="640" cy="140" r="10" />
+      <path d="M640 90 V78 M640 190 V202 M590 140 H578 M690 140 H702" />
+      <path d="M605 105 L596 96 M675 105 L684 96 M605 175 L596 184 M675 175 L684 184" />
+      <circle cx="722" cy="197" r="27" />
+      <circle cx="722" cy="197" r="7" />
+      <path d="M722 164 V154 M722 230 V240 M689 197 H679 M755 197 H765" />
+    </g>
     {/* gigafactory sawtooth roofline */}
     <path d="M200 400 V320 L260 280 V320 L320 280 V320 L380 280 V320 L440 280 V320 L500 280 V320 L560 280 V320 L620 280 V320 L680 280 V320 L740 280 V320 L800 280 V320 L860 280 V320 L920 280 V320 L980 280 V400" />
     <path d="M200 400 H980" />
@@ -241,16 +285,22 @@ export const CornellPanorama: React.FC = () => (
       <path d="M712 500 L682 488" />
       <path d="M730 540 L696 526" />
     </g>
+    {/* an integrated circuit among the traces */}
+    <g strokeWidth={1.6}>
+      <path d="M960 448 H1100 V528 H960 Z" />
+      <circle cx="980" cy="466" r="5" />
+      <path d="M960 466 H932 M960 488 H932 M960 510 H932" />
+      <path d="M1100 466 H1128 M1100 488 H1128 M1100 510 H1128" />
+      <path d="M988 448 V424 M1030 448 V424 M1072 448 V424" />
+      <path d="M988 528 V552 M1030 528 V552 M1072 528 V552" />
+    </g>
     {/* circuit traces at the edges */}
     <g strokeWidth={1.6}>
-      <path d="M40 560 H300 V538" />
-      <circle cx="300" cy="530" r="7" />
-      <path d="M1400 560 H1140 V542" />
-      <circle cx="1140" cy="534" r="7" />
-      <path d="M120 590 H260" />
-      <circle cx="268" cy="590" r="6" />
-      <path d="M1320 592 H1180" />
-      <circle cx="1172" cy="592" r="6" />
+      <path d="M340 560 H120" />
+      <circle cx="112" cy="560" r="6" />
+      <path d="M360 590 H820" />
+      <circle cx="828" cy="590" r="6" />
+      <path d="M1128 488 H1220 V560 H1360" />
     </g>
   </svg>
 );
@@ -269,6 +319,14 @@ export const FicioPanorama: React.FC = () => (
     <g strokeWidth={1.4}>
       <path d="M560 130 Q572 122 584 130 M584 130 Q596 122 608 130" />
       <path d="M660 100 Q670 94 680 100 M680 100 Q690 94 700 100" />
+    </g>
+    {/* capital: a rising line and sown coins */}
+    <g strokeWidth={1.6}>
+      <path d="M700 270 L780 246 L844 268 L924 202 L1004 224 L1104 140" />
+      <path d="M1104 140 L1082 142 M1104 140 L1100 162" />
+      <circle cx="662" cy="290" r="11" />
+      <circle cx="688" cy="292" r="11" />
+      <circle cx="674" cy="272" r="11" />
     </g>
     {/* horizon */}
     <path d="M40 380 H1400" />
