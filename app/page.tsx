@@ -92,9 +92,9 @@ const structuredData = {
       url: 'https://ymeleka.com',
       email: 'mailto:ymeleka1@gmail.com',
       image: 'https://ymeleka.com/images/me.jpg',
-      jobTitle: 'Systems Engineer and Builder',
+      jobTitle: 'Operator-Founder and Systems Engineer',
       description:
-        'Youhanna Meleka is a systems engineer and builder. Born and raised in Egypt, he studied Industrial and Systems Engineering at Penn State, led global supply chains at Tesla, is pursuing a Master of Engineering in Semiconductors and Quantum Materials at Cornell University, and is building Ficio, robotics for food.',
+        'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet. Born and raised in Egypt, he scrubbed pans as a prep cook, studied Industrial and Systems Engineering at Penn State, engineered global supply chains at Tesla, is pursuing a Master of Engineering in Semiconductors and Quantum Materials at Cornell University, and is building Ficio on the thesis that whoever owns the kitchen ingredient data layer owns the future of restaurant automation.',
       birthPlace: { '@type': 'Country', name: 'Egypt' },
       alumniOf: [
         {
@@ -165,11 +165,16 @@ export default function HomePage() {
       <section className="hero" aria-label="Introduction">
         <div className="hero-cluster">
           <p className="hero-line">
-            SYSTEMS <em>for</em> ABUNDANCE
+            ATOMS, MACHINES <em>and</em> SOFTWARE
           </p>
           <p className="hero-tagline">
-            Systems engineer and builder. Technology that multiplies human
-            capacity.
+            Systems live at the intersection of all three.
+          </p>
+          <p className="hero-thesis">
+            A hardware-obsessed operator-founder: I scrubbed pans as a prep
+            cook, engineered supply chains at Tesla, and now I'm betting
+            everything on one thesis. Whoever owns the kitchen's ingredient data
+            layer owns the future of restaurant automation.
           </p>
           <a className="pill-button" href="mailto:ymeleka1@gmail.com">
             get in touch
