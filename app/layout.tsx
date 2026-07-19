@@ -1,22 +1,22 @@
 import type { Metadata } from 'next';
-import { Raleway, Source_Sans_3 } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import React from 'react';
 
 import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
-import Navigation from '@/components/Template/Navigation';
-import '@/static/css/main.scss';
+import '@/static/css/story.scss';
 
-const sourceSans = Source_Sans_3({
-  weight: ['400', '700'],
+const inter = Inter({
+  weight: ['400', '500'],
   subsets: ['latin'],
-  variable: '--font-source-sans',
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const raleway = Raleway({
-  weight: ['400', '800', '900'],
+const playfair = Playfair_Display({
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
   subsets: ['latin'],
-  variable: '--font-raleway',
+  variable: '--font-playfair',
   display: 'swap',
 });
 
@@ -26,17 +26,19 @@ export const metadata: Metadata = {
     template: '%s | Youhanna Meleka',
   },
   description:
-    'Youhanna Meleka - Global Supply Chain Leader & Systems Engineer. Passionate about leveraging technology to multiply human capacity and create positive social impact.',
+    'Youhanna Meleka is a systems engineer and builder. Born in Egypt, trained at Penn State, scaled global supply chains at Tesla, studying semiconductors and quantum materials at Cornell, and building Ficio, robotics for food.',
   keywords: [
     'Youhanna Meleka',
-    'supply chain',
     'systems engineer',
+    'supply chain',
     'Tesla',
-    'AI',
-    'agentic supply chains',
-    'global food security',
-    'education access',
-    'portfolio',
+    'Cornell University',
+    'Penn State',
+    'semiconductors',
+    'quantum materials',
+    'Ficio',
+    'robotics for food',
+    'Egypt',
   ],
   authors: [{ name: 'Youhanna Meleka' }],
   creator: 'Youhanna Meleka',
@@ -51,13 +53,7 @@ export const metadata: Metadata = {
     apple: [
       { url: '/images/favicon/apple-icon-180x180.png', sizes: '180x180' },
       { url: '/images/favicon/apple-icon-152x152.png', sizes: '152x152' },
-      { url: '/images/favicon/apple-icon-144x144.png', sizes: '144x144' },
       { url: '/images/favicon/apple-icon-120x120.png', sizes: '120x120' },
-      { url: '/images/favicon/apple-icon-114x114.png', sizes: '114x114' },
-      { url: '/images/favicon/apple-icon-76x76.png', sizes: '76x76' },
-      { url: '/images/favicon/apple-icon-72x72.png', sizes: '72x72' },
-      { url: '/images/favicon/apple-icon-60x60.png', sizes: '60x60' },
-      { url: '/images/favicon/apple-icon-57x57.png', sizes: '57x57' },
     ],
   },
   openGraph: {
@@ -67,7 +63,7 @@ export const metadata: Metadata = {
     siteName: 'Youhanna Meleka',
     title: 'Youhanna Meleka',
     description:
-      'Global Supply Chain Leader & Systems Engineer. Creating resilient, data-driven solutions for business value and social impact.',
+      'From the pyramids of Egypt to Penn State, Tesla, Cornell, and Ficio. Systems for a future of abundance.',
     images: [
       {
         url: '/images/me.jpg',
@@ -96,12 +92,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sourceSans.variable} ${raleway.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        <div id="wrapper">
-          <Navigation />
-          {children}
-        </div>
+        {/* Flags JS availability before paint so scroll animations only
+            hide content when they can also reveal it. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+        {children}
         <GoogleAnalytics />
       </body>
     </html>

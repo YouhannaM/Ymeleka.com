@@ -9,17 +9,14 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div id="wrapper">
-      <div id="main">
-        <article className="post" id="contact">
-          <header>
-            <div className="title">
-              <h2>Page Not Found</h2>
-            </div>
-          </header>
-          <Link href="/">Return Home</Link>
-        </article>
-      </div>
-    </div>
+    <main className="connect" style={{ minHeight: '100svh' }}>
+      <h1 className="connect-title">
+        LOST<em>?</em>
+      </h1>
+      <p className="connect-text">This room does not exist.</p>
+      <Link className="pill-button" href="/">
+        return home
+      </Link>
+    </main>
   );
 }
