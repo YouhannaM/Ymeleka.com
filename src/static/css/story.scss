@@ -1,0 +1,438 @@
+/* ==========================================================================
+   Ymeleka.com — "Gallery" rebrand
+   A putty-beige canvas, stark black rooms, monoline engravings.
+   Serif carries the voice; the grotesk carries the data.
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --color-putty: #c4c3b6;
+  --color-ink: #000000;
+  --color-bone: #e7e5e4;
+  --color-chalk: #ebebeb;
+  --color-vellum: #dfdcd5;
+  --color-graphite: #595855;
+  --color-ash: #808080;
+  --color-paper: #ffffff;
+
+  /* Typography */
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-grotesk:
+    var(--font-inter), 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Radii */
+  --radius-cards: 9px;
+  --radius-buttons: 28.8px;
+
+  /* Layout */
+  --section-gap: 80px;
+  --gutter: clamp(20px, 5vw, 60px);
+}
+
+/* --- Reset ------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-putty);
+  color: var(--color-ink);
+  font-family: var(--font-grotesk);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* --- Header ------------------------------------------------------------ */
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px var(--gutter);
+}
+
+.monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.header-link {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* --- Hero -------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-top: 120px;
+  background: var(--color-putty);
+}
+
+.hero-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: auto;
+  padding: 0 var(--gutter);
+  text-align: center;
+}
+
+.hero-line {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.009em;
+  line-height: 1;
+
+  em {
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  font-size: clamp(12px, 1.6vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pill-button {
+  display: inline-block;
+  padding: 9px 17px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: var(--radius-buttons);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.hero-wordmark {
+  align-self: center;
+  margin-top: auto;
+  font-family: var(--font-serif);
+  font-size: clamp(72px, 21.5vw, 374px);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.009em;
+  white-space: nowrap;
+  transform: translateY(0.06em);
+  user-select: none;
+}
+
+.hero-itinerary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--gutter);
+  border-top: 1px solid var(--color-vellum);
+  font-size: clamp(9px, 1.4vw, 12px);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+/* --- Chapters ---------------------------------------------------------- */
+
+.chapter {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+  min-height: 92svh;
+  padding: 96px var(--gutter);
+
+  &.is-dark {
+    background: var(--color-ink);
+    color: var(--color-paper);
+
+    .chapter-marker,
+    .chapter-place {
+      color: var(--color-ash);
+    }
+
+    .vignette {
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+  }
+
+  &.is-light {
+    background: var(--color-bone);
+    color: var(--color-ink);
+
+    .chapter-marker,
+    .chapter-place {
+      color: var(--color-graphite);
+    }
+
+    .vignette {
+      border-color: var(--color-graphite);
+    }
+  }
+
+  &.is-flipped .chapter-art {
+    order: 2;
+  }
+}
+
+.chapter-marker {
+  position: absolute;
+  top: 32px;
+  left: var(--gutter);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.chapter-place {
+  position: absolute;
+  top: 32px;
+  right: var(--gutter);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.chapter-art {
+  display: flex;
+  justify-content: center;
+}
+
+.vignette {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(66vw, 380px);
+  aspect-ratio: 1;
+  border: 1px solid;
+  border-radius: 50%;
+  overflow: hidden;
+
+  svg {
+    width: 78%;
+    height: 78%;
+    display: block;
+  }
+}
+
+.chapter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 520px;
+}
+
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(43px, 7vw, 94px);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.009em;
+
+  em {
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+.chapter-text {
+  font-size: clamp(15px, 1.8vw, 16px);
+  line-height: 1.5;
+  max-width: 44ch;
+}
+
+.chapter-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hex-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.hex {
+  width: 12px;
+  height: 12px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  border: none;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+
+  &.is-filled {
+    background: currentColor;
+  }
+}
+
+/* --- Connect / Footer --------------------------------------------------- */
+
+.connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 168px var(--gutter);
+  background: var(--color-putty);
+  text-align: center;
+}
+
+.connect-title {
+  font-family: var(--font-serif);
+  font-size: clamp(43px, 7vw, 94px);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.009em;
+
+  em {
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+.connect-text {
+  max-width: 46ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-graphite);
+}
+
+.connect .icons {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-ink);
+    border-radius: 50%;
+    font-size: 16px;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+  }
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 28px var(--gutter);
+  background: var(--color-chalk);
+  font-size: 12px;
+  color: var(--color-graphite);
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 820px) {
+  .chapter {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 96px var(--gutter) 60px;
+    gap: 40px;
+    text-align: center;
+
+    &.is-flipped .chapter-art {
+      order: 0;
+    }
+  }
+
+  .chapter-body {
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .chapter-stats {
+    justify-content: center;
+  }
+
+  .hex-row {
+    justify-content: center;
+  }
+
+  .connect {
+    padding: 96px var(--gutter);
+  }
+}
