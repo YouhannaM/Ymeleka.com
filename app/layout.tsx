@@ -26,17 +26,19 @@ export const metadata: Metadata = {
     template: '%s | Youhanna Meleka',
   },
   description:
-    'Youhanna Meleka — from the pyramids of Egypt to Penn State, Tesla, Cornell, and Ficio. Systems for a future of abundance.',
+    'Youhanna Meleka is a systems engineer and builder. Born in Egypt, trained at Penn State, scaled global supply chains at Tesla, studying semiconductors and quantum materials at Cornell, and building Ficio, robotics for food.',
   keywords: [
     'Youhanna Meleka',
     'systems engineer',
     'supply chain',
     'Tesla',
-    'Cornell',
+    'Cornell University',
+    'Penn State',
     'semiconductors',
     'quantum materials',
     'Ficio',
-    'robotics',
+    'robotics for food',
+    'Egypt',
   ],
   authors: [{ name: 'Youhanna Meleka' }],
   creator: 'Youhanna Meleka',
@@ -90,8 +92,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
       <body>
+        {/* Flags JS availability before paint so scroll animations only
+            hide content when they can also reveal it. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         {children}
         <GoogleAnalytics />
       </body>
