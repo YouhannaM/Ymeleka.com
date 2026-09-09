@@ -51,7 +51,9 @@ export default function Cursor() {
     };
 
     const onOver = (e: MouseEvent) => {
-      const interactive = (e.target as Element).closest?.('a, button');
+      const interactive = (e.target as Element).closest?.(
+        'a, button, [data-interactive]',
+      );
       ring.classList.toggle('is-on-link', Boolean(interactive));
     };
 
