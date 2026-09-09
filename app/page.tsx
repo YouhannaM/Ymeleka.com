@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ContactIcons from '@/components/Contact/ContactIcons';
+import Artifact3D from '@/components/Story/Artifact3D';
 import {
   CornellPanorama,
   EgyptPanorama,
@@ -10,6 +11,7 @@ import {
 } from '@/components/Story/Backdrops';
 import Cursor from '@/components/Story/Cursor';
 import ScrollEffects from '@/components/Story/ScrollEffects';
+import type { SceneId } from '@/components/Story/three/ArtifactCanvas';
 import {
   CornellVignette,
   FicioVignette,
@@ -17,9 +19,10 @@ import {
   PyramidsVignette,
   TeslaVignette,
 } from '@/components/Story/Vignettes';
+import Wordmark3D from '@/components/Story/Wordmark3D';
 
 interface Chapter {
-  id: string;
+  id: SceneId;
   marker: string;
   numeral: string;
   place: string;
@@ -184,9 +187,7 @@ export default function HomePage() {
             </span>
           </div>
         </div>
-        <h1 className="hero-wordmark">
-          Youhanna<span className="sr-only"> Meleka</span>
-        </h1>
+        <Wordmark3D />
         <div className="hero-itinerary" aria-label="Life itinerary">
           <span>Cairo</span>
           <span>Happy Valley</span>
@@ -233,7 +234,15 @@ export default function HomePage() {
           <span className="chapter-marker">{chapter.marker}</span>
           <span className="chapter-place">{chapter.place}</span>
           <div className="chapter-art" data-parallax="-0.05">
-            <div className="vignette">{chapter.art}</div>
+            <div className="vignette">
+              <Artifact3D
+                scene={chapter.id}
+                tone={i % 2 === 0 ? 'dark' : 'light'}
+                index={i}
+              >
+                {chapter.art}
+              </Artifact3D>
+            </div>
           </div>
           <div className="chapter-body">
             <h2 className="chapter-title" id={`${chapter.id}-title`}>
