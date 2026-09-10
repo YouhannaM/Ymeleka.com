@@ -5,6 +5,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons/faXTwitter';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons/faPenToSquare';
 
@@ -19,6 +20,11 @@ const data: ContactItem[] = [
     link: 'https://www.linkedin.com/in/youhanna-meleka/',
     label: 'LinkedIn',
     icon: faLinkedinIn,
+  },
+  {
+    link: 'https://x.com/YouhannaMeleka',
+    label: 'X',
+    icon: faXTwitter,
   },
   {
     link: 'https://github.com/YouhannaM',

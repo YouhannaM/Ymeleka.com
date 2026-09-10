@@ -285,6 +285,29 @@ export const CornellPanorama: React.FC = () => (
       <path d="M712 500 L682 488" />
       <path d="M730 540 L696 526" />
     </g>
+    {/* a row of server racks on the ridge */}
+    <g strokeWidth={1.4}>
+      <path d="M1040 400 V336 H1082 V400" />
+      <path
+        d="M1046 348 H1076 M1046 360 H1076 M1046 372 H1076 M1046 384 H1076"
+        opacity={0.6}
+      />
+      <path d="M1096 400 V336 H1138 V400" />
+      <path
+        d="M1102 348 H1132 M1102 360 H1132 M1102 372 H1132 M1102 384 H1132"
+        opacity={0.6}
+      />
+      <path d="M1152 400 V336 H1194 V400" />
+      <path
+        d="M1158 348 H1188 M1158 360 H1188 M1158 372 H1188 M1158 384 H1188"
+        opacity={0.6}
+      />
+      <path d="M1208 400 V336 H1250 V400" />
+      <path
+        d="M1214 348 H1244 M1214 360 H1244 M1214 372 H1244 M1214 384 H1244"
+        opacity={0.6}
+      />
+    </g>
     {/* an integrated circuit among the traces */}
     <g strokeWidth={1.6}>
       <path d="M960 448 H1100 V528 H960 Z" />

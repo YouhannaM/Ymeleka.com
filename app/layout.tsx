@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import React from 'react';
 
@@ -36,6 +36,8 @@ export const metadata: Metadata = {
     'Penn State',
     'semiconductors',
     'quantum materials',
+    'AI infrastructure',
+    'data centers',
     'Ficio',
     'robotics for food',
     'Egypt',
@@ -84,6 +86,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#c4c3b6',
 };
 
 export default function RootLayout({
