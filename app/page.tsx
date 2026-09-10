@@ -10,6 +10,8 @@ import {
   TeslaPanorama,
 } from '@/components/Story/Backdrops';
 import Cursor from '@/components/Story/Cursor';
+import HeroGlobe from '@/components/Story/HeroGlobe';
+import LocalTime from '@/components/Story/LocalTime';
 import ScrollEffects from '@/components/Story/ScrollEffects';
 import type { SceneId } from '@/components/Story/three/ArtifactCanvas';
 import {
@@ -69,7 +71,7 @@ const chapters: Chapter[] = [
     numeral: 'IV',
     place: 'Ithaca, NY',
     title: 'DEPTH',
-    text: "A Master's in Semiconductors and Quantum Materials Engineering at Cornell University, going a layer deeper to the atoms that compute.",
+    text: "A Master's in Semiconductors and Quantum Materials Engineering at Cornell University, going a layer deeper into AI infrastructure: the chips, servers, and data centers that compute.",
     art: <CornellVignette />,
     backdrop: <CornellPanorama />,
   },
@@ -125,6 +127,8 @@ const structuredData = {
         'Hardware engineering',
         'Semiconductors',
         'Quantum materials',
+        'AI infrastructure',
+        'Data centers',
         'Robotics',
         'Manufacturing',
         'Investment diligence',
@@ -133,6 +137,7 @@ const structuredData = {
       ],
       sameAs: [
         'https://www.linkedin.com/in/youhanna-meleka/',
+        'https://x.com/YouhannaMeleka',
         'https://github.com/YouhannaM',
         'https://substack.com/@youhannam',
       ],
@@ -165,7 +170,13 @@ export default function HomePage() {
         <span className="monogram">Y</span>
       </header>
 
-      <section className="hero" aria-label="Introduction">
+      <HeroGlobe>
+        <div className="scroll-cue" aria-hidden="true">
+          <span className="scroll-cue-label">Scroll to unfold the world</span>
+          <span className="scroll-cue-track">
+            <span className="scroll-cue-dot" />
+          </span>
+        </div>
         <div className="hero-cluster">
           <p className="hero-line">
             ATOMS, MACHINES <em>and</em> SOFTWARE
@@ -180,12 +191,6 @@ export default function HomePage() {
           <a className="pill-button" href="mailto:ymeleka1@gmail.com">
             get in touch
           </a>
-          <div className="scroll-cue">
-            <span className="scroll-cue-label">Scroll to experience</span>
-            <span className="scroll-cue-track" aria-hidden="true">
-              <span className="scroll-cue-dot" />
-            </span>
-          </div>
         </div>
         <Wordmark3D />
         <div className="hero-itinerary" aria-label="Life itinerary">
@@ -195,7 +200,7 @@ export default function HomePage() {
           <span>Ithaca</span>
           <span>Ficio</span>
         </div>
-      </section>
+      </HeroGlobe>
 
       <nav className="scene-rail" aria-label="Scenes">
         {chapters.map((chapter) => (
@@ -269,6 +274,9 @@ export default function HomePage() {
       ))}
 
       <section className="connect" data-reveal aria-label="Contact">
+        <p className="connect-ledger">
+          Founder, Ficio &middot; Cornell M.Eng &middot; ex-Tesla
+        </p>
         <h2 className="connect-title">
           LET&rsquo;S <em>build</em>
         </h2>
@@ -284,6 +292,7 @@ export default function HomePage() {
 
       <footer className="site-footer">
         <span>&copy; Youhanna Meleka</span>
+        <LocalTime />
         <a href="https://ymeleka.com">ymeleka.com</a>
       </footer>
     </main>

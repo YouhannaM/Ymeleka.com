@@ -9,9 +9,13 @@ import * as THREE from 'three';
  * the way the flat vignettes are: solid faces in the room's color with
  * hairline edges, so the objects read as technical drawings that
  * happen to be real geometry. Interaction: drag to turn, pointer tilt,
- * a slow idle rotation, and a nudge from the page scroll. Motion grows
- * scene by scene: I turns, II floats, III spins its wheels, IV runs
- * its orbits, V articulates its arm over a moving line.
+ * a slow idle rotation, and a nudge from the page scroll.
+ *
+ * Each scene is a small looping film: I the pyramids under a turning
+ * sun, II the Nittany Lion poured and cast in bronze, III a Cybertruck
+ * assembled part by part beneath a gantry, IV McGraw Tower rising from
+ * a chip between server racks with orbits running, V a robotic arm
+ * working a moving line of apples.
  */
 
 export type SceneId = 'origins' | 'foundations' | 'scale' | 'depth' | 'ficio';
@@ -34,6 +38,10 @@ interface Placed {
   rotation?: Vec3;
   scale?: number | Vec3;
 }
+
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+const remap = (v: number, a: number, b: number) => clamp01((v - a) / (b - a));
+const ease = (t: number) => t * t * (3 - 2 * t);
 
 /* --- Primitives ---------------------------------------------------------- */
 
@@ -72,6 +80,19 @@ function Edged({
         <lineBasicMaterial color={palette.line} />
       </lineSegments>
     </group>
+  );
+}
+
+/** A solid in the line color: molten metal, cable, bright accents. */
+function Solid({
+  geometry,
+  palette,
+  ...placed
+}: { geometry: THREE.BufferGeometry; palette: Palette } & Placed) {
+  return (
+    <mesh geometry={geometry} {...placed}>
+      <meshBasicMaterial color={palette.line} />
+    </mesh>
   );
 }
 
@@ -225,93 +246,164 @@ function Origins({ palette }: SceneProps) {
   );
 }
 
-/* --- Scene II: Beaver Stadium ------------------------------------------- */
+/* --- Scene II: casting the Nittany Lion --------------------------------- */
+
+/** Side silhouette of the crouching lion, nose to the left. */
+const LION: [number, number][] = [
+  [-1.15, 0.55],
+  [-0.95, 0.85],
+  [-0.9, 1.02],
+  [-0.8, 0.9],
+  [-0.7, 1.0],
+  [-0.62, 0.88],
+  [-0.4, 0.9],
+  [0.0, 0.95],
+  [0.5, 0.9],
+  [0.95, 0.8],
+  [1.15, 0.55],
+  [1.3, 0.4],
+  [1.35, 0.15],
+  [1.25, 0.12],
+  [1.1, 0.2],
+  [1.05, 0.0],
+  [0.7, 0.0],
+  [0.6, 0.15],
+  [0.1, 0.12],
+  [-0.1, 0.0],
+  [-0.7, 0.0],
+  [-0.75, 0.1],
+  [-0.85, 0.3],
+  [-1.0, 0.35],
+  [-1.12, 0.42],
+];
 
 function Foundations({ palette }: SceneProps) {
-  const bowl = useMemo(
-    () =>
-      new THREE.LatheGeometry(
-        [
-          new THREE.Vector2(0.9, -0.3),
-          new THREE.Vector2(1.35, 0.3),
-          new THREE.Vector2(1.45, 0.34),
-          new THREE.Vector2(1.38, 0.36),
-          new THREE.Vector2(0.95, -0.2),
-        ],
-        56,
-      ),
-    [],
-  );
-  const tier = useMemo(
-    () =>
-      new THREE.LatheGeometry(
-        [
-          new THREE.Vector2(0.92, -0.28),
-          new THREE.Vector2(1.14, 0.04),
-          new THREE.Vector2(1.16, 0.06),
-        ],
-        56,
-      ),
-    [],
-  );
-  const field = useMemo(() => new THREE.BoxGeometry(1.5, 0.04, 0.9), []);
-  const mast = useMemo(
-    () => new THREE.CylinderGeometry(0.02, 0.02, 1.7, 8),
-    [],
-  );
-  const head = useMemo(() => new THREE.BoxGeometry(0.34, 0.06, 0.08), []);
-  const yardLines = useMemo<Vec3[]>(() => {
-    const pts: Vec3[] = [];
-    for (let i = -3; i <= 3; i++) {
-      pts.push([i * 0.2, -0.27, -0.45], [i * 0.2, -0.27, 0.45]);
-    }
-    return pts;
+  const pedestal = useMemo(() => new THREE.BoxGeometry(2.8, 0.3, 1.3), []);
+  const lion = useMemo(() => {
+    const shape = new THREE.Shape(
+      LION.map(([x, y]) => new THREE.Vector2(x, y)),
+    );
+    const geo = new THREE.ExtrudeGeometry(shape, {
+      depth: 0.5,
+      bevelEnabled: false,
+    });
+    geo.translate(0, 0, -0.25);
+    return geo;
   }, []);
-  const stadium = useRef<THREE.Group>(null);
+  const half = useMemo(() => new THREE.BoxGeometry(1.4, 1.3, 0.95), []);
+  const fill = useMemo(() => new THREE.BoxGeometry(2.6, 1.1, 0.7), []);
+  const ladle = useMemo(
+    () =>
+      new THREE.LatheGeometry(
+        [
+          new THREE.Vector2(0.0, 0),
+          new THREE.Vector2(0.3, 0),
+          new THREE.Vector2(0.38, 0.32),
+          new THREE.Vector2(0.34, 0.34),
+        ],
+        20,
+      ),
+    [],
+  );
+  const stream = useMemo(
+    () => new THREE.CylinderGeometry(0.035, 0.035, 1, 8),
+    [],
+  );
+  const drop = useMemo(() => new THREE.SphereGeometry(0.04, 6, 4), []);
+
+  const ladleRef = useRef<THREE.Group>(null);
+  const streamRef = useRef<THREE.Group>(null);
+  const fillRef = useRef<THREE.Group>(null);
+  const left = useRef<THREE.Group>(null);
+  const right = useRef<THREE.Group>(null);
+  const drops = useRef<THREE.Mesh[]>([]);
+
+  // Stream runs from the ladle lip to the mold mouth.
+  const lip = new THREE.Vector3(0.56, 1.02, 0);
+  const mouth = new THREE.Vector3(0.18, 0.62, 0);
+  const dir = mouth.clone().sub(lip);
+  const streamLen = dir.length();
+  const streamAngle = Math.atan2(dir.x, -dir.y);
 
   useFrame(({ clock }) => {
-    if (stadium.current) {
-      stadium.current.position.y = Math.sin(clock.elapsedTime * 0.8) * 0.06;
-    }
-  });
+    const t = clock.elapsedTime % 11;
+    const tilt = ease(remap(t, 0, 1.2)) * (1 - ease(remap(t, 4.0, 4.8)));
+    const pour = ease(remap(t, 1.0, 1.4)) * (1 - ease(remap(t, 3.8, 4.4)));
+    const open = ease(remap(t, 5.2, 7.0)) * (1 - ease(remap(t, 9.8, 11)));
+    const level = remap(t, 1.2, 4.0) * (1 - ease(remap(t, 9.8, 10.6)));
 
-  const corners: Vec3[] = [
-    [-1.55, 0.25, -0.95],
-    [1.55, 0.25, -0.95],
-    [-1.55, 0.25, 0.95],
-    [1.55, 0.25, 0.95],
-  ];
+    if (ladleRef.current) ladleRef.current.rotation.z = -1.05 * tilt;
+    if (streamRef.current) {
+      streamRef.current.scale.y = Math.max(0.001, pour * streamLen);
+      streamRef.current.visible = pour > 0.01;
+    }
+    if (fillRef.current) {
+      fillRef.current.scale.set(
+        Math.max(0.001, 1 - open),
+        Math.max(0.001, level),
+        Math.max(0.001, 1 - open),
+      );
+    }
+    if (left.current) left.current.position.x = -0.7 - 1.35 * open;
+    if (right.current) right.current.position.x = 0.7 + 1.35 * open;
+    drops.current.forEach((d, i) => {
+      if (!d) return;
+      const f = (t * 1.5 + i * 0.33) % 1;
+      d.position.copy(lip).addScaledVector(dir, f);
+      d.visible = pour > 0.5;
+    });
+  });
 
   return (
     <>
-      <Grid palette={palette} y={-0.6} />
-      <group ref={stadium} position={[0, -0.3, 0]}>
-        <group scale={[1.3, 1, 1]}>
-          <Edged geometry={bowl} palette={palette} />
-          <Edged geometry={tier} palette={palette} threshold={30} />
-        </group>
-        <Edged geometry={field} palette={palette} position={[0, -0.29, 0]} />
-        <Segments points={yardLines} palette={palette} opacity={0.6} />
-        {corners.map((c) => (
-          <group key={c.join(',')} position={c}>
-            <Edged
-              geometry={mast}
-              palette={palette}
-              faces={false}
-              threshold={40}
-            />
-            <Edged geometry={head} palette={palette} position={[0, 0.88, 0]} />
-          </group>
-        ))}
+      <Grid palette={palette} y={-1.0} />
+      <Edged geometry={pedestal} palette={palette} position={[0, -0.85, 0]} />
+      <Edged geometry={lion} palette={palette} position={[0, -0.7, 0]} />
+      <group ref={fillRef} position={[0, -0.7, 0]}>
+        <Edged geometry={fill} palette={palette} position={[0, 0.55, 0]} />
       </group>
+      <group ref={left} position={[-0.7, -0.05, 0]}>
+        <Edged geometry={half} palette={palette} faces={false} />
+      </group>
+      <group ref={right} position={[0.7, -0.05, 0]}>
+        <Edged geometry={half} palette={palette} faces={false} />
+      </group>
+      <group ref={ladleRef} position={[0.95, 1.15, 0]}>
+        <Edged geometry={ladle} palette={palette} threshold={30} />
+        <Segments
+          points={[
+            [0.34, 0.3, 0],
+            [1.0, 0.55, 0],
+          ]}
+          palette={palette}
+        />
+      </group>
+      <group
+        ref={streamRef}
+        position={[lip.x, lip.y, lip.z]}
+        rotation={[0, 0, streamAngle]}
+      >
+        <Solid geometry={stream} palette={palette} position={[0, -0.5, 0]} />
+      </group>
+      {[0, 1, 2].map((i) => (
+        <mesh
+          key={i}
+          geometry={drop}
+          ref={(el) => {
+            if (el) drops.current[i] = el;
+          }}
+        >
+          <meshBasicMaterial color={palette.line} />
+        </mesh>
+      ))}
     </>
   );
 }
 
-/* --- Scene III: Cybertruck ---------------------------------------------- */
+/* --- Scene III: assembling the Cybertruck -------------------------------- */
 
 function Scale({ palette }: SceneProps) {
-  const body = useMemo(() => {
+  const cab = useMemo(() => {
     const shape = new THREE.Shape([
       new THREE.Vector2(-1.56, 0.35),
       new THREE.Vector2(-1.56, 0.53),
@@ -327,10 +419,18 @@ function Scale({ palette }: SceneProps) {
     geo.translate(0, 0, -0.7);
     return geo;
   }, []);
+  const chassis = useMemo(() => new THREE.BoxGeometry(3.2, 0.16, 1.5), []);
   const wheel = useMemo(
     () => new THREE.CylinderGeometry(0.34, 0.34, 0.24, 28),
     [],
   );
+  const post = useMemo(
+    () => new THREE.CylinderGeometry(0.03, 0.03, 2.8, 8),
+    [],
+  );
+  const beam = useMemo(() => new THREE.BoxGeometry(4.4, 0.07, 0.07), []);
+  const trolley = useMemo(() => new THREE.BoxGeometry(0.34, 0.12, 0.34), []);
+  const cable = useMemo(() => new THREE.CylinderGeometry(0.01, 0.01, 1, 6), []);
   const spokes = useMemo<Vec3[]>(
     () => [
       [0, 0, 0.13],
@@ -342,37 +442,99 @@ function Scale({ palette }: SceneProps) {
     ],
     [],
   );
-  const wheels = useRef<THREE.Group[]>([]);
+
   const truck = useRef<THREE.Group>(null);
+  const cabRef = useRef<THREE.Group>(null);
+  const chassisRef = useRef<THREE.Group>(null);
+  const cableRef = useRef<THREE.Group>(null);
+  const wheelGroups = useRef<THREE.Group[]>([]);
+  const wheelSpins = useRef<THREE.Group[]>([]);
 
-  useFrame(({ clock }, dt) => {
-    for (const w of wheels.current) {
-      if (w) w.rotation.z -= dt * 2.2;
-    }
-    if (truck.current) {
-      truck.current.position.y = -0.8 + Math.sin(clock.elapsedTime * 3) * 0.012;
-    }
-  });
-
-  const wheelSpots: Vec3[] = [
+  const wheelHome: Vec3[] = [
     [-0.82, 0.34, 0.72],
     [0.9, 0.34, 0.72],
     [-0.82, 0.34, -0.72],
     [0.9, 0.34, -0.72],
   ];
 
+  useFrame(({ clock }, dt) => {
+    const t = clock.elapsedTime % 12;
+    const reset = 1 - ease(remap(t, 10.4, 11.8));
+    const chassisIn = ease(remap(t, 0.2, 2.4)) * reset;
+    const cabIn = ease(remap(t, 1.8, 4.6)) * reset;
+    const wheelsIn = ease(remap(t, 4.2, 6.4)) * reset;
+    const cableGone = ease(remap(t, 5.0, 5.8)) * reset;
+    const assembled = t > 6.4 && t < 10.4;
+
+    if (chassisRef.current)
+      chassisRef.current.position.x = -4.2 * (1 - chassisIn);
+    const cabY = 2.3 * (1 - cabIn);
+    if (cabRef.current) cabRef.current.position.y = cabY;
+    if (cableRef.current) {
+      const len = Math.max(0.001, (1.9 - (cabY + 1.51)) * (1 - cableGone));
+      cableRef.current.scale.y = len;
+      cableRef.current.visible = len > 0.01;
+    }
+    wheelGroups.current.forEach((g, i) => {
+      if (!g) return;
+      const home = wheelHome[i];
+      const side = home[2] > 0 ? 1 : -1;
+      const z = home[2] + side * 2.4 * (1 - wheelsIn);
+      g.position.set(home[0], home[1], z);
+      const spin = wheelSpins.current[i];
+      if (spin) {
+        if (assembled) spin.rotation.z -= dt * 2.4;
+        else spin.rotation.z = -(z - home[2]) * side * 2.5;
+      }
+    });
+    if (truck.current) {
+      truck.current.position.y =
+        -0.8 + (assembled ? Math.sin(clock.elapsedTime * 3) * 0.012 : 0);
+    }
+  });
+
   return (
     <>
       <Grid palette={palette} y={-0.8} />
+      <group position={[0, -0.8, 0]}>
+        <Edged
+          geometry={post}
+          palette={palette}
+          position={[-2.1, 1.4, 0]}
+          faces={false}
+          threshold={40}
+        />
+        <Edged
+          geometry={post}
+          palette={palette}
+          position={[2.1, 1.4, 0]}
+          faces={false}
+          threshold={40}
+        />
+        <Edged geometry={beam} palette={palette} position={[0, 2.8, 0]} />
+        <Edged geometry={trolley} palette={palette} position={[0.1, 2.7, 0]} />
+        <group ref={cableRef} position={[0.1, 2.64, 0]}>
+          <Solid geometry={cable} palette={palette} position={[0, -0.5, 0]} />
+        </group>
+      </group>
       <group ref={truck} position={[0, -0.8, 0]}>
-        <Edged geometry={body} palette={palette} />
-        {wheelSpots.map((spot, i) => (
-          <group key={spot.join(',')} position={spot}>
+        <group ref={chassisRef}>
+          <Edged geometry={chassis} palette={palette} position={[0, 0.3, 0]} />
+        </group>
+        <group ref={cabRef}>
+          <Edged geometry={cab} palette={palette} />
+        </group>
+        {wheelHome.map((home, i) => (
+          <group
+            key={home.join(',')}
+            ref={(el) => {
+              if (el) wheelGroups.current[i] = el;
+            }}
+          >
             <group
               ref={(el) => {
-                if (el) wheels.current[i] = el;
+                if (el) wheelSpins.current[i] = el;
               }}
-              rotation={[0, 0, 0]}
             >
               <Edged
                 geometry={wheel}
@@ -390,7 +552,7 @@ function Scale({ palette }: SceneProps) {
   );
 }
 
-/* --- Scene IV: McGraw Tower on a chip ----------------------------------- */
+/* --- Scene IV: McGraw Tower on a chip, between racks -------------------- */
 
 function Depth({ palette }: SceneProps) {
   const chip = useMemo(() => new THREE.BoxGeometry(2.4, 0.14, 2.4), []);
@@ -399,16 +561,27 @@ function Depth({ palette }: SceneProps) {
   const spire = useMemo(() => new THREE.ConeGeometry(0.42, 0.75, 4), []);
   const finial = useMemo(() => new THREE.SphereGeometry(0.05, 8, 6), []);
   const electron = useMemo(() => new THREE.SphereGeometry(0.06, 8, 6), []);
+  const rack = useMemo(() => new THREE.BoxGeometry(0.5, 1.0, 0.6), []);
+  const slots = useMemo<Vec3[]>(() => {
+    const pts: Vec3[] = [];
+    for (let i = 0; i < 7; i++) {
+      const y = -0.4 + i * 0.13;
+      pts.push([-0.2, y, 0.305], [0.2, y, 0.305]);
+    }
+    return pts;
+  }, []);
+  const lights = useRef<THREE.Mesh[]>([]);
+  const led = useMemo(() => new THREE.SphereGeometry(0.02, 6, 4), []);
   const traces = useMemo<Vec3[]>(
     () => [
       [-0.25, -0.77, 0.25],
       [-0.25, -0.77, 0.75],
       [-0.25, -0.77, 0.75],
-      [-0.85, -0.77, 0.75],
+      [-0.6, -0.77, 0.75],
       [0.25, -0.77, 0.25],
-      [0.85, -0.77, 0.25],
-      [0.85, -0.77, 0.25],
-      [0.85, -0.77, 0.85],
+      [0.6, -0.77, 0.25],
+      [0.6, -0.77, 0.25],
+      [0.6, -0.77, 0.75],
       [-0.25, -0.77, -0.25],
       [-0.75, -0.77, -0.25],
       [-0.75, -0.77, -0.25],
@@ -428,7 +601,9 @@ function Depth({ palette }: SceneProps) {
     if (hands.current) hands.current.rotation.z -= dt * 0.6;
     if (orbitA.current) orbitA.current.rotation.z += dt * 0.7;
     if (orbitB.current) orbitB.current.rotation.z -= dt * 0.5;
-    void clock;
+    lights.current.forEach((m, i) => {
+      if (m) m.visible = Math.sin(clock.elapsedTime * (2.2 + i * 0.7) + i) > 0;
+    });
   });
 
   const pins: Vec3[] = [];
@@ -440,10 +615,12 @@ function Depth({ palette }: SceneProps) {
     sidePins.push([1.34, -0.85, i * 0.4], [-1.34, -0.85, i * 0.4]);
   }
   const pads: Vec3[] = [
-    [-0.85, -0.76, 0.75],
-    [0.85, -0.76, 0.85],
     [-0.75, -0.76, -0.8],
     [0.8, -0.76, -0.7],
+  ];
+  const racks: Vec3[] = [
+    [-0.85, -0.28, 0.72],
+    [0.85, -0.28, 0.72],
   ];
 
   return (
@@ -475,6 +652,21 @@ function Depth({ palette }: SceneProps) {
           position={p}
           rotation={[Math.PI / 2, 0, 0]}
         />
+      ))}
+      {racks.map((r, i) => (
+        <group key={r.join(',')} position={r}>
+          <Edged geometry={rack} palette={palette} />
+          <Segments points={slots} palette={palette} opacity={0.75} />
+          <mesh
+            geometry={led}
+            position={[0.17, 0.42, 0.31]}
+            ref={(el) => {
+              if (el) lights.current[i] = el;
+            }}
+          >
+            <meshBasicMaterial color={palette.line} />
+          </mesh>
+        </group>
       ))}
       <Edged geometry={tower} palette={palette} position={[0, 0.17, 0]} />
       <Edged

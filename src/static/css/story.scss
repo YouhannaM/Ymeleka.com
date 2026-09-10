@@ -65,15 +65,18 @@ a {
 /* --- Header ------------------------------------------------------------ */
 
 .site-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 28px var(--gutter);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #fff;
 }
 
 .monogram {
@@ -82,7 +85,7 @@ a {
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: 1.5px solid var(--color-ink);
+  border: 1.5px solid currentColor;
   border-radius: 50%;
   font-family: var(--font-serif);
   font-size: 16px;
@@ -92,23 +95,67 @@ a {
 
 /* --- Hero -------------------------------------------------------------- */
 
+/* The hero is one scroll-driven scene. --hero-p runs 0 to 1 as the
+   visitor scrolls through the tall section while the stage stays put;
+   the globe reads the same value each frame. Static mode (no WebGL,
+   reduced motion, or no JavaScript) pins the value at 1: fully unfolded. */
 .hero {
+  --hero-p: 0;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-  padding-top: 120px;
   background: var(--color-putty);
 }
 
+html.js .hero:not([data-mode='static']) {
+  height: 260svh;
+}
+
+.hero[data-mode='static'],
+html:not(.js) .hero {
+  --hero-p: 1 !important;
+}
+
+.hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--color-putty);
+}
+
+.hero[data-mode='static'] .hero-stage,
+html:not(.js) .hero-stage {
+  position: relative;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: calc(1 - clamp(0, calc((var(--hero-p) - 0.86) / 0.14), 1));
+
+  canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
 .hero-cluster {
+  --reveal: clamp(0, calc((var(--hero-p) - 0.5) / 0.3), 1);
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin: auto;
   padding: 0 var(--gutter);
   text-align: center;
+  opacity: var(--reveal);
+  transform: translateY(calc((1 - var(--reveal)) * 28px));
 }
 
 .hero-line {
@@ -158,12 +205,17 @@ a {
 }
 
 .scroll-cue {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
   color: var(--color-graphite);
+  transform: translateX(-50%);
+  opacity: calc(1 - clamp(0, calc(var(--hero-p) / 0.18), 1));
 }
 
 .scroll-cue-label {
@@ -218,17 +270,23 @@ a {
 }
 
 .hero-wordmark {
-  align-self: center;
-  margin-top: auto;
+  --reveal: clamp(0, calc((var(--hero-p) - 0.3) / 0.5), 1);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 62px;
+  z-index: 1;
   font-family: var(--font-serif);
   font-size: clamp(72px, 20vw, 348px);
   font-weight: 500;
   line-height: 0.84;
   letter-spacing: -0.009em;
+  text-align: center;
   white-space: nowrap;
-  transform: translateY(0.06em);
   user-select: none;
   perspective: 1400px;
+  opacity: calc(0.55 + 0.45 * var(--reveal));
+  transform: translateY(0.06em) scale(calc(0.88 + 0.12 * var(--reveal)));
 }
 
 /* Dimensional type: block letters with an extruded shadow, tilting in
@@ -266,8 +324,11 @@ a {
 }
 
 .hero-itinerary {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -519,11 +580,24 @@ a {
   }
 }
 
+.connect-ledger {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
 .connect-text {
   max-width: 46ch;
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-graphite);
+}
+
+.local-time {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
 }
 
 .connect .icons {
@@ -618,14 +692,6 @@ a {
 
 @media (prefers-reduced-motion: no-preference) {
   html.js {
-    .hero-cluster {
-      animation: rise-in 0.9s 0.15s ease both;
-    }
-
-    .hero-wordmark {
-      animation: fade-in 0.6s 0.3s ease both;
-    }
-
     .letter {
       animation: letter-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
       animation-delay: calc(0.4s + var(--i) * 0.07s);
