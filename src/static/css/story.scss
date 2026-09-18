@@ -1,22 +1,28 @@
 /* ==========================================================================
-   Ymeleka.com — "Gallery" rebrand
-   A putty-beige canvas, stark black rooms, monoline engravings.
-   Serif carries the voice; the grotesk carries the data.
+   Ymeleka.com — "Monumental" edition
+   Obsidian stone canvases, warm marble type, one kiln-orange accent,
+   film grain, and Renaissance construction geometry. The serif carries
+   the voice; the grotesk carries the data.
    ========================================================================== */
 
 :root {
-  /* Colors */
-  --color-putty: #c4c3b6;
-  --color-ink: #000000;
-  --color-bone: #e7e5e4;
-  --color-chalk: #ebebeb;
-  --color-vellum: #dfdcd5;
-  --color-graphite: #595855;
-  --color-ash: #808080;
-  --color-paper: #ffffff;
+  /* Colors: stone and marble */
+  --color-putty: #0d0c0a; /* obsidian canvas */
+  --color-charcoal: #16140f; /* dark rooms */
+  --color-ink: #ece6da; /* marble: primary type on stone */
+  --color-obsidian: #0d0c0a; /* type on marble rooms */
+  --color-bone: #e4dccf; /* marble rooms */
+  --color-chalk: #100f0d; /* footer */
+  --color-vellum: #2a2722; /* hairlines on stone */
+  --color-graphite: #a89d8c; /* travertine: muted type on stone */
+  --color-stone: #6b6256; /* muted type on marble */
+  --color-ash: #8a8175;
+  --color-paper: #ece6da;
+  --color-extrude: #4a4338;
+  --color-accent: #d2772f; /* kiln orange, used sparingly */
 
   /* Typography */
-  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Garamond, Georgia, serif;
   --font-grotesk: var(--font-inter), 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* Radii */
@@ -58,8 +64,20 @@ a {
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-accent);
+  color: var(--color-obsidian);
+}
+
+/* Film grain over everything, like marble dust in the light. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* --- Header ------------------------------------------------------------ */
@@ -160,8 +178,8 @@ html:not(.js) .hero-stage {
 
 .hero-line {
   font-family: var(--font-serif);
-  font-size: clamp(34px, 5vw, 52px);
-  font-weight: 500;
+  font-size: clamp(38px, 5.4vw, 58px);
+  font-weight: 600;
   letter-spacing: -0.009em;
   line-height: 1;
 
@@ -190,17 +208,20 @@ html:not(.js) .hero-stage {
 
 .pill-button {
   display: inline-block;
-  padding: 9px 17px;
+  padding: 10px 18px;
   background: var(--color-ink);
-  color: var(--color-paper);
+  color: var(--color-obsidian);
   border-radius: var(--radius-buttons);
   font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  transition: opacity 0.2s ease;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 
   &:hover {
-    opacity: 0.8;
+    background: var(--color-accent);
+    color: var(--color-obsidian);
   }
 }
 
@@ -240,7 +261,7 @@ html:not(.js) .hero-stage {
   width: 3px;
   height: 9px;
   border-radius: 2px;
-  background: var(--color-graphite);
+  background: var(--color-accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -278,7 +299,7 @@ html:not(.js) .hero-stage {
   z-index: 1;
   font-family: var(--font-serif);
   font-size: clamp(72px, 20vw, 348px);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 0.84;
   letter-spacing: -0.009em;
   text-align: center;
@@ -303,19 +324,19 @@ html:not(.js) .hero-stage {
   transform-style: preserve-3d;
   color: var(--color-ink);
   text-shadow:
-    0.005em 0.005em 0 var(--color-graphite),
-    0.01em 0.01em 0 var(--color-graphite),
-    0.015em 0.015em 0 var(--color-graphite),
-    0.02em 0.02em 0 var(--color-graphite),
-    0.025em 0.025em 0 var(--color-graphite),
-    0.03em 0.03em 0 var(--color-graphite),
-    0.035em 0.035em 0 var(--color-graphite),
-    0.04em 0.04em 0 var(--color-graphite),
-    0.045em 0.045em 0 var(--color-graphite),
-    0.05em 0.05em 0 var(--color-graphite),
-    0.055em 0.055em 0 var(--color-graphite),
-    0.06em 0.06em 0 var(--color-graphite),
-    0.09em 0.12em 0.1em rgba(0, 0, 0, 0.28);
+    0.005em 0.005em 0 var(--color-extrude),
+    0.01em 0.01em 0 var(--color-extrude),
+    0.015em 0.015em 0 var(--color-extrude),
+    0.02em 0.02em 0 var(--color-extrude),
+    0.025em 0.025em 0 var(--color-extrude),
+    0.03em 0.03em 0 var(--color-extrude),
+    0.035em 0.035em 0 var(--color-extrude),
+    0.04em 0.04em 0 var(--color-extrude),
+    0.045em 0.045em 0 var(--color-extrude),
+    0.05em 0.05em 0 var(--color-extrude),
+    0.055em 0.055em 0 var(--color-extrude),
+    0.06em 0.06em 0 var(--color-extrude),
+    0.1em 0.14em 0.12em rgba(0, 0, 0, 0.7);
   transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 
   &:hover {
@@ -355,7 +376,7 @@ html:not(.js) .hero-stage {
   overflow: hidden;
 
   &.is-dark {
-    background: var(--color-ink);
+    background: var(--color-charcoal);
     color: var(--color-paper);
 
     .chapter-marker,
@@ -370,29 +391,39 @@ html:not(.js) .hero-stage {
     }
 
     .vignette {
-      border-color: rgba(255, 255, 255, 0.28);
-      background: rgba(0, 0, 0, 0.72);
+      border-color: rgba(236, 230, 218, 0.22);
+      background: radial-gradient(
+        circle at 50% 38%,
+        #22201a 0%,
+        var(--color-charcoal) 58%,
+        var(--color-obsidian) 100%
+      );
     }
   }
 
   &.is-light {
     background: var(--color-bone);
-    color: var(--color-ink);
+    color: var(--color-obsidian);
 
     .chapter-marker,
     .chapter-place,
     .scene-next {
-      color: var(--color-graphite);
+      color: var(--color-stone);
     }
 
     .chapter-backdrop {
-      color: var(--color-ink);
+      color: var(--color-obsidian);
       opacity: 0.1;
     }
 
     .vignette {
-      border-color: var(--color-graphite);
-      background: rgba(231, 229, 228, 0.82);
+      border-color: rgba(13, 12, 10, 0.35);
+      background: radial-gradient(
+        circle at 50% 38%,
+        #f4efe6 0%,
+        var(--color-bone) 60%,
+        #d6cdbd 100%
+      );
     }
   }
 
@@ -429,8 +460,8 @@ html:not(.js) .hero-stage {
 
 .chapter-marker {
   position: absolute;
-  top: 32px;
-  left: var(--gutter);
+  top: 40px;
+  left: calc(var(--gutter) + 52px);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -519,8 +550,8 @@ html:not(.js) .hero-stage {
 
 .chapter-title {
   font-family: var(--font-serif);
-  font-size: clamp(43px, 7vw, 94px);
-  font-weight: 500;
+  font-size: clamp(48px, 7.4vw, 104px);
+  font-weight: 600;
   line-height: 0.84;
   letter-spacing: -0.009em;
 
@@ -555,6 +586,11 @@ html:not(.js) .hero-stage {
   }
 }
 
+.hex-row .hex.is-filled {
+  background: var(--color-accent);
+  box-shadow: none;
+}
+
 /* --- Connect / Footer --------------------------------------------------- */
 
 .connect {
@@ -569,8 +605,8 @@ html:not(.js) .hero-stage {
 
 .connect-title {
   font-family: var(--font-serif);
-  font-size: clamp(43px, 7vw, 94px);
-  font-weight: 500;
+  font-size: clamp(48px, 7.4vw, 104px);
+  font-weight: 600;
   line-height: 0.84;
   letter-spacing: -0.009em;
 
@@ -620,7 +656,8 @@ html:not(.js) .hero-stage {
 
     &:hover {
       background: var(--color-ink);
-      color: var(--color-paper);
+      color: var(--color-obsidian);
+      border-color: var(--color-ink);
     }
   }
 }
@@ -992,5 +1029,56 @@ html:not(.js) .hero-stage {
     width: 24px;
     height: 24px;
     margin: -12px 0 0 -12px;
+  }
+}
+
+/* --- Renaissance construction geometry behind the globe ----------------- */
+
+.hero-geometry {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: min(135vh, 135vw);
+  height: min(135vh, 135vw);
+  color: var(--color-ink);
+  opacity: calc(0.16 * (1 - clamp(0, calc((var(--hero-p) - 0.7) / 0.3), 1)));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-geometry svg {
+    animation: turn 240s linear infinite;
+  }
+
+  @keyframes turn {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* --- A classical column stands in the connect room ---------------------- */
+
+.connect-art {
+  display: flex;
+  justify-content: center;
+
+  .vignette {
+    width: min(56vw, 300px);
+    border-color: rgba(236, 230, 218, 0.22);
+    background: radial-gradient(
+      circle at 50% 38%,
+      #22201a 0%,
+      var(--color-charcoal) 58%,
+      var(--color-obsidian) 100%
+    );
   }
 }

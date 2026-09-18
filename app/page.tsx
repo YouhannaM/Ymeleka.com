@@ -10,11 +10,13 @@ import {
   TeslaPanorama,
 } from '@/components/Story/Backdrops';
 import Cursor from '@/components/Story/Cursor';
+import HeroGeometry from '@/components/Story/HeroGeometry';
 import HeroGlobe from '@/components/Story/HeroGlobe';
 import LocalTime from '@/components/Story/LocalTime';
 import ScrollEffects from '@/components/Story/ScrollEffects';
 import type { SceneId } from '@/components/Story/three/ArtifactCanvas';
 import {
+  ColumnVignette,
   CornellVignette,
   FicioVignette,
   PennStateVignette,
@@ -171,6 +173,7 @@ export default function HomePage() {
       </header>
 
       <HeroGlobe>
+        <HeroGeometry />
         <div className="scroll-cue" aria-hidden="true">
           <span className="scroll-cue-label">Scroll to unfold the world</span>
           <span className="scroll-cue-track">
@@ -274,6 +277,13 @@ export default function HomePage() {
       ))}
 
       <section className="connect" data-reveal aria-label="Contact">
+        <div className="connect-art">
+          <div className="vignette">
+            <Artifact3D scene="column" tone="dark" index={5}>
+              <ColumnVignette />
+            </Artifact3D>
+          </div>
+        </div>
         <p className="connect-ledger">
           Founder, Ficio &middot; Cornell M.Eng &middot; ex-Tesla
         </p>

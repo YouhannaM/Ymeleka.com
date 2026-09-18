@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import React from 'react';
 
 import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
@@ -12,11 +12,11 @@ const inter = Inter({
   display: 'swap',
 });
 
-const playfair = Playfair_Display({
-  weight: ['400', '500'],
+const cormorant = Cormorant_Garamond({
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-cormorant',
   display: 'swap',
 });
 
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#c4c3b6',
+  themeColor: '#0d0c0a',
 };
 
 export default function RootLayout({
@@ -102,7 +102,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable}`}
+      className={`${inter.variable} ${cormorant.variable}`}
       suppressHydrationWarning
     >
       <body>

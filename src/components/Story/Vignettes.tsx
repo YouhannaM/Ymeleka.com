@@ -334,3 +334,20 @@ export const FicioVignette: React.FC = () => (
     <path d="M97 155 Q100 158 104 159" strokeWidth={1} opacity={0.4} />
   </svg>
 );
+
+export const ColumnVignette: React.FC = () => (
+  <svg {...svgProps} aria-label="Engraving of a fluted classical column">
+    <title>Engraving of a fluted classical column on its plinth</title>
+    <path d="M60 176 H140 V166 H60 Z" />
+    <path d="M70 166 Q100 158 130 166" strokeWidth={1.4} />
+    <path d="M78 160 V52 M122 160 V52" />
+    <g strokeWidth={1} opacity={0.5}>
+      <path d="M86 158 V54 M94 157 V53 M102 157 V53 M110 157 V53 M118 158 V54" />
+    </g>
+    <path d="M72 52 Q100 42 128 52" strokeWidth={1.4} />
+    <path d="M64 44 H136 V34 H64 Z" />
+    <g strokeWidth={1} opacity={0.5}>
+      <path d="M40 190 H90 M110 190 H160" />
+    </g>
+  </svg>
+);
