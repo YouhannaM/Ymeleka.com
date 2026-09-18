@@ -14,8 +14,9 @@ import * as THREE from 'three';
  * value in [0, 1] supplied by the parent.
  */
 
-const INK = '#000000';
-const BONE = '#e7e5e4';
+const INK = '#ece6da';
+const BONE = '#1a1813';
+const ACCENT = '#d2772f';
 const R = 2.0;
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -114,7 +115,7 @@ function Petal({ index, progress, scale }: Driven & { index: number }) {
     g.rotation.y = faceCamera * e;
     g.scale.setScalar(1 - 0.5 * e);
     lineMat.current.opacity = 0.7 * fade;
-    faceMat.current.opacity = 0.5 * fade;
+    faceMat.current.opacity = 0.75 * fade;
   });
 
   return (
@@ -183,7 +184,7 @@ function Route({ progress }: Driven) {
 
   return (
     <lineSegments geometry={geometry}>
-      <lineBasicMaterial ref={mat} color={INK} transparent opacity={0.95} />
+      <lineBasicMaterial ref={mat} color={ACCENT} transparent opacity={0.95} />
     </lineSegments>
   );
 }
@@ -238,7 +239,7 @@ function Waypoints({ progress }: Driven) {
                 ref={(m) => {
                   if (m) mats.current[i] = m;
                 }}
-                color={INK}
+                color={ACCENT}
                 transparent
               />
             </lineLoop>
@@ -247,7 +248,7 @@ function Waypoints({ progress }: Driven) {
                 ref={(m) => {
                   if (m) dotMats.current[i] = m;
                 }}
-                color={INK}
+                color={ACCENT}
                 transparent
               />
             </mesh>

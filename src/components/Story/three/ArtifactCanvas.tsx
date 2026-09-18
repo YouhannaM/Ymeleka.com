@@ -18,17 +18,24 @@ import * as THREE from 'three';
  * working a moving line of apples.
  */
 
-export type SceneId = 'origins' | 'foundations' | 'scale' | 'depth' | 'ficio';
+export type SceneId =
+  | 'origins'
+  | 'foundations'
+  | 'scale'
+  | 'depth'
+  | 'ficio'
+  | 'column';
 export type Tone = 'dark' | 'light';
 
 interface Palette {
   line: string;
   face: string;
+  accent: string;
 }
 
 const palettes: Record<Tone, Palette> = {
-  dark: { line: '#ffffff', face: '#000000' },
-  light: { line: '#000000', face: '#e7e5e4' },
+  dark: { line: '#ece6da', face: '#16140f', accent: '#d2772f' },
+  light: { line: '#0d0c0a', face: '#e4dccf', accent: '#d2772f' },
 };
 
 type Vec3 = [number, number, number];
@@ -83,7 +90,7 @@ function Edged({
   );
 }
 
-/** A solid in the line color: molten metal, cable, bright accents. */
+/** A solid in the kiln accent: molten metal, cable, status lights. */
 function Solid({
   geometry,
   palette,
@@ -91,7 +98,7 @@ function Solid({
 }: { geometry: THREE.BufferGeometry; palette: Palette } & Placed) {
   return (
     <mesh geometry={geometry} {...placed}>
-      <meshBasicMaterial color={palette.line} />
+      <meshBasicMaterial color={palette.accent} />
     </mesh>
   );
 }
@@ -393,7 +400,7 @@ function Foundations({ palette }: SceneProps) {
             if (el) drops.current[i] = el;
           }}
         >
-          <meshBasicMaterial color={palette.line} />
+          <meshBasicMaterial color={palette.accent} />
         </mesh>
       ))}
     </>
@@ -664,7 +671,7 @@ function Depth({ palette }: SceneProps) {
               if (el) lights.current[i] = el;
             }}
           >
-            <meshBasicMaterial color={palette.line} />
+            <meshBasicMaterial color={palette.accent} />
           </mesh>
         </group>
       ))}
@@ -697,21 +704,11 @@ function Depth({ palette }: SceneProps) {
       </group>
       <group ref={orbitA} rotation={[1.15, 0.35, 0]} position={[0, 0.4, 0]}>
         <Ring radius={1.35} palette={palette} opacity={0.6} />
-        <Edged
-          geometry={electron}
-          palette={palette}
-          position={[1.35, 0, 0]}
-          threshold={10}
-        />
+        <Solid geometry={electron} palette={palette} position={[1.35, 0, 0]} />
       </group>
       <group ref={orbitB} rotation={[1.9, -0.5, 0.6]} position={[0, 0.4, 0]}>
         <Ring radius={1.55} palette={palette} opacity={0.45} />
-        <Edged
-          geometry={electron}
-          palette={palette}
-          position={[1.55, 0, 0]}
-          threshold={10}
-        />
+        <Solid geometry={electron} palette={palette} position={[1.55, 0, 0]} />
       </group>
     </>
   );
@@ -848,12 +845,117 @@ function Ficio({ palette }: SceneProps) {
   );
 }
 
+/* --- Connect: a classical column, carved ---------------------------------- */
+
+function Column({ palette }: SceneProps) {
+  const shaft = useMemo(
+    () => new THREE.CylinderGeometry(0.42, 0.5, 2.6, 24, 1, true),
+    [],
+  );
+  const flutes = useMemo<Vec3[]>(() => {
+    const pts: Vec3[] = [];
+    for (let i = 0; i < 24; i++) {
+      const a = (i / 24) * Math.PI * 2;
+      pts.push(
+        [Math.cos(a) * 0.42, 1.3, Math.sin(a) * 0.42],
+        [Math.cos(a) * 0.5, -1.3, Math.sin(a) * 0.5],
+      );
+    }
+    return pts;
+  }, []);
+  const abacus = useMemo(() => new THREE.BoxGeometry(1.5, 0.16, 1.5), []);
+  const echinus = useMemo(
+    () =>
+      new THREE.LatheGeometry(
+        [
+          new THREE.Vector2(0.44, 0),
+          new THREE.Vector2(0.62, 0.12),
+          new THREE.Vector2(0.72, 0.26),
+          new THREE.Vector2(0.72, 0.3),
+        ],
+        24,
+      ),
+    [],
+  );
+  const torus = useMemo(() => new THREE.TorusGeometry(0.58, 0.1, 10, 24), []);
+  const plinth = useMemo(() => new THREE.BoxGeometry(1.6, 0.22, 1.6), []);
+  const chisel = useRef<THREE.Group>(null);
+  const dust = useRef<THREE.Mesh[]>([]);
+  const mote = useMemo(() => new THREE.SphereGeometry(0.02, 5, 4), []);
+  const bit = useMemo(
+    () => new THREE.CylinderGeometry(0.012, 0.03, 0.7, 6),
+    [],
+  );
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    if (chisel.current) {
+      chisel.current.position.y = 0.4 + Math.sin(t * 1.3) * 0.7;
+      chisel.current.position.x = 0.62 + Math.abs(Math.sin(t * 9)) * 0.03;
+    }
+    dust.current.forEach((m, i) => {
+      if (!m) return;
+      const f = (t * 0.35 + i * 0.17) % 1;
+      m.position.set(
+        0.5 + Math.sin(i * 2.1) * 0.25 + f * 0.3,
+        -1.2 + f * 2.6,
+        Math.cos(i * 1.7) * 0.25,
+      );
+      m.visible = f < 0.85;
+    });
+  });
+
+  return (
+    <>
+      <Grid palette={palette} y={-1.6} />
+      <Edged geometry={plinth} palette={palette} position={[0, -1.49, 0]} />
+      <Edged
+        geometry={torus}
+        palette={palette}
+        position={[0, -1.32, 0]}
+        rotation={[Math.PI / 2, 0, 0]}
+        threshold={40}
+      />
+      <Edged geometry={shaft} palette={palette} faces threshold={60} />
+      <Segments points={flutes} palette={palette} opacity={0.55} />
+      <Edged
+        geometry={echinus}
+        palette={palette}
+        position={[0, 1.3, 0]}
+        threshold={40}
+      />
+      <Edged geometry={abacus} palette={palette} position={[0, 1.68, 0]} />
+      {/* the robot's chisel, working the shaft */}
+      <group ref={chisel} position={[0.62, 0.4, 0]} rotation={[0, 0, -0.35]}>
+        <Solid
+          geometry={bit}
+          palette={palette}
+          position={[0.3, 0, 0]}
+          rotation={[0, 0, Math.PI / 2]}
+        />
+      </group>
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <mesh
+          key={i}
+          geometry={mote}
+          ref={(el) => {
+            if (el) dust.current[i] = el;
+          }}
+        >
+          <meshBasicMaterial color={palette.line} transparent opacity={0.7} />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
 const scenes: Record<SceneId, React.FC<SceneProps>> = {
   origins: Origins,
   foundations: Foundations,
   scale: Scale,
   depth: Depth,
   ficio: Ficio,
+  column: Column,
 };
 
 /* --- Rig: interaction, idle turn, scroll nudge --------------------------- */
