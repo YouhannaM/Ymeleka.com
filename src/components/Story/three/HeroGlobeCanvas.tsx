@@ -71,6 +71,18 @@ function petalSegments(index: number): THREE.Vector3[] {
   return pts;
 }
 
+function petalPoints(index: number): THREE.Vector3[] {
+  const pts: THREE.Vector3[] = [];
+  const phiStart = (index * Math.PI) / 2;
+  for (let i = 0; i <= 22; i++) {
+    const phi = phiStart + (i / 22) * (Math.PI / 2);
+    for (let j = 1; j < 44; j++) {
+      pts.push(onSphere(phi, (j / 44) * Math.PI));
+    }
+  }
+  return pts;
+}
+
 interface Driven {
   progress: MutableRefObject<number>;
   scale: MutableRefObject<number>;
@@ -82,8 +94,13 @@ function Petal({ index, progress, scale }: Driven & { index: number }) {
   const group = useRef<THREE.Group>(null);
   const lineMat = useRef<THREE.LineBasicMaterial>(null);
   const faceMat = useRef<THREE.MeshBasicMaterial>(null);
+  const pointMat = useRef<THREE.PointsMaterial>(null);
   const { viewport } = useThree();
 
+  const points = useMemo(
+    () => new THREE.BufferGeometry().setFromPoints(petalPoints(index)),
+    [index],
+  );
   const lines = useMemo(
     () => new THREE.BufferGeometry().setFromPoints(petalSegments(index)),
     [index],
@@ -114,8 +131,9 @@ function Petal({ index, progress, scale }: Driven & { index: number }) {
     g.position.set(targetX * e, targetY * e, 1.2 * e);
     g.rotation.y = faceCamera * e;
     g.scale.setScalar(1 - 0.5 * e);
-    lineMat.current.opacity = 0.7 * fade;
+    lineMat.current.opacity = 0.28 * fade;
     faceMat.current.opacity = 0.75 * fade;
+    if (pointMat.current) pointMat.current.opacity = 0.95 * fade;
   });
 
   return (
@@ -135,9 +153,19 @@ function Petal({ index, progress, scale }: Driven & { index: number }) {
           ref={lineMat}
           color={INK}
           transparent
-          opacity={0.7}
+          opacity={0.28}
         />
       </lineSegments>
+      <points geometry={points}>
+        <pointsMaterial
+          ref={pointMat}
+          color={INK}
+          size={2.4}
+          sizeAttenuation={false}
+          transparent
+          opacity={0.95}
+        />
+      </points>
     </group>
   );
 }

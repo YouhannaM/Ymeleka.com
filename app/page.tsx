@@ -10,9 +10,11 @@ import {
   TeslaPanorama,
 } from '@/components/Story/Backdrops';
 import Cursor from '@/components/Story/Cursor';
+import FicioLogo from '@/components/Story/FicioLogo';
 import HeroGeometry from '@/components/Story/HeroGeometry';
 import HeroGlobe from '@/components/Story/HeroGlobe';
 import LocalTime from '@/components/Story/LocalTime';
+import Pointillist from '@/components/Story/Pointillist';
 import ScrollEffects from '@/components/Story/ScrollEffects';
 import type { SceneId } from '@/components/Story/three/ArtifactCanvas';
 import {
@@ -24,6 +26,8 @@ import {
   TeslaVignette,
 } from '@/components/Story/Vignettes';
 import Wordmark3D from '@/components/Story/Wordmark3D';
+import { cornellAffiliations } from '@/data/affiliations';
+import { ficio } from '@/data/ficio';
 
 interface Chapter {
   id: SceneId;
@@ -34,6 +38,8 @@ interface Chapter {
   text: string;
   art: React.ReactNode;
   backdrop: React.ReactNode;
+  /** Aerial photograph of the place, when one is present in /public. */
+  aerial?: string;
 }
 
 const chapters: Chapter[] = [
@@ -46,6 +52,7 @@ const chapters: Chapter[] = [
     text: 'Born and raised in Egypt, in the shadow of the pyramids, where I learned to navigate ambiguity and to make much from little.',
     art: <PyramidsVignette />,
     backdrop: <EgyptPanorama />,
+    aerial: '/images/places/origins.jpg',
   },
   {
     id: 'foundations',
@@ -66,6 +73,7 @@ const chapters: Chapter[] = [
     text: 'Global supply chains at Tesla. Strategic sourcing, investment diligence, and operational efficiency across the value chain, at the speed the machines demanded.',
     art: <TeslaVignette />,
     backdrop: <TeslaPanorama />,
+    aerial: '/images/places/scale.jpg',
   },
   {
     id: 'depth',
@@ -76,6 +84,7 @@ const chapters: Chapter[] = [
     text: "A Master's in Semiconductors and Quantum Materials Engineering at Cornell University, going a layer deeper into AI infrastructure: the chips, servers, and data centers that compute.",
     art: <CornellVignette />,
     backdrop: <CornellPanorama />,
+    aerial: '/images/places/depth.jpg',
   },
   {
     id: 'ficio',
@@ -236,7 +245,13 @@ export default function HomePage() {
         >
           <div className="chapter-backdrop" aria-hidden="true">
             <div className="chapter-backdrop-inner" data-parallax="0.16">
-              {chapter.backdrop}
+              <Pointillist
+                src={chapter.aerial}
+                tone={i % 2 === 0 ? 'dark' : 'light'}
+                seed={i}
+              >
+                {chapter.backdrop}
+              </Pointillist>
             </div>
           </div>
           <span className="chapter-marker">{chapter.marker}</span>
@@ -257,6 +272,36 @@ export default function HomePage() {
               {chapter.title}
             </h2>
             <p className="chapter-text">{chapter.text}</p>
+            {chapter.id === 'depth' && (
+              <ul className="chapter-links">
+                {cornellAffiliations.map((a) => (
+                  <li key={a.name}>
+                    {a.url ? (
+                      <a href={a.url} target="_blank" rel="noopener noreferrer">
+                        {a.name}
+                      </a>
+                    ) : (
+                      <span>{a.name}</span>
+                    )}
+                    <small>{a.role}</small>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {chapter.id === 'ficio' && (
+              <a
+                className="ficio-link"
+                href={ficio.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FicioLogo size={44} />
+                <span className="ficio-link-text">
+                  <strong>{ficio.name}</strong>
+                  <em>Go to the website</em>
+                </span>
+              </a>
+            )}
             <div className="hex-row" aria-hidden="true">
               {chapters.map((c, j) => (
                 <span
