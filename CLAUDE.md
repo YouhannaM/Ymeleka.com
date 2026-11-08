@@ -44,6 +44,7 @@ This is Youhanna Meleka's personal site: a Next.js shell (static export to GitHu
 ### How the homepage works
 - `src/site/page.html` and `src/site/page.css` are the approved design, kept verbatim (markup and stylesheet from the single-file handoff). `app/page.tsx` reads them at build time and emits them as-is.
 - `public/site.js` is the design's inline script, unchanged. It draws every sketch at runtime and is loaded with `next/script` `afterInteractive`, so React hydrates before the DOM is mutated. Do not inline it back into React.
+- The Art section (and its lightbox and nav item) is kept in `page.html` between `<!-- ART:START -->` / `<!-- ART:END -->` markers but is not published: `SHOW_ART` in `app/page.tsx` strips it at build time, and `public/site.js` guards its art code behind `if(document.getElementById("art"))`. Set `SHOW_ART = true` to bring it back.
 - The footer's `<!--SOCIALS-->` placeholder is filled from `src/data/contact.ts`, which is also the source of the JSON-LD `sameAs` list. Edit socials there.
 - Fonts (Inter Tight, Inter) load from Google Fonts via a hoisted stylesheet link in `app/layout.tsx`, as in the approved file. `next/font/google` is avoided because Turbopack's dev server fails on Inter Tight.
 - Assets referenced by the page live at the site root in `/public` (`me.jpg`, `vitruvian.jpg`, `starry.jpg`, `napoleon.jpg`, `favicon.svg`, `favicon-512.png`, `apple-touch-icon.png`).

@@ -29,7 +29,15 @@ const socialLinks = contact
   })
   .join('');
 
-const markup = pageHtml.replace('<!--SOCIALS-->', socialLinks);
+/* The Art section is kept in src/site/page.html between ART:START and
+   ART:END markers (and in public/site.js) but is not published. Set to
+   true to bring it back. */
+const SHOW_ART = false;
+
+const withArt = SHOW_ART
+  ? pageHtml
+  : pageHtml.replace(/<!-- ART:START -->[\s\S]*?<!-- ART:END -->\n?/g, '');
+const markup = withArt.replace('<!--SOCIALS-->', socialLinks);
 
 const integrationCss = `
 /* Hero: portrait-first, centered. The photo sits at the top of the page,
