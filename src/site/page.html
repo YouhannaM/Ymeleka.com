@@ -22,20 +22,21 @@
   </defs>
 </svg>
 
-<a class="skip" href="#top">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 <nav class="nav" id="nav">
   <a class="brand" href="#top"><svg><use href="#ym"/></svg>Youhanna Meleka</a>
   <span class="rule"></span>
   <a class="pill mob" href="#pitch">Pitch me</a>
   <ul>
+    <li><a href="#stack">Work</a></li>
     <li><a href="#abundance">Thesis</a></li>
-        <li><a href="#stack">Work</a></li>
-            <li><a href="#story">Story</a></li>
+    <li><a href="#story">Story</a></li>
     <li><a href="#art">Art</a></li>
     <li><a class="pill" href="#pitch">Pitch me</a></li>
       </ul>
 </nav>
 
+<main id="main">
 <!-- ================= HERO ================= -->
 <header class="hero-wrap" id="top">
   <div class="hero">
@@ -46,7 +47,7 @@
         <span class="w"><span style="transition-delay:.26s"><em>engineering</em></span></span><br>
         <span class="w"><span style="transition-delay:.34s">problem</span></span>
       </h1>
-      <p class="intro reveal" style="--dl:.7s">and I'm working on it at <a class="ficio-link" href="https://www.ficio.org" target="_blank" rel="noopener">Ficio</a>. We're building embodied AI for a healthier, more resilient global food supply chain, starting with in-field apple harvesting and sorting robots.</p>
+      <p class="intro reveal" style="--dl:.7s">and I'm working on solving it at <a class="ficio-link" href="https://www.ficio.org" target="_blank" rel="noopener">Ficio</a>. We're building embodied AI for a healthier, more resilient global food supply chain, starting with in-field apple harvesting and sorting robots.</p>
       <div class="ctas reveal" style="--dl:.85s">
         <a class="btn" href="#abundance">Why food <span class="arr">↗</span></a>
         <a class="btn ghost" href="#story">How I got here</a>
@@ -54,7 +55,7 @@
     </div>
     <figure class="photo reveal" style="--dl:.2s">
       <div class="frame">
-        <img src="me.jpg" alt="Youhanna giving a thumbs-up beside Ficio's apple sorter, hitched to a green tractor in an orchard">
+        <img src="me.jpg" fetchpriority="high" decoding="async" width="1600" height="1200" alt="Youhanna giving a thumbs-up beside Ficio's apple sorter, hitched to a green tractor in an orchard">
         
       </div>
       <figcaption class="cap"><span>In the orchard with Ficio's field sorter.</span><b>Fig. 01</b></figcaption>
@@ -64,50 +65,6 @@
 </header>
 
 
-
-<!-- ================= ABUNDANCE ================= -->
-<section class="abund" id="abundance">
-  <div class="pin">
-    <div class="head">
-      <div class="kicker reveal">A thesis</div>
-      <h2 class="reveal" style="margin-top:16px">We've solved <em>scarcity</em> before</h2>
-    </div>
-    <div class="track" id="track">
-      <article class="panel">
-        <svg class="sk draw" viewBox="0 0 240 160" data-sk="ship"></svg>
-        <div class="yr">1956 · The box</div>
-        <h3>Ships</h3>
-        <p>A standard steel container made the world's goods cheap to move. Ports, ships and trucks finally spoke one language.</p>
-        <span class="connector"></span>
-      </article>
-      <article class="panel">
-        <svg class="sk draw" viewBox="0 0 240 160" data-sk="plane"></svg>
-        <div class="yr">1958 · The jet</div>
-        <h3>Planes</h3>
-        <p>Jets turned an ocean crossing from a week into an evening. Distance stopped being a reason not to go.</p>
-        <span class="connector"></span>
-      </article>
-      <article class="panel">
-        <svg class="sk draw" viewBox="0 0 240 160" data-sk="net"></svg>
-        <div class="yr">1969 · The network</div>
-        <h3>The internet</h3>
-        <p>A handful of connected computers became a way to copy knowledge almost for free, to anyone, anywhere.</p>
-        <span class="connector"></span>
-      </article>
-      <article class="panel now">
-        <svg class="sk draw" viewBox="0 0 240 160" data-sk="food"></svg>
-        <div class="yr">Now · The food machine</div>
-        <h3>Food</h3>
-        <p>Food touches every life, yet most of it is still picked, sorted and prepped by hand. Specialized, intelligent hardware can make it abundant.</p>
-      </article>
-      <article class="panel end">
-        <blockquote>Every time we built the right machine, something scarce became <em>ordinary</em></blockquote>
-        <p class="hand" style="font-size:28px;margin-top:20px">Food is next. →</p>
-      </article>
-    </div>
-    <div class="progress-row"><span>1956</span><span class="bar"><i id="abar"></i></span><span>NOW</span></div>
-  </div>
-</section>
 
 <!-- ================= STACK ================= -->
 <section class="stack" id="stack">
@@ -128,6 +85,50 @@
   </div>
 </section>
 
+<!-- ================= ABUNDANCE ================= -->
+<section class="abund" id="abundance">
+  <div class="pin">
+    <div class="head">
+      <div class="kicker reveal">A thesis</div>
+      <h2 class="reveal" style="margin-top:16px">We've solved <em>scarcity</em> before</h2>
+    </div>
+    <div class="track" id="track">
+      <article class="panel">
+        <svg class="sk draw" viewBox="0 0 240 160" data-sk="ship" role="img" aria-label="Pencil sketch of a container ship stacked with boxes beside a port crane"></svg>
+        <div class="yr">1956 · The box</div>
+        <h3>Ships</h3>
+        <p>A standard steel container made the world's goods cheap to move. Ports, ships and trucks finally spoke one language.</p>
+        <span class="connector"></span>
+      </article>
+      <article class="panel">
+        <svg class="sk draw" viewBox="0 0 240 160" data-sk="plane" role="img" aria-label="Pencil sketch of a jet airliner in flight above clouds"></svg>
+        <div class="yr">1958 · The jet</div>
+        <h3>Planes</h3>
+        <p>Jets turned an ocean crossing from a week into an evening. Distance stopped being a reason not to go.</p>
+        <span class="connector"></span>
+      </article>
+      <article class="panel">
+        <svg class="sk draw" viewBox="0 0 240 160" data-sk="net" role="img" aria-label="Pencil sketch of a globe linked by a network of nodes beside an early computer"></svg>
+        <div class="yr">1969 · The network</div>
+        <h3>The internet</h3>
+        <p>A handful of connected computers became a way to copy knowledge almost for free, to anyone, anywhere.</p>
+        <span class="connector"></span>
+      </article>
+      <article class="panel now">
+        <svg class="sk draw" viewBox="0 0 240 160" data-sk="food" role="img" aria-label="Pencil sketch of a robotic arm sorting apples on a conveyor beside a wheat field"></svg>
+        <div class="yr">Now · The food machine</div>
+        <h3>Food</h3>
+        <p>Food touches every life, yet most of it is still picked, sorted and prepped by hand. Specialized, intelligent hardware can make it abundant.</p>
+      </article>
+      <article class="panel end">
+        <blockquote>Every time we built the right machine, something scarce became <em>ordinary</em></blockquote>
+        <p class="hand" style="font-size:28px;margin-top:20px">Food is next. →</p>
+      </article>
+    </div>
+    <div class="progress-row"><span>1956</span><span class="bar"><i id="abar"></i></span><span>NOW</span></div>
+  </div>
+</section>
+
 <!-- ================= STORY ================= -->
 <section class="story" id="story">
   <div class="wrap">
@@ -145,7 +146,7 @@
         <article class="stop" id="s-cairo" data-i="0">
           <div class="place">01 · Cairo, Egypt</div>
           <h3>Cairo</h3>
-          <svg class="sk draw" viewBox="0 0 300 200" data-sk="cairo"></svg>
+          <svg class="sk draw" viewBox="0 0 300 200" data-sk="cairo" role="img" aria-label="Pencil sketch of Cairo: apartment blocks, a mosque, palms and the pyramids"></svg>
           <p>I started my first business at fourteen, importing candy and reselling it to friends. By sixteen I was working in manufacturing.</p>
           <p class="quote">Every shelf has a supply chain behind it. Cairo is where I first saw it.</p>
           <div class="next">→ so I went to study how things are made</div>
@@ -153,7 +154,7 @@
         <article class="stop" id="s-hv" data-i="1">
           <div class="place">02 · Penn State, Pennsylvania</div>
           <h3>Happy Valley</h3>
-          <svg class="sk draw" viewBox="0 0 300 200" data-sk="stadium"></svg>
+          <svg class="sk draw" viewBox="0 0 300 200" data-sk="stadium" role="img" aria-label="Pencil sketch of Beaver Stadium full on game day, with tailgates outside"></svg>
           <p>Industrial, Systems &amp; Manufacturing Engineering. Queues, flows and bottlenecks, the math of moving things well.</p>
           <p class="quote">On game day, a hundred thousand people move through Beaver Stadium as one system.</p>
           <div class="next">→ so I went looking for the hardest factory problem</div>
@@ -161,7 +162,7 @@
         <article class="stop" id="s-ca" data-i="2">
           <div class="place">03 · Tesla, California</div>
           <h3>California</h3>
-          <svg class="sk draw" viewBox="0 0 300 200" data-sk="factory"></svg>
+          <svg class="sk draw" viewBox="0 0 300 200" data-sk="factory" role="img" aria-label="Pencil sketch of the Tesla factory with robots assembling a car"></svg>
           <p>Global Supply Manager for closures, electro-mechanical parts and seals. Recognized by Elon Musk as Tesla Top Talent.</p>
           <p class="quote">A car is thousands of decisions that all have to arrive on time.</p>
           <div class="next">→ so I went one layer deeper, into the chips</div>
@@ -169,7 +170,7 @@
         <article class="stop" id="s-ith" data-i="3">
           <div class="place">04 · Cornell, New York</div>
           <h3>Ithaca</h3>
-          <svg class="sk draw" viewBox="0 0 300 200" data-sk="orchard"></svg>
+          <svg class="sk draw" viewBox="0 0 300 200" data-sk="orchard" role="img" aria-label="Pencil sketch of an apple orchard with a tractor pulling a sorting machine"></svg>
           <p>MEng in <a class="ilink" href="https://www.duffield.cornell.edu/mse/semiconductor-and-quantum-materials-pathways/" target="_blank" rel="noopener">Semiconductors and Quantum Materials</a>, researching wide-bandgap semiconductors in the <a class="ilink" href="https://jena-xing.engineering.cornell.edu" target="_blank" rel="noopener">Jena-Xing Lab</a>. And Ficio: three robots across four hardware iterations in eight weeks, shown to 300 growers at a field day.</p>
           <p class="quote">The machines are new. The question is the one I asked in Cairo: how does food get to people?</p>
           <div class="campus">
@@ -193,11 +194,11 @@
     <h2 class="reveal" style="margin-top:16px">Art I return to</h2>
     <p class="q reveal">What changes when you look again?</p>
     <div class="featured">
-      <figure class="museum reveal"><img src="vitruvian.jpg" alt="Vitruvian Man by Leonardo da Vinci, pen and ink on paper"></figure>
+      <figure class="museum reveal"><img src="vitruvian.jpg" loading="lazy" decoding="async" alt="Vitruvian Man by Leonardo da Vinci, pen and ink on paper"></figure>
       <div class="art-meta reveal" style="--dl:.15s">
         <div class="who">Leonardo da Vinci · c. 1490</div>
         <h3>Vitruvian Man</h3>
-        <p>An engineer's notebook page that happens to be art. Proportion, measured by hand, with the reasoning written right beside the drawing. It's the page I want every machine we build to start from.</p>
+        <p>An engineer's notebook page that happens to be art.</p>
         <p class="where">Gallerie dell'Accademia, Venice. Public domain.</p>
       </div>
     </div>
@@ -230,3 +231,4 @@
   </div>
   <div class="wrap"><footer><span>© 2026 Youhanna Meleka</span><nav class="social" aria-label="Social links"><!--SOCIALS--></nav><span>Ithaca, NY</span></footer></div>
 </section>
+</main>

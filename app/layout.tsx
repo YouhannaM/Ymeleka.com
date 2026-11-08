@@ -4,6 +4,8 @@ import { preconnect } from 'react-dom';
 
 import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
 
+const SITE = 'https://ymeleka.com';
+const NAME = 'Youhanna Meleka';
 const title = 'Youhanna Meleka — Co-founder & CEO, Ficio';
 const description =
   'Youhanna Meleka is co-founder and CEO of Ficio, building AI-powered robots for the food supply chain. Formerly Tesla global supply, Cornell MEng in semiconductors.';
@@ -13,33 +15,66 @@ const FONTS_URL =
   'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap';
 
 export const metadata: Metadata = {
-  title,
+  metadataBase: new URL(SITE),
+  title: {
+    default: title,
+    template: `%s · ${NAME}`,
+  },
   description,
-  metadataBase: new URL('https://ymeleka.com'),
+  applicationName: NAME,
+  authors: [{ name: NAME, url: SITE }],
+  creator: NAME,
+  publisher: NAME,
+  category: 'technology',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'profile',
-    url: 'https://ymeleka.com/',
+    url: `${SITE}/`,
+    siteName: NAME,
+    locale: 'en_US',
     title,
     description:
       'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
+    firstName: 'Youhanna',
+    lastName: 'Meleka',
     images: [
       {
-        url: '/me.jpg',
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
         alt: 'Youhanna Meleka in the orchard with Ficio’s field sorter',
       },
     ],
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@YouhannaMeleka',
+    creator: '@YouhannaMeleka',
+    title,
+    description:
+      'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
+    images: ['/og.jpg'],
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: '/apple-touch-icon.png',
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {

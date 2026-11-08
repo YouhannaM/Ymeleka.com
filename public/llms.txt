@@ -1,0 +1,27 @@
+# Youhanna Meleka
+
+> Co-founder and CEO of Ficio, building embodied AI for a healthier, more resilient global food supply chain, starting with in-field apple harvesting and sorting robots. Formerly Global Supply Manager at Tesla. MEng in Semiconductors and Quantum Materials at Cornell University. Based in Ithaca, New York.
+
+Site: https://ymeleka.com/
+Thesis in one line: food scarcity is an engineering problem.
+
+## Work
+- Ficio (https://www.ficio.org): co-founder and CEO. Robots that harvest and sort apples in the orchard, with perception, grading and a data layer that learns from every apple.
+- Cornell University: MEng, Semiconductors and Quantum Materials; research on wide-bandgap semiconductors in the Jena-Xing Lab; data center architecture projects (power, cooling and compute for AI at scale).
+- Tesla: Global Supply Manager for closures, electro-mechanical parts and seals; recognized as Tesla Top Talent.
+- Penn State: B.S., Industrial, Systems and Manufacturing Engineering.
+
+## Involvement
+- Cornell University Physical Intelligence: Founding Board Member (https://cornellphysicalintelligence.com)
+- Big Red Ventures: Deep Tech Diligence and Sourcing (https://www.brventurefund.com/)
+- Entrepreneurship at Cornell (https://eship.cornell.edu/)
+
+## Story
+Born and raised in Cairo, Egypt. Started a first business at fourteen and worked in manufacturing by sixteen. Studied how things are made at Penn State, ran supply for Tesla in California, then went a layer deeper into chips at Cornell, where Ficio began.
+
+## Links
+- LinkedIn: https://www.linkedin.com/in/youhanna-meleka/
+- X: https://x.com/YouhannaMeleka
+- GitHub: https://github.com/YouhannaM
+- Substack: https://substack.com/@youhannam
+- Pitch him through the form at https://ymeleka.com/#pitch
