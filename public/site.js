@@ -184,8 +184,7 @@ pf.addEventListener("submit",e=>{e.preventDefault();const d=new FormData(pf);con
   const note=document.getElementById("fnote");if(!name||!co||!line||!why){note.textContent="Add your name, what you're building and why first.";note.classList.add("err");return}
   note.classList.remove("err");const body=`Hi Youhanna,\n\nWhat I'm building:\n${line}\n\nWhy I'm doing it:\n${why}\n\n${deck?"Link: "+deck+"\n\n":""}${name}\n${co}`;
   const url=`mailto:ymm28@cornell.edu?subject=${encodeURIComponent("Pitch: "+co)}&body=${encodeURIComponent(body)}`;
-  location.href=url;note.textContent="If your email app didn't open, copy the address above and paste your note in."});
-document.getElementById("copy").onclick=async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText("ymm28@cornell.edu");b.textContent="Copied"}catch(_){b.textContent="Select and copy"}setTimeout(()=>b.textContent="Copy",2000)};
+  location.href=url;note.textContent="If your email app didn't open, try again from a device with an email app set up."});
 
 // ---------- abundance horizontal scroll ----------
 const ab=document.getElementById("abundance"),track=document.getElementById("track"),abar=document.getElementById("abar");
