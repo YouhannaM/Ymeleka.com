@@ -48,7 +48,7 @@ const structuredData = {
   worksFor: {
     '@type': 'Organization',
     name: 'Ficio',
-    url: 'https://ficio.org',
+    url: 'https://www.ficio.org',
   },
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Cornell University' },
@@ -62,7 +62,6 @@ const structuredData = {
     'Venture capital',
   ],
   homeLocation: { '@type': 'Place', name: 'Ithaca, New York' },
-  email: 'mailto:ymm28@cornell.edu',
   sameAs: contact.filter((c) => c.link.startsWith('http')).map((c) => c.link),
 };
 
