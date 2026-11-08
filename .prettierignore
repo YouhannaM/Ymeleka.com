@@ -39,3 +39,6 @@ yarn.lock
 
 # markdown
 *.md
+# Approved single-file design, kept verbatim
+src/site/
+public/site.js

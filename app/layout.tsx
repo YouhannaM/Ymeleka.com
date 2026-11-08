@@ -1,97 +1,51 @@
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, Inter } from 'next/font/google';
 import React from 'react';
+import { preconnect } from 'react-dom';
 
 import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
-import '@/static/css/story.scss';
 
-const inter = Inter({
-  weight: ['400', '500'],
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
+const title = 'Youhanna Meleka — Co-founder & CEO, Ficio';
+const description =
+  'Youhanna Meleka is co-founder and CEO of Ficio, building AI-powered robots for the food supply chain. Formerly Tesla global supply, Cornell MEng in semiconductors.';
 
-const cormorant = Cormorant_Garamond({
-  weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-  display: 'swap',
-});
+/* The approved page loads Inter Tight and Inter from Google Fonts. */
+const FONTS_URL =
+  'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap';
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Youhanna Meleka',
-    template: '%s | Youhanna Meleka',
-  },
-  description:
-    'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet, building robots, systems, and world models to accelerate food abundance. Egypt, Penn State, Tesla, Cornell, and Ficio.',
-  keywords: [
-    'Youhanna Meleka',
-    'systems engineer',
-    'supply chain',
-    'Tesla',
-    'Cornell University',
-    'Penn State',
-    'semiconductors',
-    'quantum materials',
-    'AI infrastructure',
-    'data centers',
-    'Ficio',
-    'robotics for food',
-    'Egypt',
-  ],
-  authors: [{ name: 'Youhanna Meleka' }],
-  creator: 'Youhanna Meleka',
+  title,
+  description,
   metadataBase: new URL('https://ymeleka.com'),
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
-    apple: [
-      { url: '/images/favicon/apple-icon-180x180.png', sizes: '180x180' },
-      { url: '/images/favicon/apple-icon-152x152.png', sizes: '152x152' },
-      { url: '/images/favicon/apple-icon-120x120.png', sizes: '120x120' },
-    ],
-  },
+  alternates: { canonical: '/' },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://ymeleka.com',
-    siteName: 'Youhanna Meleka',
-    title: 'Youhanna Meleka',
+    type: 'profile',
+    url: 'https://ymeleka.com/',
+    title,
     description:
-      'From the pyramids of Egypt to Penn State, Tesla, Cornell, and Ficio. Systems for a future of abundance.',
+      'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
     images: [
       {
-        url: '/images/me.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Youhanna Meleka',
+        url: '/me.jpg',
+        alt: 'Youhanna Meleka in the orchard with Ficio’s field sorter',
       },
     ],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+  twitter: { card: 'summary_large_image' },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0d0c0a',
+  themeColor: '#ffffff',
 };
 
 export default function RootLayout({
@@ -99,20 +53,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  preconnect('https://fonts.googleapis.com');
+  preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' });
+
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${cormorant.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en">
       <body>
-        {/* Flags JS availability before paint so scroll animations only
-            hide content when they can also reveal it. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
+        <link rel="stylesheet" href={FONTS_URL} precedence="default" />
         {children}
         <GoogleAnalytics />
       </body>

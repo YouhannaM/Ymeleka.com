@@ -32,41 +32,34 @@ npm run analyze
 
 ## Architecture Overview
 
-This is a personal portfolio/resume website built with Next.js and TypeScript, designed to be easily forked and customized.
+This is Youhanna Meleka's personal site: a Next.js shell (static export to GitHub Pages) that serves one approved, hand-finished homepage.
 
 ### Technology Stack
-- **Next.js 16** with App Router and Turbopack
-- **TypeScript** for type safety
-- **React 19** with functional components and hooks
-- **Biome** for linting and code formatting
-- **Prettier** for markdown, CSS, and SCSS formatting
-- **SCSS** for styling
+- **Next.js 16** with App Router and Turbopack, `output: 'export'`
+- **TypeScript**, **React 19**
+- **Biome** for linting and formatting of code; **Prettier** for markdown, CSS and SCSS
 - **Jest** with React Testing Library and SWC
-- **Static Export** for GitHub Pages deployment
-- **Node 20+** runtime
+- **Node 20+**
 
-### Project Structure
-- `/app/` - Next.js App Router pages and layouts
-- `/src/components/` - React components organized by feature
-- `/src/data/` - Static data files (resume, projects, stats)
-- `/src/static/` - SCSS styles
-- `/public/` - Static assets (images, favicons)
+### How the homepage works
+- `src/site/page.html` and `src/site/page.css` are the approved design, kept verbatim (markup and stylesheet from the single-file handoff). `app/page.tsx` reads them at build time and emits them as-is.
+- `public/site.js` is the design's inline script, unchanged. It draws every sketch at runtime and is loaded with `next/script` `afterInteractive`, so React hydrates before the DOM is mutated. Do not inline it back into React.
+- The footer's `<!--SOCIALS-->` placeholder is filled from `src/data/contact.ts`, which is also the source of the JSON-LD `sameAs` list. Edit socials there.
+- Fonts (Inter Tight, Inter) load from Google Fonts via a hoisted stylesheet link in `app/layout.tsx`, as in the approved file. `next/font/google` is avoided because Turbopack's dev server fails on Inter Tight.
+- Assets referenced by the page live at the site root in `/public` (`me.jpg`, `vitruvian.jpg`, `starry.jpg`, `napoleon.jpg`, `favicon.svg`, `favicon-512.png`, `apple-touch-icon.png`).
+- `src/site/` and `public/site.js` are excluded from Biome and Prettier so the approved files are never reformatted.
 
-### Key Design Patterns
-1. **App Router**: File-based routing with layouts
-2. **Component Structure**: TypeScript functional components with type safety
-3. **Styling**: SCSS modules with shared variables and mixins
-4. **Data Management**: Static TypeScript files in `/src/data/`
-5. **Performance**: Static export, lazy loading, optimized fonts
+### Design rules (from the handoff)
+- Black, white and grey only (`#1d1d1f`, `#6e6e73`, `#f5f5f7`, `#000`); the single accent is Ficio orange, used only for Ficio.
+- Inter Tight 600 for headlines, Inter for body. No trailing periods on headlines. Highlighted words are grey, not italic.
+- Sketches are programmatic SVG in graphite tones; no stock images.
+- The copy is approved. Do not rewrite it. The final `monochrome system` block at the end of the stylesheet intentionally overrides earlier rules.
+
+### Other routes
+- `app/not-found.tsx` is a minimal 404 in the same type system.
+- `app/robots.ts` and `app/sitemap.ts` generate `robots.txt` and `sitemap.xml`.
+- `src/components/` still holds the earlier template's components with their tests; nothing on the homepage depends on them.
 
 ### Deployment
-- Static export to `/out` directory
-- GitHub Actions for automatic deployment to GitHub Pages
-- Custom domain support through CNAME file
-
-### Important Notes
-- All pages must remain exactly the same as the original React site
-- The site uses static export (`output: 'export'`) for GitHub Pages compatibility
-- Client components use 'use client' directive
-- Google Analytics 4 is configured with NEXT_PUBLIC_GA_TRACKING_ID using @next/third-parties
-- Fonts are optimized using Next.js font optimization
+- Static export to `/out`
+- GitHub Actions deploys `main` to GitHub Pages; custom domain via `CNAME`
