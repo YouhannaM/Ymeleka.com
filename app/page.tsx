@@ -1,355 +1,88 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import Script from 'next/script';
 import React from 'react';
 
-import ContactIcons from '@/components/Contact/ContactIcons';
-import Artifact3D from '@/components/Story/Artifact3D';
-import {
-  CornellPanorama,
-  EgyptPanorama,
-  FicioPanorama,
-  PennStatePanorama,
-  TeslaPanorama,
-} from '@/components/Story/Backdrops';
-import Cursor from '@/components/Story/Cursor';
-import FicioLogo from '@/components/Story/FicioLogo';
-import HeroGeometry from '@/components/Story/HeroGeometry';
-import HeroGlobe from '@/components/Story/HeroGlobe';
-import LocalTime from '@/components/Story/LocalTime';
-import Pointillist from '@/components/Story/Pointillist';
-import ScrollEffects from '@/components/Story/ScrollEffects';
-import type { SceneId } from '@/components/Story/three/ArtifactCanvas';
-import {
-  ColumnVignette,
-  CornellVignette,
-  FicioVignette,
-  PennStateVignette,
-  PyramidsVignette,
-  TeslaVignette,
-} from '@/components/Story/Vignettes';
-import Wordmark3D from '@/components/Story/Wordmark3D';
-import { cornellAffiliations } from '@/data/affiliations';
-import { ficio } from '@/data/ficio';
+import contact from '@/data/contact';
 
-interface Chapter {
-  id: SceneId;
-  marker: string;
-  numeral: string;
-  place: string;
-  title: string;
-  text: string;
-  art: React.ReactNode;
-  backdrop: React.ReactNode;
-  /** Aerial photograph of the place, when one is present in /public. */
-  aerial?: string;
-}
+/**
+ * The homepage is the approved single-file design in src/site, served
+ * as-is: its markup and CSS are read at build time and emitted
+ * verbatim, and its script (public/site.js, unchanged) runs after
+ * hydration so React never touches the sketches it draws into the DOM.
+ * The only additions are the social links in the footer, generated
+ * from src/data/contact.ts, and the styles for them.
+ */
 
-const chapters: Chapter[] = [
-  {
-    id: 'origins',
-    marker: 'Scene I',
-    numeral: 'I',
-    place: 'Cairo, Egypt',
-    title: 'ORIGINS',
-    text: 'Born and raised in Egypt, in the shadow of the pyramids, where I learned to navigate ambiguity and to make much from little.',
-    art: <PyramidsVignette />,
-    backdrop: <EgyptPanorama />,
-    aerial: '/images/places/origins.jpg',
-  },
-  {
-    id: 'foundations',
-    marker: 'Scene II',
-    numeral: 'II',
-    place: 'Happy Valley, PA',
-    title: 'FOUNDATIONS',
-    text: 'Industrial and Systems Engineering at Penn State. The Nittany Lion and a Beaver Stadium Saturday taught me what it looks like when 100,000 people move as one system.',
-    art: <PennStateVignette />,
-    backdrop: <PennStatePanorama />,
-  },
-  {
-    id: 'scale',
-    marker: 'Scene III',
-    numeral: 'III',
-    place: 'California',
-    title: 'SCALE',
-    text: 'Global supply chains at Tesla. Strategic sourcing, investment diligence, and operational efficiency across the value chain, at the speed the machines demanded.',
-    art: <TeslaVignette />,
-    backdrop: <TeslaPanorama />,
-    aerial: '/images/places/scale.jpg',
-  },
-  {
-    id: 'depth',
-    marker: 'Scene IV',
-    numeral: 'IV',
-    place: 'Ithaca, NY',
-    title: 'DEPTH',
-    text: "A Master's in Semiconductors and Quantum Materials Engineering at Cornell University, going a layer deeper into AI infrastructure: the chips, servers, and data centers that compute.",
-    art: <CornellVignette />,
-    backdrop: <CornellPanorama />,
-    aerial: '/images/places/depth.jpg',
-  },
-  {
-    id: 'ficio',
-    marker: 'Scene V',
-    numeral: 'V',
-    place: 'What comes next',
-    title: 'FICIO',
-    text: 'Ficio is robotics for food. Multiplying human capacity, starting with how the world eats.',
-    art: <FicioVignette />,
-    backdrop: <FicioPanorama />,
-  },
-];
+const siteDir = path.join(process.cwd(), 'src', 'site');
+const pageCss = fs.readFileSync(path.join(siteDir, 'page.css'), 'utf8');
+const pageHtml = fs.readFileSync(path.join(siteDir, 'page.html'), 'utf8');
+
+const escape = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+const socialLinks = contact
+  .map((c) => {
+    const external = c.link.startsWith('http');
+    const attrs = external ? ' target="_blank" rel="noopener"' : '';
+    return `<a href="${escape(c.link)}"${attrs}>${escape(c.label)}</a>`;
+  })
+  .join('');
+
+const markup = pageHtml.replace('<!--SOCIALS-->', socialLinks);
+
+const integrationCss = `
+footer .social{display:flex;flex-wrap:wrap;gap:6px 18px}
+footer .social a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .3s,border-color .3s}
+footer .social a:hover,footer .social a:focus-visible{color:var(--ink);border-color:var(--ink)}
+@media(max-width:760px){footer{flex-direction:column;align-items:flex-start;gap:14px}}
+`;
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Person',
-      '@id': 'https://ymeleka.com/#person',
-      name: 'Youhanna Meleka',
-      url: 'https://ymeleka.com',
-      email: 'mailto:ymeleka1@gmail.com',
-      image: 'https://ymeleka.com/images/me.jpg',
-      jobTitle: 'Operator-Founder and Systems Engineer',
-      description:
-        'Youhanna Meleka is a hardware-obsessed operator-founder working where atoms, machines, and software meet, building robots, systems, and world models to accelerate food abundance. Born and raised in Egypt, he studied Industrial and Systems Engineering at Penn State, engineered global supply chains at Tesla, is pursuing a Master of Engineering in Semiconductors and Quantum Materials at Cornell University, and is building Ficio, robotics for food.',
-      birthPlace: { '@type': 'Country', name: 'Egypt' },
-      alumniOf: [
-        {
-          '@type': 'CollegeOrUniversity',
-          name: 'The Pennsylvania State University',
-          sameAs: 'https://www.psu.edu',
-        },
-        {
-          '@type': 'CollegeOrUniversity',
-          name: 'Cornell University',
-          sameAs: 'https://www.cornell.edu',
-        },
-      ],
-      worksFor: {
-        '@type': 'Organization',
-        name: 'Ficio',
-        description: 'Robotics for food',
-      },
-      knowsAbout: [
-        'Commercial strategy',
-        'Supply chain management',
-        'Strategic sourcing',
-        'Systems engineering',
-        'Software engineering',
-        'Hardware engineering',
-        'Semiconductors',
-        'Quantum materials',
-        'AI infrastructure',
-        'Data centers',
-        'Robotics',
-        'Manufacturing',
-        'Investment diligence',
-        'Capital allocation',
-        'Artificial intelligence',
-      ],
-      sameAs: [
-        'https://www.linkedin.com/in/youhanna-meleka/',
-        'https://x.com/YouhannaMeleka',
-        'https://github.com/YouhannaM',
-        'https://substack.com/@youhannam',
-      ],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://ymeleka.com/#website',
-      url: 'https://ymeleka.com',
-      name: 'Youhanna Meleka',
-      description:
-        'The personal site of Youhanna Meleka: Egypt, Penn State, Tesla, Cornell, and Ficio, robotics for food.',
-      publisher: { '@id': 'https://ymeleka.com/#person' },
-      inLanguage: 'en-US',
-    },
+  '@type': 'Person',
+  name: 'Youhanna Meleka',
+  url: 'https://ymeleka.com/',
+  image: 'https://ymeleka.com/me.jpg',
+  jobTitle: 'Co-founder & CEO',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Ficio',
+    url: 'https://ficio.org',
+  },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Cornell University' },
+    { '@type': 'CollegeOrUniversity', name: 'Penn State University' },
   ],
+  knowsAbout: [
+    'Robotics',
+    'Food supply chain',
+    'Semiconductors',
+    'Supply chain management',
+    'Venture capital',
+  ],
+  homeLocation: { '@type': 'Place', name: 'Ithaca, New York' },
+  email: 'mailto:ymm28@cornell.edu',
+  sameAs: contact.filter((c) => c.link.startsWith('http')).map((c) => c.link),
 };
 
 export default function HomePage() {
   return (
-    <main>
+    <>
+      <style
+        // The approved stylesheet, verbatim, followed by the integration rules.
+        dangerouslySetInnerHTML={{ __html: `${pageCss}\n${integrationCss}` }}
+      />
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <ScrollEffects />
-      <Cursor />
-
-      <header className="site-header">
-        <span className="monogram">Y</span>
-      </header>
-
-      <HeroGlobe>
-        <HeroGeometry />
-        <div className="scroll-cue" aria-hidden="true">
-          <span className="scroll-cue-label">Scroll to unfold the world</span>
-          <span className="scroll-cue-track">
-            <span className="scroll-cue-dot" />
-          </span>
-        </div>
-        <div className="hero-cluster">
-          <p className="hero-line">
-            ATOMS, MACHINES <em>and</em> SOFTWARE
-          </p>
-          <p className="hero-tagline">
-            Systems live at the intersection of all three.
-          </p>
-          <p className="hero-thesis">
-            Building robots, systems, and world models to accelerate food
-            abundance.
-          </p>
-          <a className="pill-button" href="mailto:ymeleka1@gmail.com">
-            get in touch
-          </a>
-        </div>
-        <Wordmark3D />
-        <div className="hero-itinerary" aria-label="Life itinerary">
-          <span>Cairo</span>
-          <span>Happy Valley</span>
-          <span>California</span>
-          <span>Ithaca</span>
-          <span>Ficio</span>
-        </div>
-      </HeroGlobe>
-
-      <nav className="scene-rail" aria-label="Scenes">
-        {chapters.map((chapter) => (
-          <a
-            key={chapter.id}
-            href={`#${chapter.id}`}
-            data-scene-link={chapter.id}
-            className="scene-rail-link"
-          >
-            <span className="scene-rail-label">{chapter.place}</span>
-            <span className="scene-rail-numeral">{chapter.numeral}</span>
-            <span className="hex" aria-hidden="true" />
-          </a>
-        ))}
-      </nav>
-
-      {chapters.map((chapter, i) => (
-        <section
-          key={chapter.id}
-          id={chapter.id}
-          data-reveal
-          aria-labelledby={`${chapter.id}-title`}
-          className={[
-            'chapter',
-            i % 2 === 0 ? 'is-dark' : 'is-light',
-            i % 2 === 1 ? 'is-flipped' : '',
-          ]
-            .filter(Boolean)
-            .join(' ')}
-        >
-          <div className="chapter-backdrop" aria-hidden="true">
-            <div className="chapter-backdrop-inner" data-parallax="0.16">
-              <Pointillist
-                src={chapter.aerial}
-                tone={i % 2 === 0 ? 'dark' : 'light'}
-                seed={i}
-              >
-                {chapter.backdrop}
-              </Pointillist>
-            </div>
-          </div>
-          <span className="chapter-marker">{chapter.marker}</span>
-          <span className="chapter-place">{chapter.place}</span>
-          <div className="chapter-art" data-parallax="-0.05">
-            <div className="vignette">
-              <Artifact3D
-                scene={chapter.id}
-                tone={i % 2 === 0 ? 'dark' : 'light'}
-                index={i}
-              >
-                {chapter.art}
-              </Artifact3D>
-            </div>
-          </div>
-          <div className="chapter-body">
-            <h2 className="chapter-title" id={`${chapter.id}-title`}>
-              {chapter.title}
-            </h2>
-            <p className="chapter-text">{chapter.text}</p>
-            {chapter.id === 'depth' && (
-              <ul className="chapter-links">
-                {cornellAffiliations.map((a) => (
-                  <li key={a.name}>
-                    {a.url ? (
-                      <a href={a.url} target="_blank" rel="noopener noreferrer">
-                        {a.name}
-                      </a>
-                    ) : (
-                      <span>{a.name}</span>
-                    )}
-                    <small>{a.role}</small>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {chapter.id === 'ficio' && (
-              <a
-                className="ficio-link"
-                href={ficio.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FicioLogo size={44} />
-                <span className="ficio-link-text">
-                  <strong>{ficio.name}</strong>
-                  <em>Go to the website</em>
-                </span>
-              </a>
-            )}
-            <div className="hex-row" aria-hidden="true">
-              {chapters.map((c, j) => (
-                <span
-                  key={c.id}
-                  className={j === i ? 'hex is-filled' : 'hex'}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="scene-next" aria-hidden="true">
-            <span className="scene-next-label">
-              Next:{' '}
-              {i < chapters.length - 1 ? chapters[i + 1].place : "Let's build"}
-            </span>
-            <span className="scene-next-line" />
-          </div>
-        </section>
-      ))}
-
-      <section className="connect" data-reveal aria-label="Contact">
-        <div className="connect-art">
-          <div className="vignette">
-            <Artifact3D scene="column" tone="dark" index={5}>
-              <ColumnVignette />
-            </Artifact3D>
-          </div>
-        </div>
-        <p className="connect-ledger">
-          Founder, Ficio &middot; Cornell M.Eng &middot; ex-Tesla
-        </p>
-        <h2 className="connect-title">
-          LET&rsquo;S <em>build</em>
-        </h2>
-        <p className="connect-text">
-          I love connecting with builders, investors, and anyone betting on a
-          future of abundance for humanity through technology.
-        </p>
-        <ContactIcons />
-        <a className="pill-button" href="mailto:ymeleka1@gmail.com">
-          ymeleka1@gmail.com
-        </a>
-      </section>
-
-      <footer className="site-footer">
-        <span>&copy; Youhanna Meleka</span>
-        <LocalTime />
-        <a href="https://ymeleka.com">ymeleka.com</a>
-      </footer>
-    </main>
+      <div
+        id="site"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: markup }}
+      />
+      <Script src="/site.js" strategy="afterInteractive" />
+    </>
   );
 }
