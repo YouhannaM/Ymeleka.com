@@ -6,7 +6,8 @@ import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
 
 const SITE = 'https://ymeleka.com';
 const NAME = 'Youhanna Meleka';
-const title = 'Youhanna Meleka — Co-founder & CEO, Ficio';
+const title = 'Youhanna Meleka';
+const longTitle = 'Youhanna Meleka — Co-founder & CEO, Ficio';
 const description =
   'Youhanna Meleka is co-founder and CEO of Ficio, building AI-powered robots for the food supply chain. Formerly Tesla global supply, Cornell MEng in semiconductors.';
 
@@ -17,8 +18,7 @@ const FONTS_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: title,
-    template: `%s · ${NAME}`,
+    absolute: title,
   },
   description,
   applicationName: NAME,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: `${SITE}/`,
     siteName: NAME,
     locale: 'en_US',
-    title,
+    title: longTitle,
     description:
       'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
     firstName: 'Youhanna',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@YouhannaMeleka',
     creator: '@YouhannaMeleka',
-    title,
+    title: longTitle,
     description:
       'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
     images: ['/og.jpg'],

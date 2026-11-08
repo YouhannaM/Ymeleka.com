@@ -32,6 +32,20 @@ const socialLinks = contact
 const markup = pageHtml.replace('<!--SOCIALS-->', socialLinks);
 
 const integrationCss = `
+/* Hero: portrait-first, centered. The photo sits at the top of the page,
+   capped so the full headline lands above the fold, then the statement. */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:1100px;min-height:0;padding-top:100px;gap:0}
+.hero>div:first-child{order:2;display:flex;flex-direction:column;align-items:center;margin-top:36px}
+.photo{order:1;width:min(100%,880px)}
+.photo .frame{aspect-ratio:16/9;max-height:46vh}
+.cap{justify-content:center;gap:24px}
+.hero h1{max-width:20ch;font-size:clamp(44px,5.4vw,84px)}
+.hero h1 br{display:none}
+.hero .intro{margin-left:auto;margin-right:auto;max-width:44ch}
+.ctas{justify-content:center}
+@media(max-width:900px){.hero{padding-top:92px}.hero>div:first-child{margin-top:28px}}
+/* Ficio mark beside the word */
+.ficio-mark{display:inline-block;width:1.1em;height:1.1em;vertical-align:-0.18em;margin-right:.22em}
 footer .social{display:flex;flex-wrap:wrap;gap:6px 18px}
 footer .social a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .3s,border-color .3s}
 footer .social a:hover,footer .social a:focus-visible{color:var(--ink);border-color:var(--ink)}
@@ -140,7 +154,7 @@ const structuredData = {
       '@type': 'ProfilePage',
       '@id': `${SITE}/#profile`,
       url: `${SITE}/`,
-      name: 'Youhanna Meleka — Co-founder & CEO, Ficio',
+      name: 'Youhanna Meleka',
       isPartOf: { '@id': `${SITE}/#website` },
       mainEntity: { '@id': `${SITE}/#person` },
       primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE}/og.jpg` },
