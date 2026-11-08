@@ -57,7 +57,8 @@ This is Youhanna Meleka's personal site: a Next.js shell (static export to GitHu
 
 ### Other routes
 - `app/not-found.tsx` is a minimal 404 in the same type system.
-- `app/robots.ts` and `app/sitemap.ts` generate `robots.txt` and `sitemap.xml`.
+- `app/robots.ts` and `app/sitemap.ts` generate `robots.txt` (search and AI crawlers allowed explicitly) and `sitemap.xml`; `public/llms.txt` is a plain-text summary for AI readers.
+- Search presence: `app/layout.tsx` carries the title, description, Open Graph profile card (`/og.jpg`, 1200x630), Twitter card and favicons (including the 192px PNG Google needs); `app/page.tsx` emits a JSON-LD graph (Person, Organization Ficio, WebSite, ProfilePage) whose `sameAs` comes from `src/data/contact.ts`.
 - `src/components/` still holds the earlier template's components with their tests; nothing on the homepage depends on them.
 
 ### Deployment
