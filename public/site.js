@@ -195,7 +195,7 @@ function sizeAb(){if(mq.matches){ab.style.height="";return}const extra=Math.max(
 const nav=document.getElementById("nav"),links=[...nav.querySelectorAll("ul a")];
 const secs=links.map(a=>document.querySelector(a.getAttribute("href")));
 function onScroll(){const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;nav.style.setProperty("--p",(y/h).toFixed(3));nav.classList.toggle("solid",y>40);
-  const dark=[document.getElementById("stack"),document.getElementById("art")].some(s=>{const r=s.getBoundingClientRect();return r.top<60&&r.bottom>60});nav.classList.toggle("dark",dark);{const a=document.getElementById("art").getBoundingClientRect();nav.classList.toggle("night",a.top<60&&a.bottom>60)}
+  const dark=[document.getElementById("stack"),document.getElementById("art")].filter(Boolean).some(s=>{const r=s.getBoundingClientRect();return r.top<60&&r.bottom>60});nav.classList.toggle("dark",dark);{const ae=document.getElementById("art");const a=ae&&ae.getBoundingClientRect();nav.classList.toggle("night",!!a&&a.top<60&&a.bottom>60)}
   let cur=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=i});links.forEach((a,i)=>a.classList.toggle("on",i===cur));
   if(!mq.matches){const r=ab.getBoundingClientRect();const max=ab.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/max));const extra=track.scrollWidth-innerWidth;track.style.transform=`translate3d(${-p*extra}px,0,0)`;abar.style.transform=`scaleX(${p})`;
     track.querySelectorAll(".draw").forEach(s=>{const b=s.getBoundingClientRect();if(b.left<innerWidth*.92)s.classList.add("in")})}
@@ -251,7 +251,8 @@ function storyScroll(){const trail=document.getElementById("trail");const st=doc
   if(c!==curStop){curStop=c;for(let i=0;i<4;i++)document.getElementById("dot"+i).classList.toggle("on",i<=c);routeA.forEach((a,i)=>a.classList.toggle("on",i===c));
     document.getElementById("yrs-l").textContent=YRS[c][0];document.getElementById("yrs-v").textContent=YRS[c][1]}}
 
-// ---------- art ----------
+// ---------- art ---------- (only when the section is on the page)
+if(document.getElementById("art")){
 const ST=document.getElementById("stars");(function(){for(let i=0;i<90;i++){const c=el("circle",{cx:(rnd()*100)+"%",cy:(rnd()*100)+"%",r:(rnd()*1.2+.2).toFixed(2),fill:"#fff"},ST);c.style.opacity=(rnd()*.7+.1).toFixed(2)}})();
 const ART=[
  {img:"starry.jpg",t:"The Starry Night",a:"Vincent van Gogh · 1889",rot:1.2,w:"The Museum of Modern Art, New York. Public domain.",
@@ -274,6 +275,7 @@ function openLb(o){const h=document.getElementById("lbsk");h.innerHTML="";let sv
   const w=document.getElementById("lbw");w.textContent=o.w;if(o.u){w.insertAdjacentHTML("beforeend",` <a href="${o.u}" target="_blank" rel="noopener">View the original ↗</a>`)}
   lb.classList.add("open");if(sv)requestAnimationFrame(()=>requestAnimationFrame(()=>sv.classList.add("in")));document.getElementById("lbx").focus()}
 const closeLb=()=>lb.classList.remove("open");document.getElementById("lbx").onclick=closeLb;lb.onclick=e=>{if(e.target===lb)closeLb()};addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});
+}
 
 addEventListener("scroll",onScroll,{passive:true});addEventListener("resize",()=>{sizeAb();onScroll()});
 sizeAb();onScroll();document.fonts&&document.fonts.ready.then(()=>{sizeAb();onScroll()});
