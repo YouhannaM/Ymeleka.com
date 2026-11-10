@@ -44,8 +44,8 @@ const integrationCss = `
    capped so the full headline lands above the fold, then the statement. */
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:1100px;min-height:0;padding-top:100px;gap:0}
 .hero>div:first-child{order:2;display:flex;flex-direction:column;align-items:center;margin-top:36px}
-.photo{order:1;width:min(100%,880px)}
-.photo .frame{aspect-ratio:16/9;max-height:46vh}
+.photo{order:1;width:min(100%,920px,calc(46vh * 16 / 9));margin:0 auto}
+.photo .frame{width:100%;aspect-ratio:16/9;max-height:46vh;margin:0 auto}
 .cap{justify-content:center;gap:24px}
 .hero h1{max-width:20ch;font-size:clamp(44px,5.4vw,84px)}
 .hero h1 br{display:none}
