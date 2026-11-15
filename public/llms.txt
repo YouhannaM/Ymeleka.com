@@ -8,7 +8,7 @@ Thesis in one line: food scarcity is an engineering problem.
 ## Work
 - Ficio (https://www.ficio.org): co-founder and CEO. Robots that harvest and sort apples in the orchard: perception, grading and a data layer that learns from every apple; model training and reinforcement learning with field traces feeding retraining; compute architecture and quantization so models run on the machine.
 - Cornell University: MEng, Semiconductors and Quantum Materials; research on wide-bandgap semiconductors in the Jena-Xing Lab; data center architecture projects (power, cooling and compute for AI at scale).
-- Tesla: Global Supply Manager running a global supply chain of 50+ suppliers across 12 countries (closures, electro-mechanical parts and seals); recognized by Elon Musk as Tesla Top Talent.
+- Tesla: Global Supply Manager for electro-mechanical assemblies, actuators, exterior lighting and more, running 50+ suppliers across 12 countries; recognized by Elon Musk as Tesla Top Talent.
 - Penn State: B.S., Industrial, Systems and Manufacturing Engineering.
 
 ## Involvement
