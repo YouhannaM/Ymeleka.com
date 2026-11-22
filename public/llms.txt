@@ -8,17 +8,16 @@ Places gallery: https://ymeleka.com/places
 ## About
 Started a business at 14 and was on a factory floor at 16. Studied industrial, manufacturing and systems engineering at Penn State. Managed 50+ suppliers end-to-end across 12 countries at Tesla (electro-mechanical assemblies, actuators, exterior lighting and more; recognized by Elon Musk as Tesla Top Talent). Now researches wide-bandgap semiconductors at Cornell University in the Jena-Xing Lab.
 
-Interested in emerging technologies and their applications to improve the world: AI infrastructure (chips, models, edge compute and applications). Evaluates companies, develops investment theses and does market research at Big Red Ventures.
+Interested in emerging technologies and their applications to improve the world: AI infrastructure (chips, models, edge compute and applications). Leads technical programs at Cornell University Physical Intelligence. Evaluates companies, develops investment theses and does market research at Big Red Ventures.
 
 ## Work
 - Ficio (https://www.ficio.org): co-founder and CEO. Embodied AI for the food supply chain, starting with in-field apple harvesting and sorting robots.
 - Cornell University: wide-bandgap semiconductor research in the Jena-Xing Lab (https://jena-xing.engineering.cornell.edu).
 - Big Red Ventures (https://www.brventurefund.com/): deep tech diligence, investment theses and market research.
-- Cornell University Physical Intelligence (https://cornellphysicalintelligence.com): founding board member.
+- Cornell University Physical Intelligence (https://cornellphysicalintelligence.com): founding board member; leads technical programs.
 - Penn State (https://www.psu.edu/): B.S., industrial, manufacturing and systems engineering.
 
 ## Contact
-- Email: ymm28@cornell.edu
 - LinkedIn: https://www.linkedin.com/in/youhanna-meleka/
 - X: https://x.com/YouhannaMeleka
 - GitHub: https://github.com/YouhannaM

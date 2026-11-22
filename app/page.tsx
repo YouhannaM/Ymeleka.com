@@ -1,5 +1,6 @@
 import React from 'react';
 
+import BrandMark from '@/components/BrandMark';
 import FicioMark from '@/components/FicioMark';
 import SiteNav from '@/components/SiteNav';
 import contact from '@/data/contact';
@@ -11,14 +12,15 @@ const LINKS = {
     'https://www.linkedin.com/in/youhanna-meleka/',
   ficio: 'https://www.ficio.org',
   pennState: 'https://www.psu.edu/',
+  tesla: 'https://www.tesla.com/',
   lab: 'https://jena-xing.engineering.cornell.edu',
+  cupi: 'https://cornellphysicalintelligence.com',
   brv: 'https://www.brventurefund.com/',
-  email: 'ymm28@cornell.edu',
 };
 
 const socials = contact.filter((c) => c.link.startsWith('http'));
-/* The footer row keeps every social, Email included. */
-const socialRow = contact;
+/* The footer row shows the public profiles only; no email on the page. */
+const socialRow = socials;
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -37,9 +39,8 @@ const structuredData = {
         height: 1200,
       },
       description:
-        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Started a business at 14, worked a factory floor at 16, studied industrial, manufacturing and systems engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Evaluates companies and develops investment theses at Big Red Ventures.',
+        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Started a business at 14, worked a factory floor at 16, studied industrial, manufacturing and systems engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
       jobTitle: 'Co-founder & CEO',
-      email: `mailto:${LINKS.email}`,
       worksFor: { '@id': `${SITE}/#ficio` },
       birthPlace: { '@type': 'Place', name: 'Cairo, Egypt' },
       homeLocation: { '@type': 'Place', name: 'Ithaca, New York' },
@@ -149,11 +150,22 @@ export default function HomePage() {
               target="_blank"
               rel="noopener"
             >
+              <BrandMark brand="penn-state" />
               Penn State
             </a>
-            , managed 50+ suppliers end-to-end across 12 countries at Tesla, and
-            now research wide-bandgap semiconductors at{' '}
+            , managed 50+ suppliers end-to-end across 12 countries at{' '}
+            <a
+              className="link"
+              href={LINKS.tesla}
+              target="_blank"
+              rel="noopener"
+            >
+              <BrandMark brand="tesla" />
+              Tesla
+            </a>
+            , and now research wide-bandgap semiconductors at{' '}
             <a className="link" href={LINKS.lab} target="_blank" rel="noopener">
+              <BrandMark brand="cornell" />
               Cornell
             </a>
             .
@@ -161,18 +173,23 @@ export default function HomePage() {
           <p>
             Interested in emerging technologies and their applications to
             improve the world: AI infrastructure (chips, models, edge compute
-            and applications). I evaluate companies, develop investment theses
-            and do market research at{' '}
+            and applications). I lead technical programs at{' '}
+            <a
+              className="link"
+              href={LINKS.cupi}
+              target="_blank"
+              rel="noopener"
+            >
+              <BrandMark brand="cupi" />
+              Cornell Physical Intelligence
+            </a>
+            , and evaluate companies, develop investment theses and do market
+            research at{' '}
             <a className="link" href={LINKS.brv} target="_blank" rel="noopener">
+              <BrandMark brand="brv" />
               Big Red Ventures
             </a>
             .
-          </p>
-          <p className="reach">
-            Reach out at{' '}
-            <a className="link" href={`mailto:${LINKS.email}`}>
-              {LINKS.email}
-            </a>
           </p>
           <nav className="socials" aria-label="Social links">
             {socialRow.map((c) => (

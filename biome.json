@@ -63,12 +63,7 @@
   },
   "overrides": [
     {
-      "includes": [
-        "*.ts",
-        "*.tsx",
-        "*.mts",
-        "*.cts"
-      ],
+      "includes": ["*.ts", "*.tsx", "*.mts", "*.cts"],
       "linter": {
         "rules": {
           "complexity": {
@@ -104,11 +99,7 @@
       }
     },
     {
-      "includes": [
-        "*.config.ts",
-        "*.config.js",
-        "jest.setup.ts"
-      ],
+      "includes": ["*.config.ts", "*.config.js", "jest.setup.ts"],
       "linter": {
         "rules": {
           "style": {
