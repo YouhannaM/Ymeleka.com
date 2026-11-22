@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!src/site/**", "!public/site.js"]
+    "includes": ["**", "!src/site/**", "!public/site.js", "!public/places.js"]
   },
   "formatter": {
     "enabled": true,

@@ -1,0 +1,388 @@
+/* ---------- theme ---------- */
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --ink: #1d1d1f;
+  --ink2: #424245;
+  --mute: #6e6e73;
+  --line: #d2d2d7;
+  --fill: #3a3a3c;
+  --ficio: #ff5a1f;
+  --serif:
+    "Inter Tight", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", sans-serif;
+  --body:
+    "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue",
+    sans-serif;
+  --pad: clamp(20px, 5vw, 64px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0a0a;
+    --ink: #f5f5f7;
+    --ink2: #d1d1d6;
+    --mute: #8e8e93;
+    --line: #2c2c2e;
+    --fill: #c7c7cc;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --ink: #f5f5f7;
+  --ink2: #d1d1d6;
+  --mute: #8e8e93;
+  --line: #2c2c2e;
+  --fill: #c7c7cc;
+}
+
+/* ---------- base ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: clamp(17px, 1.2vw, 19px);
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px var(--pad);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.brand svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mute);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  color: var(--ink);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--ink);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- home ---------- */
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px var(--pad) 80px;
+}
+
+.home-text {
+  max-width: 640px;
+  text-align: center;
+}
+
+.home-text h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(34px, 4.6vw, 54px);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-wrap: balance;
+  margin-bottom: 28px;
+}
+
+.home-text p {
+  color: var(--ink2);
+  text-wrap: pretty;
+}
+
+.home-text p + p {
+  margin-top: 18px;
+}
+
+.home-text .reach {
+  margin-top: 28px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.25s ease;
+}
+
+.link:hover {
+  border-color: var(--ink);
+}
+
+.ficio-link {
+  color: var(--ficio);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(255, 90, 31, 0.35);
+  white-space: nowrap;
+  transition: border-color 0.25s ease;
+}
+
+.ficio-link:hover {
+  border-color: var(--ficio);
+}
+
+.ficio-mark {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.18em;
+  margin-right: 0.22em;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.socials a {
+  color: var(--mute);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.socials a:hover {
+  color: var(--ink);
+}
+
+/* ---------- places ---------- */
+.places {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 72px) clamp(28px, 5vw, 64px);
+  align-content: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 110px var(--pad) 80px;
+}
+
+.place {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.place svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.place figcaption {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 32px);
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 720px) {
+  .places {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- sketches (graphite, follow the theme) ---------- */
+.sk path,
+.sk line,
+.sk circle,
+.sk ellipse,
+.sk rect,
+.sk polyline {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 0.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sk .fillr {
+  fill: var(--fill);
+  stroke: var(--fill);
+}
+
+.sk .r {
+  stroke: #8e8e93;
+}
+
+.sk .lt {
+  stroke-width: 0.45;
+  opacity: 0.8;
+}
+
+.sk .hv {
+  stroke-width: 1.15;
+}
+
+.sk .ghost {
+  opacity: 0.28;
+}
+
+.draw path,
+.draw line,
+.draw circle,
+.draw ellipse,
+.draw rect,
+.draw polyline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--d, 2.2s) cubic-bezier(0.6, 0.05, 0.25, 1)
+    var(--dl, 0s);
+}
+
+.draw .fillr {
+  fill-opacity: 0;
+  transition:
+    stroke-dashoffset 1s,
+    fill-opacity 0.8s ease var(--fdl, 1.6s);
+}
+
+.draw.in path,
+.draw.in line,
+.draw.in circle,
+.draw.in ellipse,
+.draw.in rect,
+.draw.in polyline {
+  stroke-dashoffset: 0;
+}
+
+.draw.in .fillr {
+  fill-opacity: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.9s ease,
+    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--dl, 0s);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw path,
+  .draw line,
+  .draw circle,
+  .draw ellipse,
+  .draw rect,
+  .draw polyline {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .draw .fillr {
+    fill-opacity: 1 !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

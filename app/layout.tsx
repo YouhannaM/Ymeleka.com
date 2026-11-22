@@ -3,23 +3,25 @@ import React from 'react';
 import { preconnect } from 'react-dom';
 
 import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
+import './globals.css';
 
 const SITE = 'https://ymeleka.com';
 const NAME = 'Youhanna Meleka';
-const title = 'Youhanna Meleka';
 const longTitle = 'Youhanna Meleka — Co-founder & CEO, Ficio';
 const description =
-  'Youhanna Meleka is co-founder and CEO of Ficio, building AI-powered robots for the food supply chain. Formerly Tesla global supply, Cornell MEng in semiconductors.';
+  'Youhanna Meleka is co-founder and CEO of Ficio, building embodied AI for the food supply chain. Formerly Tesla global supply; researching wide-bandgap semiconductors at Cornell.';
 
-/* The approved page loads Inter Tight and Inter from Google Fonts. */
 const FONTS_URL =
   'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap';
 
+/* Applies a remembered theme before first paint, so there is no flash.
+   With nothing remembered the CSS follows the system preference. */
+const themeScript =
+  "(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t}}catch(e){}})();";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: {
-    absolute: title,
-  },
+  title: { absolute: NAME },
   description,
   applicationName: NAME,
   authors: [{ name: NAME, url: SITE }],
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     title: longTitle,
     description:
-      'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
+      'Food scarcity is an engineering problem. Building embodied AI at Ficio for the food supply chain.',
     firstName: 'Youhanna',
     lastName: 'Meleka',
     images: [
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
     creator: '@YouhannaMeleka',
     title: longTitle,
     description:
-      'Food scarcity is an engineering problem. Building embodied AI at Ficio for a healthier, more resilient global food supply chain.',
+      'Food scarcity is an engineering problem. Building embodied AI at Ficio for the food supply chain.',
     images: ['/og.jpg'],
   },
   icons: {
@@ -79,7 +81,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
 };
 
 export default function RootLayout({
@@ -91,8 +97,9 @@ export default function RootLayout({
   preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' });
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="stylesheet" href={FONTS_URL} precedence="default" />
         {children}
         <GoogleAnalytics />
