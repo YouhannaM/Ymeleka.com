@@ -23,6 +23,9 @@ const MONOGRAM: Record<Brand, string> = {
   cupi: 'CPI',
 };
 
+const TESLA_RED = '#e82127';
+const CORNELL_RED = '#b31b1b';
+
 /** Finds /public/logos/<brand>.svg or .png at build time. */
 function logoFile(brand: Brand): string | null {
   for (const ext of ['svg', 'png']) {
@@ -34,14 +37,20 @@ function logoFile(brand: Brand): string | null {
 
 /**
  * A small brand mark that sits before a link's text. Tesla's mark is
- * inlined so it follows the theme color; other brands render their
- * official file when present, otherwise a monogram in the theme ink.
+ * inlined in Tesla red; other brands render their official file when
+ * present (Cornell seal, Penn State shield), otherwise a monogram tile
+ * in Cornell red for the Cornell organizations.
  */
 export default function BrandMark({ brand }: { brand: Brand }) {
   if (brand === 'tesla') {
     return (
-      <svg className="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d={teslaPath} />
+      <svg
+        className="brand-mark"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        data-brand={brand}
+      >
+        <path fill={TESLA_RED} d={teslaPath} />
       </svg>
     );
   }
@@ -49,15 +58,25 @@ export default function BrandMark({ brand }: { brand: Brand }) {
   if (file) {
     return (
       // biome-ignore lint/performance/noImgElement: static export, tiny asset
-      <img className="brand-mark" src={file} alt="" width={18} height={18} />
+      <img
+        className="brand-mark"
+        src={file}
+        alt=""
+        width={18}
+        height={18}
+        data-brand={brand}
+      />
     );
   }
   const text = MONOGRAM[brand];
+  const red = brand === 'brv' || brand === 'cupi';
   return (
     <span
       className={`brand-mark brand-mono ${text.length > 1 ? 'brand-mono-wide' : ''}`}
+      style={red ? { background: CORNELL_RED, color: '#fff' } : undefined}
       aria-hidden="true"
       title={NAMES[brand]}
+      data-brand={brand}
     >
       {text}
     </span>

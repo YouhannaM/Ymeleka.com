@@ -3,7 +3,7 @@ import React from 'react';
 
 import ThemeToggle from './ThemeToggle';
 
-/** Monogram home link, the Places link, and the theme switch. */
+/** Monogram home link, a Places or Home link, and the theme switch. */
 export default function SiteNav({ page }: { page: 'home' | 'places' }) {
   return (
     <nav className="nav" aria-label="Site">
@@ -33,13 +33,15 @@ export default function SiteNav({ page }: { page: 'home' | 'places' }) {
         </svg>
       </Link>
       <div className="nav-right">
-        <Link
-          href="/places"
-          className="nav-link"
-          aria-current={page === 'places' ? 'page' : undefined}
-        >
-          Places
-        </Link>
+        {page === 'places' ? (
+          <Link href="/" className="nav-link nav-back">
+            <span aria-hidden="true">&larr;</span> Home
+          </Link>
+        ) : (
+          <Link href="/places" className="nav-link">
+            Places
+          </Link>
+        )}
         <ThemeToggle />
       </div>
     </nav>
