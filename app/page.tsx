@@ -1,5 +1,6 @@
 import React from 'react';
 
+import BrandMark from '@/components/BrandMark';
 import FicioMark from '@/components/FicioMark';
 import SiteNav from '@/components/SiteNav';
 import contact from '@/data/contact';
@@ -11,7 +12,9 @@ const LINKS = {
     'https://www.linkedin.com/in/youhanna-meleka/',
   ficio: 'https://www.ficio.org',
   pennState: 'https://www.psu.edu/',
+  tesla: 'https://www.tesla.com/',
   lab: 'https://jena-xing.engineering.cornell.edu',
+  cupi: 'https://cornellphysicalintelligence.com',
   brv: 'https://www.brventurefund.com/',
   email: 'ymm28@cornell.edu',
 };
@@ -37,7 +40,7 @@ const structuredData = {
         height: 1200,
       },
       description:
-        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Started a business at 14, worked a factory floor at 16, studied industrial, manufacturing and systems engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Evaluates companies and develops investment theses at Big Red Ventures.',
+        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Started a business at 14, worked a factory floor at 16, studied industrial, manufacturing and systems engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
       jobTitle: 'Co-founder & CEO',
       email: `mailto:${LINKS.email}`,
       worksFor: { '@id': `${SITE}/#ficio` },
@@ -149,11 +152,22 @@ export default function HomePage() {
               target="_blank"
               rel="noopener"
             >
+              <BrandMark brand="penn-state" />
               Penn State
             </a>
-            , managed 50+ suppliers end-to-end across 12 countries at Tesla, and
-            now research wide-bandgap semiconductors at{' '}
+            , managed 50+ suppliers end-to-end across 12 countries at{' '}
+            <a
+              className="link"
+              href={LINKS.tesla}
+              target="_blank"
+              rel="noopener"
+            >
+              <BrandMark brand="tesla" />
+              Tesla
+            </a>
+            , and now research wide-bandgap semiconductors at{' '}
             <a className="link" href={LINKS.lab} target="_blank" rel="noopener">
+              <BrandMark brand="cornell" />
               Cornell
             </a>
             .
@@ -161,9 +175,20 @@ export default function HomePage() {
           <p>
             Interested in emerging technologies and their applications to
             improve the world: AI infrastructure (chips, models, edge compute
-            and applications). I evaluate companies, develop investment theses
-            and do market research at{' '}
+            and applications). I lead technical programs at{' '}
+            <a
+              className="link"
+              href={LINKS.cupi}
+              target="_blank"
+              rel="noopener"
+            >
+              <BrandMark brand="cupi" />
+              Cornell Physical Intelligence
+            </a>
+            , and evaluate companies, develop investment theses and do market
+            research at{' '}
             <a className="link" href={LINKS.brv} target="_blank" rel="noopener">
+              <BrandMark brand="brv" />
               Big Red Ventures
             </a>
             .

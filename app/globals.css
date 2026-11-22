@@ -382,3 +382,36 @@ a {
     transform: none;
   }
 }
+
+/* ---------- brand marks beside links ---------- */
+.brand-mark {
+  display: inline-block;
+  width: 1.05em;
+  height: 1.05em;
+  vertical-align: -0.16em;
+  margin-right: 0.3em;
+  object-fit: contain;
+}
+
+.brand-mono {
+  width: auto;
+  min-width: 1.05em;
+  padding: 0 0.22em;
+  border-radius: 0.28em;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.62em;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.brand-mono-wide {
+  padding: 0 0.32em;
+}
+
+a:hover .brand-mono {
+  background: var(--ink2);
+}
