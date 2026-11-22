@@ -1,27 +1,25 @@
 # Youhanna Meleka
 
-> Co-founder and CEO of Ficio, building embodied AI for a healthier, more resilient global food supply chain, starting with in-field apple harvesting and sorting robots. Formerly Global Supply Manager at Tesla. MEng in Semiconductors and Quantum Materials at Cornell University. Based in Ithaca, New York.
+> Food scarcity is an engineering problem. Youhanna Meleka is co-founder and CEO of Ficio, where the team builds embodied AI for the food supply chain.
 
 Site: https://ymeleka.com/
-Thesis in one line: food scarcity is an engineering problem.
+Places gallery: https://ymeleka.com/places
+
+## About
+Started a business at 14 and was on a factory floor at 16. Studied industrial, manufacturing and systems engineering at Penn State. Managed 50+ suppliers end-to-end across 12 countries at Tesla (electro-mechanical assemblies, actuators, exterior lighting and more; recognized by Elon Musk as Tesla Top Talent). Now researches wide-bandgap semiconductors at Cornell University in the Jena-Xing Lab.
+
+Interested in emerging technologies and their applications to improve the world: AI infrastructure (chips, models, edge compute and applications). Evaluates companies, develops investment theses and does market research at Big Red Ventures.
 
 ## Work
-- Ficio (https://www.ficio.org): co-founder and CEO. Robots that harvest and sort apples in the orchard: perception, grading and a data layer that learns from every apple; model training and reinforcement learning with field traces feeding retraining; compute architecture and quantization so models run on the machine.
-- Cornell University: MEng, Semiconductors and Quantum Materials; research on wide-bandgap semiconductors in the Jena-Xing Lab; data center architecture projects (power, cooling and compute for AI at scale).
-- Tesla: Global Supply Manager for electro-mechanical assemblies, actuators, exterior lighting and more, running 50+ suppliers across 12 countries; recognized by Elon Musk as Tesla Top Talent.
-- Penn State: B.S., Industrial, Systems and Manufacturing Engineering.
+- Ficio (https://www.ficio.org): co-founder and CEO. Embodied AI for the food supply chain, starting with in-field apple harvesting and sorting robots.
+- Cornell University: wide-bandgap semiconductor research in the Jena-Xing Lab (https://jena-xing.engineering.cornell.edu).
+- Big Red Ventures (https://www.brventurefund.com/): deep tech diligence, investment theses and market research.
+- Cornell University Physical Intelligence (https://cornellphysicalintelligence.com): founding board member.
+- Penn State (https://www.psu.edu/): B.S., industrial, manufacturing and systems engineering.
 
-## Involvement
-- Cornell University Physical Intelligence: Founding Board Member (https://cornellphysicalintelligence.com)
-- Big Red Ventures: Deep Tech Diligence and Sourcing (https://www.brventurefund.com/)
-- Entrepreneurship at Cornell (https://eship.cornell.edu/)
-
-## Story
-Born and raised in Cairo, Egypt. Started a first business at fourteen and worked in manufacturing by sixteen. Studied how things are made at Penn State, ran supply for Tesla in California, then went a layer deeper into chips at Cornell, where Ficio began.
-
-## Links
+## Contact
+- Email: ymm28@cornell.edu
 - LinkedIn: https://www.linkedin.com/in/youhanna-meleka/
 - X: https://x.com/YouhannaMeleka
 - GitHub: https://github.com/YouhannaM
 - Substack: https://substack.com/@youhannam
-- Get in touch through the form at https://ymeleka.com/#pitch

@@ -42,3 +42,4 @@ yarn.lock
 # Approved single-file design, kept verbatim
 src/site/
 public/site.js
+public/places.js

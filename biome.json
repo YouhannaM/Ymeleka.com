@@ -7,7 +7,13 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!src/site/**", "!public/site.js"]
+    "includes": [
+      "**",
+      "!src/site/**",
+      "!public/site.js",
+      "!public/places.js",
+      "!**/*.css"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -57,7 +63,12 @@
   },
   "overrides": [
     {
-      "includes": ["*.ts", "*.tsx", "*.mts", "*.cts"],
+      "includes": [
+        "*.ts",
+        "*.tsx",
+        "*.mts",
+        "*.cts"
+      ],
       "linter": {
         "rules": {
           "complexity": {
@@ -93,7 +104,11 @@
       }
     },
     {
-      "includes": ["*.config.ts", "*.config.js", "jest.setup.ts"],
+      "includes": [
+        "*.config.ts",
+        "*.config.js",
+        "jest.setup.ts"
+      ],
       "linter": {
         "rules": {
           "style": {

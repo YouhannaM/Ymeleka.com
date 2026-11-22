@@ -37,7 +37,7 @@ const data: ContactItem[] = [
     icon: faPenToSquare,
   },
   {
-    link: 'mailto:ymeleka1@gmail.com',
+    link: 'mailto:ymm28@cornell.edu',
     label: 'Email',
     icon: faEnvelope,
   },
