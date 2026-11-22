@@ -16,12 +16,11 @@ const LINKS = {
   lab: 'https://jena-xing.engineering.cornell.edu',
   cupi: 'https://cornellphysicalintelligence.com',
   brv: 'https://www.brventurefund.com/',
-  email: 'ymm28@cornell.edu',
 };
 
 const socials = contact.filter((c) => c.link.startsWith('http'));
-/* The footer row keeps every social, Email included. */
-const socialRow = contact;
+/* The footer row shows the public profiles only; no email on the page. */
+const socialRow = socials;
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -42,7 +41,6 @@ const structuredData = {
       description:
         'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Started a business at 14, worked a factory floor at 16, studied industrial, manufacturing and systems engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
       jobTitle: 'Co-founder & CEO',
-      email: `mailto:${LINKS.email}`,
       worksFor: { '@id': `${SITE}/#ficio` },
       birthPlace: { '@type': 'Place', name: 'Cairo, Egypt' },
       homeLocation: { '@type': 'Place', name: 'Ithaca, New York' },
@@ -192,12 +190,6 @@ export default function HomePage() {
               Big Red Ventures
             </a>
             .
-          </p>
-          <p className="reach">
-            Reach out at{' '}
-            <a className="link" href={`mailto:${LINKS.email}`}>
-              {LINKS.email}
-            </a>
           </p>
           <nav className="socials" aria-label="Social links">
             {socialRow.map((c) => (
