@@ -520,6 +520,19 @@ img.brand-mark {
   vertical-align: -0.22em;
 }
 
+/* Single-color marks (black on transparent, or on a black disc) flip in the dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) img.brand-mark[data-brand='brv'],
+  :root:not([data-theme='light']) img.brand-mark[data-brand='cupi'] {
+    filter: invert(1);
+  }
+}
+
+:root[data-theme='dark'] img.brand-mark[data-brand='brv'],
+:root[data-theme='dark'] img.brand-mark[data-brand='cupi'] {
+  filter: invert(1);
+}
+
 .brand-mono {
   width: auto;
   min-width: 1.05em;
