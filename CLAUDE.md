@@ -43,7 +43,8 @@ Youhanna Meleka's personal site: a Next.js static export (GitHub Pages) with two
 
 ### Pages
 - `app/page.tsx`: the home page. Text only, centered: the headline, four short paragraphs with links (LinkedIn, Ficio with its apple mark, Penn State, the Jena-Xing Lab at Cornell, Big Red Ventures), the contact email, and the social links from `src/data/contact.ts`. Also emits the JSON-LD graph (Person, Organization Ficio, WebSite, ProfilePage).
-- `app/places/page.tsx`: the gallery. Four pencil sketches (Cairo, Happy Valley, California, Ithaca) drawn at runtime by `public/places.js`, with only the place names as text. `places.js` is the sketch engine lifted from the earlier approved page script.
+- `app/places/page.tsx`: the gallery. Four pencil sketches (Cairo, Happy Valley, California, Ithaca) drawn at runtime by `public/places.js`, each on a ruled index card; the place name is hidden under a scratch-off canvas (`src/components/ScratchName.tsx`, pointer drag or Enter/Space to reveal). `places.js` is the sketch engine lifted from the earlier approved page script. The nav shows a Home link on this page.
+- `src/components/BrandMark.tsx`: small marks before the Penn State, Tesla, Cornell, CUPI and BRV links. Tesla is inlined in Tesla red; files in `public/logos/` (`penn-state.png`, `cornell.png`) are used when present, otherwise a monogram tile (Cornell red for BRV and CUPI). See `public/logos/README.md`.
 - `app/layout.tsx`: metadata, Open Graph/Twitter cards (`/og.jpg`), favicons, Google Fonts link (Inter Tight, Inter), and the inline theme script.
 - `src/components/SiteNav.tsx`: monogram home link, Places link, theme toggle. `src/components/ThemeToggle.tsx` is the client switch; `src/components/FicioMark.tsx` is the apple.
 

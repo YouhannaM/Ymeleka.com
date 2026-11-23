@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import React from 'react';
 
+import ScratchName from '@/components/ScratchName';
 import SiteNav from '@/components/SiteNav';
 
 export const metadata: Metadata = {
@@ -36,7 +37,10 @@ const PLACES: { key: string; name: string; label: string }[] = [
   },
 ];
 
-/** The four places, drawn at runtime by places.js, with only their names. */
+/**
+ * The four places as index cards: each sketch is drawn at runtime by
+ * places.js, and its name sits under a scratch-off panel.
+ */
 export default function PlacesPage() {
   return (
     <>
@@ -64,17 +68,19 @@ export default function PlacesPage() {
         {PLACES.map((p, i) => (
           <figure
             key={p.key}
-            className="place reveal"
+            className="place card reveal"
             style={{ '--dl': `${i * 0.08}s` } as React.CSSProperties}
           >
-            <svg
-              className="sk draw"
-              viewBox="0 0 300 200"
-              data-sk={p.key}
-              role="img"
-              aria-label={p.label}
-            />
-            <figcaption>{p.name}</figcaption>
+            <div className="card-sheet">
+              <svg
+                className="sk draw"
+                viewBox="0 0 300 200"
+                data-sk={p.key}
+                role="img"
+                aria-label={p.label}
+              />
+            </div>
+            <ScratchName name={p.name} />
           </figure>
         ))}
       </main>
