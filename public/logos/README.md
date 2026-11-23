@@ -5,8 +5,8 @@ code change needed). Use a mark that works at about 18px tall. File names:
 
 - `penn-state.png` — Penn State shield (present)
 - `cornell.png` — Cornell University seal (present)
-- `brv.svg` (or `.png`) — Big Red Ventures: not yet present
-- `cupi.svg` (or `.png`) — Cornell University Physical Intelligence: not yet present
+- `brv.png` — Big Red Ventures angular roofline mark, black on transparent (present)
+- `cupi.png` — Cornell University Physical Intelligence crab icon, white on a black disc (present)
 - `tesla.svg` — Tesla "T" in Tesla red (the page inlines the same path)
 
 Until a file exists, the page shows a monogram tile; for the two Cornell
