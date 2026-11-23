@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     title: longTitle,
     description:
-      'Food scarcity is an engineering problem. Building embodied AI at Ficio for the food supply chain.',
+      'Every living being needs food, water and air. Building embodied AI at Ficio to improve the supply of food.',
     firstName: 'Youhanna',
     lastName: 'Meleka',
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     creator: '@YouhannaMeleka',
     title: longTitle,
     description:
-      'Food scarcity is an engineering problem. Building embodied AI at Ficio for the food supply chain.',
+      'Every living being needs food, water and air. Building embodied AI at Ficio to improve the supply of food.',
     images: ['/og.jpg'],
   },
   icons: {

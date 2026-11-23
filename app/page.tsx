@@ -39,7 +39,7 @@ const structuredData = {
         height: 1200,
       },
       description:
-        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Started a business at 14, worked a factory floor at 16, studied industrial, manufacturing and systems engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
+        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Every living being needs food, water and air; improving the supply of food improves food availability and positively impacts the world. In factories since he can remember, studied manufacturing at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
       jobTitle: 'Co-founder & CEO',
       worksFor: { '@id': `${SITE}/#ficio` },
       birthPlace: { '@type': 'Place', name: 'Cairo, Egypt' },
@@ -118,9 +118,10 @@ export default function HomePage() {
       <SiteNav page="home" />
       <main className="home">
         <div className="home-text">
-          <h1>Food scarcity is an engineering problem.</h1>
+          <h1>Every living being needs food, water and air.</h1>
           <p>
-            I&rsquo;m{' '}
+            Improving the supply of food improves food availability and
+            positively impacts the world. I&rsquo;m{' '}
             <a
               className="link"
               href={LINKS.linkedin}
@@ -142,8 +143,8 @@ export default function HomePage() {
             , where we build embodied AI for the food supply chain.
           </p>
           <p>
-            I started a business at 14, was on a factory floor at 16, studied
-            industrial, manufacturing and systems engineering at{' '}
+            I&rsquo;ve been in factories since I can remember, studied
+            manufacturing at{' '}
             <a
               className="link"
               href={LINKS.pennState}
