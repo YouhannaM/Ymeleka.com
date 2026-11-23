@@ -118,10 +118,11 @@ export default function HomePage() {
       <SiteNav page="home" />
       <main className="home">
         <div className="home-text">
-          <h1>Every living being needs food, water and air.</h1>
+          <h1 className="sr-only">Youhanna Meleka</h1>
           <p>
-            Improving the supply of food improves food availability and
-            positively impacts the world. I&rsquo;m{' '}
+            Every living being needs food, water and air. Improving the supply
+            of food improves food availability and positively impacts the world.
+            I&rsquo;m{' '}
             <a
               className="link"
               href={LINKS.linkedin}
