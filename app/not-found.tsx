@@ -15,11 +15,13 @@ export default function NotFound() {
       <SiteNav page="home" />
       <main className="home">
         <div className="home-text">
-          <h1>That page does not exist.</h1>
+          <h1 className="sr-only">Page not found</h1>
           <p>
+            That page does not exist.{' '}
             <Link className="link" href="/">
               Back to the homepage
             </Link>
+            .
           </p>
         </div>
       </main>
