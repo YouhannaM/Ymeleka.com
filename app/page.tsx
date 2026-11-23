@@ -39,7 +39,7 @@ const structuredData = {
         height: 1200,
       },
       description:
-        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Every living being needs food, water and air; improving the supply of food improves food availability and positively impacts the world. In factories since he can remember, studied manufacturing at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
+        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Every living being needs food, water and air; improving the supply of food improves availability and resilience of global production. In factories since he can remember, studied manufacturing at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
       jobTitle: 'Co-founder & CEO',
       worksFor: { '@id': `${SITE}/#ficio` },
       birthPlace: { '@type': 'Place', name: 'Cairo, Egypt' },
@@ -121,7 +121,7 @@ export default function HomePage() {
           <h1 className="sr-only">Youhanna Meleka</h1>
           <p>
             Every living being needs food, water and air. Improving the supply
-            of food improves food availability and positively impacts the world.
+            of food improves availability and resilience of global production.
             I&rsquo;m{' '}
             <a
               className="link"
