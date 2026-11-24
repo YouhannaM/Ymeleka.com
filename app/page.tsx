@@ -39,7 +39,7 @@ const structuredData = {
         height: 1200,
       },
       description:
-        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Every living being needs food, water and air; improving the supply of food improves availability and resilience of global production. In factories since he can remember, studied manufacturing at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
+        'Co-founder and CEO of Ficio, building embodied AI for the food supply chain. Every living being needs food, water and air; improving the supply of food improves availability and resilience of global production. In factories since he can remember, studied industrial, systems, and manufacturing engineering at Penn State, managed 50+ suppliers across 12 countries at Tesla, and researches wide-bandgap semiconductors at Cornell as part of his MEng. Interested in AI infrastructure, green energy, and space. Leads technical programs at Cornell University Physical Intelligence and evaluates companies and develops investment theses at Big Red Ventures.',
       jobTitle: 'Co-founder & CEO',
       worksFor: { '@id': `${SITE}/#ficio` },
       birthPlace: { '@type': 'Place', name: 'Cairo, Egypt' },
@@ -72,6 +72,8 @@ const structuredData = {
         'Semiconductors',
         'Wide-bandgap semiconductors',
         'Edge compute',
+        'Green energy',
+        'Space technology',
         'Supply chain management',
         'Venture capital',
         'Market research',
@@ -145,7 +147,7 @@ export default function HomePage() {
           </p>
           <p>
             I&rsquo;ve been in factories since I can remember, studied
-            manufacturing at{' '}
+            industrial, systems, and manufacturing engineering at{' '}
             <a
               className="link"
               href={LINKS.pennState}
@@ -169,13 +171,13 @@ export default function HomePage() {
             <a className="link" href={LINKS.lab} target="_blank" rel="noopener">
               <BrandMark brand="cornell" />
               Cornell
-            </a>
-            .
+            </a>{' '}
+            as part of my MEng.
           </p>
           <p>
             Interested in emerging technologies and their applications to
-            improve the world: AI infrastructure (chips, models, edge compute
-            and applications). I lead technical programs at{' '}
+            improve the world: AI infrastructure, green energy, and space. I
+            lead technical programs at{' '}
             <a
               className="link"
               href={LINKS.cupi}
