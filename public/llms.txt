@@ -6,16 +6,16 @@ Site: https://ymeleka.com/
 Places gallery: https://ymeleka.com/places
 
 ## About
-In factories since he can remember. Studied manufacturing (industrial, manufacturing and systems engineering) at Penn State. Managed 50+ suppliers end-to-end across 12 countries at Tesla (electro-mechanical assemblies, actuators, exterior lighting and more; recognized by Elon Musk as Tesla Top Talent). Now researches wide-bandgap semiconductors at Cornell University in the Jena-Xing Lab.
+In factories since he can remember. Studied industrial, systems, and manufacturing engineering at Penn State. Managed 50+ suppliers end-to-end across 12 countries at Tesla (electro-mechanical assemblies, actuators, exterior lighting and more; recognized by Elon Musk as Tesla Top Talent). Now researches wide-bandgap semiconductors at Cornell University in the Jena-Xing Lab as part of his MEng.
 
-Interested in emerging technologies and their applications to improve the world: AI infrastructure (chips, models, edge compute and applications). Leads technical programs at Cornell University Physical Intelligence. Evaluates companies, develops investment theses and does market research at Big Red Ventures.
+Interested in emerging technologies and their applications to improve the world: AI infrastructure, green energy, and space. Leads technical programs at Cornell University Physical Intelligence. Evaluates companies, develops investment theses and does market research at Big Red Ventures.
 
 ## Work
 - Ficio (https://www.ficio.org): co-founder and CEO. Embodied AI for the food supply chain, starting with in-field apple harvesting and sorting robots.
-- Cornell University: wide-bandgap semiconductor research in the Jena-Xing Lab (https://jena-xing.engineering.cornell.edu).
+- Cornell University: MEng; wide-bandgap semiconductor research in the Jena-Xing Lab (https://jena-xing.engineering.cornell.edu).
 - Big Red Ventures (https://www.brventurefund.com/): deep tech diligence, investment theses and market research.
 - Cornell University Physical Intelligence (https://cornellphysicalintelligence.com): founding board member; leads technical programs.
-- Penn State (https://www.psu.edu/): B.S., industrial, manufacturing and systems engineering.
+- Penn State (https://www.psu.edu/): B.S., industrial, systems, and manufacturing engineering.
 
 ## Contact
 - LinkedIn: https://www.linkedin.com/in/youhanna-meleka/
