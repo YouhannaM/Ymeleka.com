@@ -15,6 +15,9 @@
   --foil2: #ababb2;
   --foil-ink: #55555b;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 18px 40px -24px rgba(0, 0, 0, 0.35);
+  --weave: url('/weave-light.webp');
+  --veil: rgba(255, 255, 255, 0.28);
+  --halo: rgba(255, 255, 255, 0.82);
   --serif:
     'Inter Tight', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   --body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
@@ -36,6 +39,9 @@
     --foil2: #58585f;
     --foil-ink: #bdbdc4;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+    --weave: url('/weave-dark.webp');
+    --veil: rgba(10, 10, 10, 0.4);
+    --halo: rgba(10, 10, 10, 0.86);
   }
 }
 
@@ -53,6 +59,9 @@
   --foil2: #58585f;
   --foil-ink: #bdbdc4;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+  --weave: url('/weave-dark.webp');
+  --veil: rgba(10, 10, 10, 0.4);
+  --halo: rgba(10, 10, 10, 0.86);
 }
 
 /* ---------- base ---------- */
@@ -66,9 +75,14 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* The woven coral pattern tiles behind everything; a thin veil keeps it quiet. */
 body {
   min-height: 100vh;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--veil), var(--veil)), var(--weave);
+  background-repeat: repeat;
+  background-size: 400px auto;
+  background-position: center top;
   color: var(--ink);
   font-family: var(--body);
   font-size: clamp(17px, 1.2vw, 19px);
@@ -194,7 +208,9 @@ a {
 
 .home-text {
   max-width: 640px;
+  padding: 72px clamp(24px, 6vw, 96px);
   text-align: center;
+  background: radial-gradient(closest-side, var(--halo) 0%, var(--halo) 58%, transparent 100%);
 }
 
 /* The page has no visible heading; the name stays for search and screen readers. */
