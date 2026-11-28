@@ -75,14 +75,9 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* The woven coral pattern tiles behind everything; a thin veil keeps it quiet. */
 body {
   min-height: 100vh;
-  background-color: var(--bg);
-  background-image: linear-gradient(var(--veil), var(--veil)), var(--weave);
-  background-repeat: repeat;
-  background-size: 400px auto;
-  background-position: center top;
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
   font-size: clamp(17px, 1.2vw, 19px);
@@ -99,9 +94,45 @@ a {
   color: inherit;
 }
 
-/* The weave glides while the pointer is held; empty space shows a hand. */
+/* ---------- woven background ----------
+   The weave as a stack of rows (one row = half the mirrored tile =
+   349px * 400/440). Each row is wider than the screen by a tile on each
+   side so it can slide; while the pointer is held, neighbouring rows shear
+   in opposite directions. Empty space shows a hand as the hint. */
+.weave {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.weave-row {
+  position: absolute;
+  left: -400px;
+  right: -400px;
+  height: 317.2727px;
+  background-image: var(--weave);
+  background-repeat: repeat;
+  background-size: 400px auto;
+  background-position-x: 50%;
+  will-change: transform;
+}
+
+.weave-veil {
+  position: absolute;
+  inset: 0;
+  background: var(--veil);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
 body {
   cursor: grab;
+  touch-action: pan-y pinch-zoom;
 }
 
 .home-text,
@@ -115,8 +146,11 @@ body {
   cursor: grabbing;
 }
 
-:root.is-flowing ::selection {
-  background: transparent;
+:root.is-flowing,
+:root.is-flowing * {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 ::selection {
