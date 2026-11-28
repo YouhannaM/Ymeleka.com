@@ -1,43 +1,61 @@
 'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-/* Glide direction follows the strands of the weave (mostly across). */
-const DIR = { x: 0.94, y: 0.34 };
-const GLIDE = 28; // px per second while held
-const EASE_IN = 2.2; // per second
+/* Must match .weave-row in globals.css: tile width and one weave row. */
+const TILE_W = 400;
+const BAND = (698 / 2) * (TILE_W / 440);
+const GLIDE = 34; // px per second while held
+const EASE_IN = 2.4; // per second
 const EASE_OUT = 3.5;
 
 /**
- * While the pointer is held down anywhere on the page (not on a link or
- * button) the woven background glides along its strands and follows the
- * drag like fabric. On release it eases to a stop. Nothing moves otherwise.
+ * The woven background as a stack of rows, one weave row each. While the
+ * pointer is held down anywhere on the page (not on a link or button)
+ * neighbouring rows slide in opposite directions, like links shearing past
+ * each other; a sideways drag adds to the shear. On release it eases to a
+ * stop. Nothing moves otherwise. Rows are plain elements moved with
+ * transforms, so phones handle it the same as desktops.
  */
 export default function WeaveDrift() {
+  const box = useRef<HTMLDivElement>(null);
+  const [rows, setRows] = useState(0);
+
+  useEffect(() => {
+    const count = () => setRows(Math.ceil(window.innerHeight / BAND) + 1);
+    count();
+    window.addEventListener('resize', count);
+    return () => window.removeEventListener('resize', count);
+  }, []);
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = box.current;
+    if (!el) return;
     const root = document.documentElement;
-    const body = document.body;
     let x = 0;
-    let y = 0;
     let v = 0;
     let pressed = false;
-    let last = { x: 0, y: 0 };
+    let lastX = 0;
     let raf = 0;
     let then = 0;
 
     const apply = () => {
-      body.style.backgroundPosition = `0 0, calc(50% + ${x.toFixed(2)}px) ${y.toFixed(2)}px`;
+      /* The tile repeats every TILE_W, so wrap to keep the numbers small. */
+      const o = ((x % TILE_W) + TILE_W) % TILE_W;
+      const rowEls = el.querySelectorAll<HTMLElement>('.weave-row');
+      rowEls.forEach((r, i) => {
+        const s = i % 2 === 0 ? o : -o;
+        r.style.transform = `translate3d(${s.toFixed(2)}px, 0, 0)`;
+      });
     };
 
     const frame = (now: number) => {
       const dt = Math.min(0.05, (now - then) / 1000);
       then = now;
       const target = pressed ? GLIDE : 0;
-      const k = Math.min(1, dt * (pressed ? EASE_IN : EASE_OUT));
-      v += (target - v) * k;
-      x += DIR.x * v * dt;
-      y += DIR.y * v * dt;
+      v += (target - v) * Math.min(1, dt * (pressed ? EASE_IN : EASE_OUT));
+      x += v * dt;
       apply();
       if (pressed || v > 0.05) raf = requestAnimationFrame(frame);
       else raf = 0;
@@ -49,22 +67,22 @@ export default function WeaveDrift() {
       raf = requestAnimationFrame(frame);
     };
 
-    const interactive = (el: EventTarget | null) =>
-      el instanceof Element &&
-      el.closest('a, button, input, textarea, select, [role="button"]');
+    const interactive = (t: EventTarget | null) =>
+      t instanceof Element &&
+      t.closest('a, button, input, textarea, select, [role="button"]');
 
     const down = (e: PointerEvent) => {
       if (e.button !== 0 || interactive(e.target)) return;
       pressed = true;
-      last = { x: e.clientX, y: e.clientY };
+      lastX = e.clientX;
+      window.getSelection()?.removeAllRanges();
       root.classList.add('is-flowing');
       start();
     };
     const move = (e: PointerEvent) => {
       if (!pressed) return;
-      x += e.clientX - last.x;
-      y += e.clientY - last.y;
-      last = { x: e.clientX, y: e.clientY };
+      x += (e.clientX - lastX) * 0.5;
+      lastX = e.clientX;
     };
     const up = () => {
       if (!pressed) return;
@@ -72,12 +90,16 @@ export default function WeaveDrift() {
       root.classList.remove('is-flowing');
       start();
     };
+    const menu = (e: Event) => {
+      if (pressed) e.preventDefault();
+    };
 
     window.addEventListener('pointerdown', down);
     window.addEventListener('pointermove', move, { passive: true });
     window.addEventListener('pointerup', up);
     window.addEventListener('pointercancel', up);
     window.addEventListener('blur', up);
+    window.addEventListener('contextmenu', menu);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -86,10 +108,24 @@ export default function WeaveDrift() {
       window.removeEventListener('pointerup', up);
       window.removeEventListener('pointercancel', up);
       window.removeEventListener('blur', up);
+      window.removeEventListener('contextmenu', menu);
       root.classList.remove('is-flowing');
-      body.style.backgroundPosition = '';
     };
   }, []);
 
-  return null;
+  return (
+    <div ref={box} className="weave" aria-hidden="true">
+      {Array.from({ length: rows }, (_, i) => (
+        <div
+          key={i}
+          className="weave-row"
+          style={{
+            top: i * BAND,
+            backgroundPositionY: -i * BAND,
+          }}
+        />
+      ))}
+      <div className="weave-veil" />
+    </div>
+  );
 }
