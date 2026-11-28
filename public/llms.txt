@@ -3,7 +3,7 @@
 > Every living being needs food, water and air. Improving the supply of food improves availability and resilience of global production. Youhanna Meleka is co-founder and CEO of Ficio, where the team builds embodied AI for the food supply chain.
 
 Site: https://ymeleka.com/
-Places gallery: https://ymeleka.com/places
+Gallery: https://ymeleka.com/gallery
 
 ## About
 In factories since he can remember. Studied industrial, systems, and manufacturing engineering at Penn State. Managed 50+ suppliers end-to-end across 12 countries at Tesla (electro-mechanical assemblies, actuators, exterior lighting and more; recognized by Elon Musk as Tesla Top Talent). Now researches wide-bandgap semiconductors at Cornell University in the Jena-Xing Lab as part of his MEng.

@@ -3,8 +3,8 @@ import React from 'react';
 
 import ThemeToggle from './ThemeToggle';
 
-/** Monogram home link, a Places or Home link, and the theme switch. */
-export default function SiteNav({ page }: { page: 'home' | 'places' }) {
+/** Monogram home link, a Gallery or Home link, and the theme switch. */
+export default function SiteNav({ page }: { page: 'home' | 'gallery' }) {
   return (
     <nav className="nav" aria-label="Site">
       <Link href="/" className="brand" aria-label="Youhanna Meleka, home">
@@ -33,13 +33,13 @@ export default function SiteNav({ page }: { page: 'home' | 'places' }) {
         </svg>
       </Link>
       <div className="nav-right">
-        {page === 'places' ? (
+        {page === 'gallery' ? (
           <Link href="/" className="nav-link nav-back">
             <span aria-hidden="true">&larr;</span> Home
           </Link>
         ) : (
-          <Link href="/places" className="nav-link">
-            Places
+          <Link href="/gallery" className="nav-link">
+            Gallery
           </Link>
         )}
         <ThemeToggle />

@@ -3,6 +3,7 @@ import React from 'react';
 import { preconnect } from 'react-dom';
 
 import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
+import WeaveFlow from '@/components/WeaveFlow';
 import './globals.css';
 
 const SITE = 'https://ymeleka.com';
@@ -101,6 +102,7 @@ export default function RootLayout({
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="stylesheet" href={FONTS_URL} precedence="default" />
+        <WeaveFlow />
         {children}
         <GoogleAnalytics />
       </body>

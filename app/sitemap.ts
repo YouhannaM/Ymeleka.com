@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: ['https://ymeleka.com/me.jpg', 'https://ymeleka.com/og.jpg'],
     },
     {
-      url: 'https://ymeleka.com/places',
+      url: 'https://ymeleka.com/gallery',
       lastModified,
       changeFrequency: 'yearly',
       priority: 0.5,

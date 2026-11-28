@@ -1,90 +1,29 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import Link from 'next/link';
 import React from 'react';
 
-import ScratchName from '@/components/ScratchName';
-import SiteNav from '@/components/SiteNav';
-
+/** The gallery used to live at /places; send old links on to /gallery. */
 export const metadata: Metadata = {
-  title: { absolute: 'Places · Youhanna Meleka' },
-  description:
-    'Four places that shaped Youhanna Meleka: Cairo, Happy Valley, California and Ithaca.',
-  alternates: { canonical: '/places' },
+  title: { absolute: 'Gallery · Youhanna Meleka' },
+  robots: { index: false, follow: true },
+  alternates: { canonical: '/gallery' },
 };
 
-const PLACES: { key: string; name: string; label: string }[] = [
-  {
-    key: 'cairo',
-    name: 'Cairo',
-    label:
-      'Pencil sketch of Cairo: apartment blocks, a mosque, palms and the pyramids',
-  },
-  {
-    key: 'stadium',
-    name: 'Happy Valley',
-    label: 'Pencil sketch of Beaver Stadium full on game day',
-  },
-  {
-    key: 'factory',
-    name: 'California',
-    label: 'Pencil sketch of the Tesla factory with robots assembling a car',
-  },
-  {
-    key: 'orchard',
-    name: 'Ithaca',
-    label:
-      'Pencil sketch of an apple orchard with a tractor pulling a sorting machine',
-  },
-];
+const redirect = "location.replace('/gallery');";
 
-/**
- * The four places as index cards: each sketch is drawn at runtime by
- * places.js, and its name sits under a scratch-off panel.
- */
-export default function PlacesPage() {
+export default function PlacesRedirect() {
   return (
-    <>
-      <svg
-        width="0"
-        height="0"
-        style={{ position: 'absolute' }}
-        aria-hidden="true"
-      >
-        <defs>
-          <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency=".035"
-              numOctaves="2"
-              seed="4"
-              result="t"
-            />
-            <feDisplacementMap in="SourceGraphic" in2="t" scale="2.6" />
-          </filter>
-        </defs>
-      </svg>
-      <SiteNav page="places" />
-      <main className="places">
-        {PLACES.map((p, i) => (
-          <figure
-            key={p.key}
-            className="place card reveal"
-            style={{ '--dl': `${i * 0.08}s` } as React.CSSProperties}
-          >
-            <div className="card-sheet">
-              <svg
-                className="sk draw"
-                viewBox="0 0 300 200"
-                data-sk={p.key}
-                role="img"
-                aria-label={p.label}
-              />
-            </div>
-            <ScratchName name={p.name} />
-          </figure>
-        ))}
-      </main>
-      <Script src="/places.js" strategy="afterInteractive" />
-    </>
+    <main className="home">
+      <script dangerouslySetInnerHTML={{ __html: redirect }} />
+      <div className="home-text">
+        <p>
+          The gallery has moved to{' '}
+          <Link className="link" href="/gallery">
+            ymeleka.com/gallery
+          </Link>
+          .
+        </p>
+      </div>
+    </main>
   );
 }
